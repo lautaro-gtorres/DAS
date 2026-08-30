@@ -15,11 +15,24 @@ namespace BLL
             fa = mapper.AltaAlumno(alumn);
             return fa;
         }
+
+        public int BajaAlumno(int idAlumno)
+        {
+            int fa = 0;
+            fa = mapper.BajaAlumno(idAlumno);
+            return fa;
+        }
         public List<BE.Alumno> ListarAlumnos()
         {
             List<BE.Alumno> alumnos = new List<BE.Alumno>();
             alumnos = mapper.ListarAlumnos();
             return alumnos;
+        }
+        public int ModificarAlumno(BE.Alumno alumn)
+        {
+            int fa = 0;
+            fa = mapper.ModificarAlumno(alumn);
+            return fa;
         }
     }
 }

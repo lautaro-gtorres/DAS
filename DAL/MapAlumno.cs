@@ -23,11 +23,19 @@ namespace DAL
             fa = acc.Escribir("AltaAlumno", parametro);
             return fa;
         }
+        public int BajaAlumno(int idAlumno)
+        {
+            int fa = 0;
+            SqlParameter[] parametro = new SqlParameter[1];
+            parametro[0] = new SqlParameter("@IdAlumno", idAlumno);
+            fa = acc.Escribir("BajaAlumno", parametro);
+            return fa;
+        }
 
         public List<BE.Alumno> ListarAlumnos()
         {
             List<BE.Alumno> alumnos = new List<BE.Alumno>();
-            var dt = acc.Leer();
+            var dt = acc.Leer("ListadoAlumno");
             foreach (System.Data.DataRow row in dt.Rows)
             {
                 BE.Alumno alumno = new BE.Alumno();
@@ -39,6 +47,18 @@ namespace DAL
                 alumnos.Add(alumno);
             }
             return alumnos;
+        }
+        public int ModificarAlumno(BE.Alumno alum)
+        {
+            int fa = 0;
+            SqlParameter[] parametro = new SqlParameter[5];
+            parametro[0] = new SqlParameter("@IdAlumno", alum.IdAlumno);
+            parametro[1] = new SqlParameter("@nombre", alum.Nombre);
+            parametro[2] = new SqlParameter("@apellido", alum.Apellido);
+            parametro[3] = new SqlParameter("@edad", alum.Edad);
+            parametro[4] = new SqlParameter("@genero", alum.Genero);
+            fa = acc.Escribir("UpdateAlumno", parametro);
+            return fa;
         }
     }
 }

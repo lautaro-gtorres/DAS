@@ -25,17 +25,18 @@ namespace DAL
             cn.Close();
             cn.Dispose();
         }
-        public DataTable Leer()
+        public DataTable Leer(string storedProcedure)
         {
             DataTable dt = new DataTable();
             Conectar();
             cmd = new SqlCommand();
             cmd.Connection = cn;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "ListadoAlumno";
+            cmd.CommandText = storedProcedure;
             SqlDataReader dr = cmd.ExecuteReader();
             dt.Load(dr);
             dr.Close();
+            Desconectar();
             return dt;
         }
         public int Escribir(string query, SqlParameter[] parameters)
