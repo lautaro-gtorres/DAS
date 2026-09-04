@@ -11,28 +11,21 @@ namespace BLL
         DAL.MapAlumno mapper = new DAL.MapAlumno();  
         public int AltaAlumno(BE.Alumno alumn)
         {
-            int fa = 0;
-            fa = mapper.AltaAlumno(alumn);
-            return fa;
+         return mapper.AltaAlumno(alumn);
         }
 
         public int BajaAlumno(int idAlumno)
         {
-            int fa = 0;
-            fa = mapper.BajaAlumno(idAlumno);
-            return fa;
+           return mapper.BajaAlumno(idAlumno);
         }
         public List<BE.Alumno> ListarAlumnos()
         {
-            List<BE.Alumno> alumnos = new List<BE.Alumno>();
-            alumnos = mapper.ListarAlumnos();
-            return alumnos;
+            
+            return mapper.ListarAlumnos();
         }
         public int ModificarAlumno(BE.Alumno alumn)
         {
-            int fa = 0;
-            fa = mapper.ModificarAlumno(alumn);
-            return fa;
+            return mapper.ModificarAlumno(alumn);
         }
     }
 }
