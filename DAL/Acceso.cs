@@ -25,7 +25,7 @@ namespace DAL
             cn.Close();
             cn.Dispose();
         }
-        public DataTable Leer(string storedProcedure)
+        public DataTable Leer(string storedProcedure, SqlParameter[] parameters = null)
         {
             DataTable dt = new DataTable();
             Conectar();
@@ -33,6 +33,10 @@ namespace DAL
             cmd.Connection = cn;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcedure;
+            if (parameters != null)
+            {
+                cmd.Parameters.AddRange(parameters);
+            }
             SqlDataReader dr = cmd.ExecuteReader();
             dt.Load(dr);
             dr.Close();
