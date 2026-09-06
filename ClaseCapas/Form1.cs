@@ -30,7 +30,7 @@ namespace ClaseCapas
             alumno.Edad = int.Parse(txtEdadAlumno.Text);
             alumno.Genero = txtGeneroAlumno.Text;
 
-            fa = alumnoBLL.AltaAlumno(alumno);
+            fa = alumnoBLL.Alta(alumno);
 
             if (fa != 0)
             {
@@ -56,7 +56,7 @@ namespace ClaseCapas
         {
             
             dataGridView1.DataSource = null;       
-            dataGridView1.DataSource = alumnoBLL.ListarAlumnos(); 
+            dataGridView1.DataSource = alumnoBLL.Listar();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace ClaseCapas
             if (txtIdAlumno.Text != "")
             {
                 int idAlumno = int.Parse(txtIdAlumno.Text);
-                int fa = alumnoBLL.BajaAlumno(idAlumno);
+                int fa = alumnoBLL.Baja(idAlumno);
                 if (fa != 0)
                 {
                     MessageBox.Show("Alumno " + idAlumno + " eliminado correctamente");
@@ -107,7 +107,7 @@ namespace ClaseCapas
             alumno.Edad = int.Parse(txtEdadAlumno.Text);
             alumno.Genero = txtGeneroAlumno.Text;
 
-            fa = alumnoBLL.ModificarAlumno(alumno);
+            fa = alumnoBLL.Modificar(alumno);
 
             if (fa != 0)
             {

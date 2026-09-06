@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class Alumno
+    public class Alumno : IABMeable<BE.Alumno>
     {
-        DAL.MapAlumno mapper = new DAL.MapAlumno();  
-        public int AltaAlumno(BE.Alumno alumn)
+        DAL.MapAlumno mapper = new DAL.MapAlumno();
+        public int Alta(BE.Alumno entidad)
         {
-         return mapper.AltaAlumno(alumn);
+         return mapper.AltaAlumno(entidad);
         }
 
-        public int BajaAlumno(int idAlumno)
+        public int Baja(int id)
         {
-           return mapper.BajaAlumno(idAlumno);
+           return mapper.BajaAlumno(id);
         }
-        public List<BE.Alumno> ListarAlumnos()
+        public List<BE.Alumno> Listar()
         {
-            
+
             return mapper.ListarAlumnos();
         }
-        public int ModificarAlumno(BE.Alumno alumn)
+        public int Modificar(BE.Alumno entidad)
         {
-            return mapper.ModificarAlumno(alumn);
+            return mapper.ModificarAlumno(entidad);
         }
-        public List<BE.Alumno> BuscarAlumnos(BE.Alumno alumno)
+        public List<BE.Alumno> Buscar(BE.Alumno filtro)
         {
-            return mapper.Buscar(alumno);
+            return mapper.Buscar(filtro);
         }
     }
 }
