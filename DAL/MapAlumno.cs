@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -59,6 +60,30 @@ namespace DAL
             parametro[4] = new SqlParameter("@genero", alum.Genero);
             fa = acc.Escribir("UpdateAlumno", parametro);
             return fa;
+        }
+        public List<BE.Alumno> Buscar(BE.Alumno alumno)
+        {
+            List<BE.Alumno> ls = new List<BE.Alumno>();
+
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            if (alumno.Nombre.Length > 0) parametros.Add(new SqlParameter("nombre", alumno.Nombre));
+            if (alumno.IdAlumno > 0) parametros.Add(new SqlParameter("idAlumno", alumno.IdAlumno));
+            if (alumno.Edad > 0) parametros.Add(new SqlParameter("edad", alumno.Edad));
+
+            DataTable tabla = acc.Leer("BuscarAlumnos", parametros.ToArray());
+            foreach (DataRow dr in tabla.Rows)
+            {
+                BE.Alumno alum = new BE.Alumno();
+                alum.Nombre = dr["Nombre"].ToString();
+                alum.Edad = int.Parse(dr["Edad"].ToString());
+                alum.IdAlumno = int.Parse(dr["idAlumno"].ToString());
+                ls.Add(alum);
+            }
+            return ls;
+
+
+
         }
     }
 }

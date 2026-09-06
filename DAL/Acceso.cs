@@ -29,7 +29,7 @@ namespace DAL
         {
             DataTable dt = new DataTable();
             Conectar();
-            cmd = new SqlCommand();
+            cmd = cn.CreateCommand();
             cmd.Connection = cn;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = storedProcedure;
@@ -47,7 +47,7 @@ namespace DAL
         {
             int fa = 0;
             Conectar();
-            cmd = new SqlCommand();
+            cmd = cn.CreateCommand();
             cmd.Connection = cn;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = query;

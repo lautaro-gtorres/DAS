@@ -34,5 +34,9 @@ namespace BLL
             fa = mapper.ModificarAlumno(alumn);
             return fa;
         }
+        public List<BE.Alumno> BuscarAlumnos(BE.Alumno alumno)
+        {
+            return mapper.Buscar(alumno);
+        }
     }
 }
