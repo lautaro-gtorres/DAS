@@ -55,10 +55,8 @@ namespace ClaseCapas
         void refresh()
         {
             
-            dataGridView1.DataSource = null;
-            List<BE.Alumno> alumnos = new List<BE.Alumno>();
-            alumnos = alumnoBLL.ListarAlumnos();
-            dataGridView1.DataSource = alumnos; 
+            dataGridView1.DataSource = null;       
+            dataGridView1.DataSource = alumnoBLL.ListarAlumnos(); 
         }
 
         private void Form1_Load(object sender, EventArgs e)
