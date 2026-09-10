@@ -48,16 +48,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmMenu.Designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNacionalidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNacionalidad.Designer.cs">
+      <DependentUpon>FrmNacionalidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPersona.Designer.cs">
+      <DependentUpon>FrmPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProfesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProfesion.Designer.cs">
+      <DependentUpon>FrmProfesion.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FrmMenu.resx">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNacionalidad.resx">
+      <DependentUpon>FrmNacionalidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPersona.resx">
+      <DependentUpon>FrmPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProfesion.resx">
+      <DependentUpon>FrmProfesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
