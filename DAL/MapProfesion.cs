@@ -15,8 +15,6 @@ namespace DAL
         {
             int fa = 0;
             SqlParameter[] parametro = new SqlParameter[1];
-            //parametro[0] = new SqlParameter("@IdAlumno", alum.IdAlumno);
-            
             parametro[0] = new SqlParameter("@descProfesion", entidad.DescProfesion);
 
             fa = acc.Escribir("AltaTipoProfesion", parametro);

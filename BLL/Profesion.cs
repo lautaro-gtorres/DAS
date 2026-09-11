@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,31 +12,26 @@ namespace BLL
         public int Alta(BE.Profesion entidad)
         {
             return mapper.AltaProfesion(entidad);
-            throw new NotImplementedException();
         }
 
         public int Baja(int id)
         {
             return mapper.BajaProfesion(id);
-            throw new NotImplementedException();
         }
 
         public List<BE.Profesion> Buscar(BE.Profesion filtro)
         {
-            return mapper.BuscarProfesion(filtro);  
-            throw new NotImplementedException();
+            return mapper.BuscarProfesion(filtro);
         }
 
         public List<BE.Profesion> Listar()
         {
             return mapper.ListarProfesion();
-            throw new NotImplementedException();
         }
 
         public int Modificar(BE.Profesion entidad)
         {
             return mapper.ModificarProfesion(entidad);
-            throw new NotImplementedException();
         }
     }
 }

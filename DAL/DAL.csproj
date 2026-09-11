@@ -46,6 +46,7 @@
     <Compile Include="MapProfesion.cs" />
     <Compile Include="MapNacionalidad.cs" />
     <Compile Include="MapPersona.cs" />
+    <Compile Include="MapResumen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

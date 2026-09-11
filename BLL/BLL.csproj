@@ -46,6 +46,7 @@
     <Compile Include="IABMeable.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Profesion.cs" />
+    <Compile Include="Resumen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
