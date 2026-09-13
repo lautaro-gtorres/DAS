@@ -26,25 +26,32 @@ namespace ClaseCapas
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
-        {           
-            int fa = 0;
-            BE.Persona persona = new BE.Persona();
-            persona.Nombre = txtNombrePersona.Text;
-            persona.Apellido = txtApellidoPersona.Text;
-            persona.Edad = int.Parse(txtEdadPersona.Text);
-            persona.Sexo = txtSexoPersona.Text;
-            persona.Idnacionalidad = Convert.ToInt32(cmbNacionalidad.SelectedValue);
-            persona.IdProfesion = Convert.ToInt32(cmbProfesion.SelectedValue);
-            fa = personaBLL.Alta(persona);
-            if (fa != 0)
+        {
+            try
             {
-                MessageBox.Show("Persona agregada correctamente");
+                int fa = 0;
+                BE.Persona persona = new BE.Persona();
+                persona.Nombre = txtNombrePersona.Text;
+                persona.Apellido = txtApellidoPersona.Text;
+                persona.Edad = int.TryParse(txtEdadPersona.Text, out int edad) ? edad : 0;
+                persona.Sexo = txtSexoPersona.Text;
+                persona.Idnacionalidad = Convert.ToInt32(cmbNacionalidad.SelectedValue);
+                persona.IdProfesion = Convert.ToInt32(cmbProfesion.SelectedValue);
+                fa = personaBLL.Alta(persona);
+                if (fa != 0)
+                {
+                    MessageBox.Show("Persona agregada correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("Error al agregar persona");
+                }
+                refresh();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar persona");
+                MessageBox.Show(ex.Message);
             }
-            refresh();
         }
 
         private void FrmPersona_Load(object sender, EventArgs e)
@@ -75,29 +82,46 @@ namespace ClaseCapas
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            int fa = 0;
-            BE.Persona persona = new BE.Persona();
-            persona.IdPersona = int.Parse(txtIdPersona.Text);
-            persona.Nombre = txtNombrePersona.Text;
-            persona.Apellido = txtApellidoPersona.Text;
-            persona.Edad = int.Parse(txtEdadPersona.Text);
-            persona.Sexo = txtSexoPersona.Text;
-            persona.Idnacionalidad = Convert.ToInt32(cmbNacionalidad.SelectedValue);
-            persona.IdProfesion = Convert.ToInt32(cmbProfesion.SelectedValue);
-            fa = personaBLL.Modificar(persona);
-            if (fa != 0)
+            if (string.IsNullOrEmpty(txtIdPersona.Text))
             {
-                MessageBox.Show("Persona modificada correctamente");
+                MessageBox.Show("Seleccione una persona de la lista.");
+                return;
             }
-            else
+            try
             {
-                MessageBox.Show("Error al modificar persona");
+                int fa = 0;
+                BE.Persona persona = new BE.Persona();
+                persona.IdPersona = int.Parse(txtIdPersona.Text);
+                persona.Nombre = txtNombrePersona.Text;
+                persona.Apellido = txtApellidoPersona.Text;
+                persona.Edad = int.TryParse(txtEdadPersona.Text, out int edad) ? edad : 0;
+                persona.Sexo = txtSexoPersona.Text;
+                persona.Idnacionalidad = Convert.ToInt32(cmbNacionalidad.SelectedValue);
+                persona.IdProfesion = Convert.ToInt32(cmbProfesion.SelectedValue);
+                fa = personaBLL.Modificar(persona);
+                if (fa != 0)
+                {
+                    MessageBox.Show("Persona modificada correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("Error al modificar persona");
+                }
+                refresh();
             }
-            refresh();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtIdPersona.Text))
+            {
+                MessageBox.Show("Seleccione una persona de la lista.");
+                return;
+            }
             int fa = 0;
             BE.Persona persona = new BE.Persona();
             persona.IdPersona = int.Parse(txtIdPersona.Text);

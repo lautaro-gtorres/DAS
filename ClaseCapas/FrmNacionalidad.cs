@@ -26,43 +26,67 @@ namespace ClaseCapas
 
         private void btnAgregarNacionalidad_Click(object sender, EventArgs e)
         {
-            int fa = 0;
-            BE.Nacionalidad nacionalidad = new BE.Nacionalidad();
-            nacionalidad.DescNacionalidad = txtDescNacionalidad.Text;
-            fa = nacionalidadBLL.Alta(nacionalidad);
-            if (fa > 0)
+            try
             {
-                MessageBox.Show("Nacionalidad agregada correctamente");
-                txtDescNacionalidad.Clear();
+                int fa = 0;
+                BE.Nacionalidad nacionalidad = new BE.Nacionalidad();
+                nacionalidad.DescNacionalidad = txtDescNacionalidad.Text;
+                fa = nacionalidadBLL.Alta(nacionalidad);
+                if (fa > 0)
+                {
+                    MessageBox.Show("Nacionalidad agregada correctamente");
+                    txtDescNacionalidad.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Error al agregar la nacionalidad");
+                }
+                refresh();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar la nacionalidad");
+                MessageBox.Show(ex.Message);
             }
-            refresh();
         }
 
         private void btnEditarNacionalidad_Click(object sender, EventArgs e)
         {
-            int fa = 0;
-            BE.Nacionalidad nacionalidad = new BE.Nacionalidad();
-            nacionalidad.IdNacionalidad = Convert.ToInt32(txtIdNacionalidad.Text);
-            nacionalidad.DescNacionalidad = txtDescNacionalidad.Text;
-            fa = nacionalidadBLL.Modificar(nacionalidad);
-            if (fa > 0)
+            if (string.IsNullOrEmpty(txtIdNacionalidad.Text))
             {
-                MessageBox.Show("Nacionalidad modificada correctamente");
-                txtDescNacionalidad.Clear();
+                MessageBox.Show("Seleccione una nacionalidad de la lista.");
+                return;
             }
-            else
+            try
             {
-                MessageBox.Show("Error al modificar la nacionalidad");
+                int fa = 0;
+                BE.Nacionalidad nacionalidad = new BE.Nacionalidad();
+                nacionalidad.IdNacionalidad = Convert.ToInt32(txtIdNacionalidad.Text);
+                nacionalidad.DescNacionalidad = txtDescNacionalidad.Text;
+                fa = nacionalidadBLL.Modificar(nacionalidad);
+                if (fa > 0)
+                {
+                    MessageBox.Show("Nacionalidad modificada correctamente");
+                    txtDescNacionalidad.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Error al modificar la nacionalidad");
+                }
+                refresh();
             }
-            refresh();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEliminarNacionalidad_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtIdNacionalidad.Text))
+            {
+                MessageBox.Show("Seleccione una nacionalidad de la lista.");
+                return;
+            }
             int fa = 0;
             int idNacionalidad = Convert.ToInt32(txtIdNacionalidad.Text);
             fa = nacionalidadBLL.Baja(idNacionalidad);

@@ -48,25 +48,28 @@ namespace DAL
         {
             int fa = 0;
             Conectar();
-            
+
             try
             {
                 tr = cn.BeginTransaction();
                 cmd = cn.CreateCommand();
                 cmd.Connection = cn;
+                cmd.Transaction = tr;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = query;
-                cmd.Parameters.AddRange(parameters);                
+                cmd.Parameters.AddRange(parameters);
                 fa = cmd.ExecuteNonQuery();
                 tr.Commit();
             }
             catch (Exception)
             {
                 tr.Rollback();
-                Desconectar();                
             }
-            
-            Desconectar();
+            finally
+            {
+                Desconectar();
+            }
+
             return fa;
         }
     }

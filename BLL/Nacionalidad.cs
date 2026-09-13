@@ -9,8 +9,16 @@ namespace BLL
     public class Nacionalidad : IABMeable<BE.Nacionalidad>
     {
         DAL.MapNacionalidad mapper = new DAL.MapNacionalidad();
+
+        void Validar(BE.Nacionalidad entidad)
+        {
+            if (string.IsNullOrWhiteSpace(entidad.DescNacionalidad))
+                throw new ArgumentException("La nacionalidad no puede estar vacía.");
+        }
+
         public int Alta(BE.Nacionalidad entidad)
         {
+            Validar(entidad);
             return mapper.AltaNacionalidad(entidad);
         }
 
@@ -31,6 +39,7 @@ namespace BLL
 
         public int Modificar(BE.Nacionalidad entidad)
         {
+            Validar(entidad);
             return mapper.ModificarNacionalidad(entidad);
         }
     }

@@ -25,19 +25,26 @@ namespace ClaseCapas
         }
         private void btnAgregarProfesion_Click(object sender, EventArgs e)
         {
-            BE.Profesion profesion = new BE.Profesion();
-            profesion.DescProfesion = txtDescProfesion.Text;
-            int fa = profesionBLL.Alta(profesion);
-            if (fa > 0)
+            try
             {
-                MessageBox.Show("Profesión agregada correctamente");
-                txtDescProfesion.Clear();
+                BE.Profesion profesion = new BE.Profesion();
+                profesion.DescProfesion = txtDescProfesion.Text;
+                int fa = profesionBLL.Alta(profesion);
+                if (fa > 0)
+                {
+                    MessageBox.Show("Profesión agregada correctamente");
+                    txtDescProfesion.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Error al agregar la profesión");
+                }
+                refresh();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al agregar la profesión");
+                MessageBox.Show(ex.Message);
             }
-            refresh();
         }
 
         private void FrmProfesion_Load(object sender, EventArgs e)
@@ -47,25 +54,42 @@ namespace ClaseCapas
 
         private void btnEditarProfesion_Click(object sender, EventArgs e)
         {
-            BE.Profesion profesion = new BE.Profesion();
-            profesion.IdProfesion = Convert.ToInt32(txtIdProfesion.Text);
-            profesion.DescProfesion = txtDescProfesion.Text;
-            int fa = profesionBLL.Modificar(profesion);
-            if (fa > 0)
+            if (string.IsNullOrEmpty(txtIdProfesion.Text))
             {
-                MessageBox.Show("Profesión modificada correctamente");
-                txtDescProfesion.Clear();
-                txtIdProfesion.Clear();
+                MessageBox.Show("Seleccione una profesión de la lista.");
+                return;
             }
-            else
+            try
             {
-                MessageBox.Show("Error al modificar la profesión");
+                BE.Profesion profesion = new BE.Profesion();
+                profesion.IdProfesion = Convert.ToInt32(txtIdProfesion.Text);
+                profesion.DescProfesion = txtDescProfesion.Text;
+                int fa = profesionBLL.Modificar(profesion);
+                if (fa > 0)
+                {
+                    MessageBox.Show("Profesión modificada correctamente");
+                    txtDescProfesion.Clear();
+                    txtIdProfesion.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Error al modificar la profesión");
+                }
+                refresh();
             }
-            refresh();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnEliminarProfesion_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtIdProfesion.Text))
+            {
+                MessageBox.Show("Seleccione una profesión de la lista.");
+                return;
+            }
             BE.Profesion profesion = new BE.Profesion();
             int idProfesion = Convert.ToInt32(txtIdProfesion.Text);
             int fa = profesionBLL.Baja(idProfesion);

@@ -9,8 +9,16 @@ namespace BLL
     public class Profesion : IABMeable<BE.Profesion>
     {
         DAL.MapProfesion mapper = new DAL.MapProfesion();
+
+        void Validar(BE.Profesion entidad)
+        {
+            if (string.IsNullOrWhiteSpace(entidad.DescProfesion))
+                throw new ArgumentException("La profesión no puede estar vacía.");
+        }
+
         public int Alta(BE.Profesion entidad)
         {
+            Validar(entidad);
             return mapper.AltaProfesion(entidad);
         }
 
@@ -31,6 +39,7 @@ namespace BLL
 
         public int Modificar(BE.Profesion entidad)
         {
+            Validar(entidad);
             return mapper.ModificarProfesion(entidad);
         }
     }
