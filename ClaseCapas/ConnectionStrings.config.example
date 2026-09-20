@@ -1,0 +1,3 @@
+<connectionStrings>
+  <add name="AzureDB" connectionString="Data Source=TU_SERVIDOR.database.windows.net;Initial Catalog=TU_BASE;User ID=TU_USUARIO;Password=TU_PASSWORD;Encrypt=True" providerName="System.Data.SqlClient" />
+</connectionStrings>

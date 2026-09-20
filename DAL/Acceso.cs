@@ -1,10 +1,10 @@
 ﻿using BE;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +17,7 @@ namespace DAL
         
         public void Conectar()
         {
-                cn.ConnectionString = "Data Source=LAUTARO-THERA\\MSSQLSERVER01;Initial Catalog=Prueba;Integrated Security=True"; // Implement connection logic here
+                cn.ConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
                 cn.Open();
         }
         public void Desconectar()
