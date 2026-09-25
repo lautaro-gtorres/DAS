@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alumno.cs" />
-    <Compile Include="IABMeable.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Movimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transferencia.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
