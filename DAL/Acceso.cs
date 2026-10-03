@@ -18,12 +18,18 @@ namespace DAL
 
         public void Conectar()
         {
-            cn.ConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
+            // Se da más tiempo para conectar que los 15 segundos por defecto.
+            SqlConnectionStringBuilder datos = new SqlConnectionStringBuilder(
+                ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString);
+            if (datos.ConnectTimeout < 30)
+                datos.ConnectTimeout = 30;
+            cn.ConnectionString = datos.ConnectionString;
 
-            // La base de Azure es "serverless": si no se usa por un rato se pausa sola, y la
-            // primera conexión falla con el error 40613 ("is not currently available")
-            // mientras vuelve a arrancar. Se reintenta cada 10 segundos, hasta 1 minuto.
-            int intentos = 0;
+            // La base de Azure es "serverless": si no se usa por un rato se pausa sola y,
+            // mientras vuelve a arrancar, las conexiones fallan con distintos errores
+            // ("is not currently available", timeouts en el handshake, etc.).
+            // Se reintenta hasta 4 veces, esperando 5 segundos entre intentos.
+            int intento = 1;
             while (true)
             {
                 try
@@ -31,12 +37,20 @@ namespace DAL
                     cn.Open();
                     return;
                 }
-                catch (SqlException ex) when (ex.Number == 40613 && intentos < 6)
+                catch (SqlException ex) when (EsErrorTransitorio(ex) && intento < 4)
                 {
-                    intentos++;
-                    System.Threading.Thread.Sleep(10000);
+                    intento++;
+                    cn.Close();
+                    System.Threading.Thread.Sleep(5000);
                 }
             }
+        }
+
+        // Errores que NO se arreglan reintentando: usuario o contraseña de la base
+        // incorrectos (18456) o IP bloqueada por el firewall de Azure (40615).
+        bool EsErrorTransitorio(SqlException ex)
+        {
+            return ex.Number != 18456 && ex.Number != 40615;
         }
         public void Desconectar()
         {

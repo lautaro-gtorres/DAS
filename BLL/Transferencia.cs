@@ -8,7 +8,7 @@ namespace BLL
 {
     public class Transferencia
     {
-        DAL.Transferencia dal = new DAL.Transferencia();
+        Mapper.MapperTransferencia mapper = new Mapper.MapperTransferencia();
         Usuario usuarioBLL = new Usuario();
 
         // Valida todo lo que pide el punto 3 del enunciado y devuelve el destinatario.
@@ -53,7 +53,7 @@ namespace BLL
             transferencia.Importe = importe;
             transferencia.Concepto = string.IsNullOrWhiteSpace(concepto) ? "Transferencia" : concepto.Trim();
 
-            return dal.Realizar(transferencia);
+            return mapper.Realizar(transferencia);
         }
     }
 }

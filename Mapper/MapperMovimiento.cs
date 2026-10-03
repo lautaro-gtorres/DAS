@@ -1,16 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Mapper
 {
-    // Convierte las filas de ListarMovimientosPorUsuario en entidades BE.Movimiento.
+    // Los movimientos solo se crean dentro de la transferencia (MapperTransferencia),
+    // acá solo se consultan. Por eso no implementa IMapper (no hay baja ni modificación).
     public class MapperMovimiento
     {
-        public BE.Movimiento Mapear(DataRow row)
+        DAL.Acceso acc = new DAL.Acceso();
+
+        public List<BE.Movimiento> ListarPorUsuario(int idUsuario)
+        {
+            SqlParameter[] parametros = new SqlParameter[1];
+            parametros[0] = new SqlParameter("@idUsuario", idUsuario);
+            DataTable dt = acc.Leer("ListarMovimientosPorUsuario", parametros);
+
+            List<BE.Movimiento> movimientos = new List<BE.Movimiento>();
+            foreach (DataRow row in dt.Rows)
+            {
+                BE.Movimiento movimiento = Mapear(row);
+                movimiento.IdUsuario = idUsuario;
+                movimientos.Add(movimiento);
+            }
+            return movimientos;
+        }
+
+        // ---- Fila de la base -> entidad BE ----
+
+        BE.Movimiento Mapear(DataRow row)
         {
             BE.Movimiento movimiento = new BE.Movimiento();
             movimiento.IdMovimiento = Convert.ToInt32(row["idMovimiento"]);
@@ -21,19 +43,7 @@ namespace Mapper
             movimiento.UsuarioRelacionado = row["usuarioRelacionadoNombre"].ToString();
             movimiento.Concepto = row["concepto"].ToString();
             movimiento.IdTransferencia = Convert.ToInt32(row["idTransferencia"]);
-            if (row.Table.Columns.Contains("idUsuario"))
-                movimiento.IdUsuario = Convert.ToInt32(row["idUsuario"]);
             return movimiento;
-        }
-
-        public List<BE.Movimiento> MapearLista(DataTable tabla)
-        {
-            List<BE.Movimiento> movimientos = new List<BE.Movimiento>();
-            foreach (DataRow row in tabla.Rows)
-            {
-                movimientos.Add(Mapear(row));
-            }
-            return movimientos;
         }
     }
 }

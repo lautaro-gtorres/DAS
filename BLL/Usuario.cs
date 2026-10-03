@@ -11,14 +11,14 @@ namespace BLL
         public const string TipoAdministrador = "Administrador";
         public const string TipoCliente = "Cliente";
 
-        DAL.Usuario dal = new DAL.Usuario();
+        Mapper.MapperUsuario mapper = new Mapper.MapperUsuario();
 
         public BE.Usuario Login(string nombreUsuario, string password)
         {
             if (string.IsNullOrWhiteSpace(nombreUsuario) || string.IsNullOrEmpty(password))
                 throw new ArgumentException("Ingresá usuario y contraseña.");
 
-            BE.Usuario usuario = dal.Login(nombreUsuario.Trim(), password);
+            BE.Usuario usuario = mapper.Login(nombreUsuario.Trim(), password);
             if (usuario == null)
                 throw new ArgumentException("Usuario o contraseña incorrectos.");
             if (!usuario.Estado)
@@ -39,17 +39,17 @@ namespace BLL
                 throw new ArgumentException("Las contraseñas no coinciden.");
             ValidarUsuarioDisponible(usuario.NombreUsuario);
 
-            return dal.Alta(usuario);
+            return mapper.Alta(usuario);
         }
 
         public BE.Usuario ObtenerPorId(int idUsuario)
         {
-            return dal.ObtenerPorId(idUsuario);
+            return mapper.ObtenerPorId(idUsuario);
         }
 
         public BE.Usuario ObtenerPorNombreUsuario(string nombreUsuario)
         {
-            return dal.ObtenerPorNombreUsuario(nombreUsuario);
+            return mapper.ObtenerPorNombreUsuario(nombreUsuario);
         }
 
         // ---- ABM (administrador) ----
@@ -60,7 +60,7 @@ namespace BLL
             if (usuario.Saldo < 0)
                 throw new ArgumentException("El saldo inicial no puede ser negativo.");
             ValidarUsuarioDisponible(usuario.NombreUsuario);
-            return dal.Alta(usuario);
+            return mapper.Alta(usuario);
         }
 
         public int Modificar(BE.Usuario usuario)
@@ -68,24 +68,24 @@ namespace BLL
             if (usuario.IdUsuario <= 0)
                 throw new ArgumentException("Seleccioná un usuario de la lista.");
             Validar(usuario, false);
-            return dal.Modificar(usuario);
+            return mapper.Modificar(usuario);
         }
 
         public int Baja(int idUsuario)
         {
             if (idUsuario <= 0)
                 throw new ArgumentException("Seleccioná un usuario de la lista.");
-            return dal.Baja(idUsuario);
+            return mapper.Baja(idUsuario);
         }
 
         public List<BE.Usuario> Listar()
         {
-            return dal.Listar();
+            return mapper.Listar();
         }
 
         public List<BE.Usuario> Buscar(BE.Usuario filtro)
         {
-            return dal.Buscar(filtro);
+            return mapper.Buscar(filtro);
         }
 
         // ---- Validaciones ----
@@ -112,7 +112,7 @@ namespace BLL
 
         void ValidarUsuarioDisponible(string nombreUsuario)
         {
-            if (dal.ObtenerPorNombreUsuario(nombreUsuario) != null)
+            if (mapper.ObtenerPorNombreUsuario(nombreUsuario) != null)
                 throw new ArgumentException("Ese nombre de usuario ya está en uso.");
         }
     }

@@ -30,20 +30,30 @@ namespace ClaseCapas
             btnIngresar.Enabled = false;
             btnIngresar.Text = "Conectando...";
             this.UseWaitCursor = true;
-            try
+            // El error se atrapa adentro del Task para que Visual Studio no frene
+            // la ejecución con "Exception User-Unhandled" cuando el login falla.
+            Exception error = null;
+            usuario = await Task.Run(() =>
             {
-                usuario = await Task.Run(() => usuarioBLL.Login(nombreUsuario, password));
-            }
-            catch (Exception ex)
+                try
+                {
+                    return usuarioBLL.Login(nombreUsuario, password);
+                }
+                catch (Exception ex)
+                {
+                    error = ex;
+                    return null;
+                }
+            });
+
+            btnIngresar.Enabled = true;
+            btnIngresar.Text = "Ingresar";
+            this.UseWaitCursor = false;
+
+            if (error != null)
             {
-                MessageBox.Show(ex.Message, "Iniciar sesión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(error.Message, "Iniciar sesión", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-            finally
-            {
-                btnIngresar.Enabled = true;
-                btnIngresar.Text = "Ingresar";
-                this.UseWaitCursor = false;
             }
 
             Form menu;
