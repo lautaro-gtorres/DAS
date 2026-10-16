@@ -67,6 +67,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +91,18 @@
       <Project>{3c8c219e-a1e4-4ece-ab93-8f573b6f89c5}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\10132012.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\2708939.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

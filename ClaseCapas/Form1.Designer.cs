@@ -28,206 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtIdAlumno = new System.Windows.Forms.TextBox();
-            this.txtNombreAlumno = new System.Windows.Forms.TextBox();
-            this.txtApellidoAlumno = new System.Windows.Forms.TextBox();
-            this.txtEdadAlumno = new System.Windows.Forms.TextBox();
-            this.txtGeneroAlumno = new System.Windows.Forms.TextBox();
-            this.btnAgregar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
+            this.btnIngresar = new System.Windows.Forms.Button();
+            this.txtContrasenia = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 47);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.DimGray;
+            this.label2.Location = new System.Drawing.Point(11, 124);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
+            this.label2.Size = new System.Drawing.Size(257, 99);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Nombre";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Apellido";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 103);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Edad";
+            this.label2.Text = "Bienvenido! Inicie \r\nsesión para \r\ncomenzar";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 128);
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(72, 63);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 16);
+            this.label5.Size = new System.Drawing.Size(91, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Genero";
+            this.label5.Text = "LRCHICKENS";
             // 
-            // txtIdAlumno
+            // txtUsuario
             // 
-            this.txtIdAlumno.Enabled = false;
-            this.txtIdAlumno.Location = new System.Drawing.Point(94, 13);
-            this.txtIdAlumno.Name = "txtIdAlumno";
-            this.txtIdAlumno.Size = new System.Drawing.Size(100, 22);
-            this.txtIdAlumno.TabIndex = 5;
+            this.txtUsuario.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtUsuario.Location = new System.Drawing.Point(329, 113);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(145, 26);
+            this.txtUsuario.TabIndex = 6;
+            this.txtUsuario.Text = "Usuario";
             // 
-            // txtNombreAlumno
+            // btnIngresar
             // 
-            this.txtNombreAlumno.Location = new System.Drawing.Point(94, 41);
-            this.txtNombreAlumno.Name = "txtNombreAlumno";
-            this.txtNombreAlumno.Size = new System.Drawing.Size(100, 22);
-            this.txtNombreAlumno.TabIndex = 6;
+            this.btnIngresar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnIngresar.FlatAppearance.BorderColor = System.Drawing.Color.Teal;
+            this.btnIngresar.FlatAppearance.BorderSize = 5;
+            this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnIngresar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngresar.Location = new System.Drawing.Point(329, 226);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(145, 39);
+            this.btnIngresar.TabIndex = 14;
+            this.btnIngresar.Text = "INGRESAR";
+            this.btnIngresar.UseVisualStyleBackColor = false;
+            this.btnIngresar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // txtApellidoAlumno
+            // txtContrasenia
             // 
-            this.txtApellidoAlumno.Location = new System.Drawing.Point(94, 69);
-            this.txtApellidoAlumno.Name = "txtApellidoAlumno";
-            this.txtApellidoAlumno.Size = new System.Drawing.Size(100, 22);
-            this.txtApellidoAlumno.TabIndex = 7;
+            this.txtContrasenia.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtContrasenia.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContrasenia.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.txtContrasenia.Location = new System.Drawing.Point(329, 169);
+            this.txtContrasenia.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContrasenia.Name = "txtContrasenia";
+            this.txtContrasenia.Size = new System.Drawing.Size(145, 26);
+            this.txtContrasenia.TabIndex = 15;
+            this.txtContrasenia.Text = "Contraseña";
             // 
-            // txtEdadAlumno
+            // pictureBox3
             // 
-            this.txtEdadAlumno.Location = new System.Drawing.Point(94, 97);
-            this.txtEdadAlumno.Name = "txtEdadAlumno";
-            this.txtEdadAlumno.Size = new System.Drawing.Size(100, 22);
-            this.txtEdadAlumno.TabIndex = 8;
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = global::ClaseCapas.Properties.Resources._2708939;
+            this.pictureBox3.Location = new System.Drawing.Point(36, 48);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 31);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 18;
+            this.pictureBox3.TabStop = false;
             // 
-            // txtGeneroAlumno
+            // pictureBox1
             // 
-            this.txtGeneroAlumno.Location = new System.Drawing.Point(94, 125);
-            this.txtGeneroAlumno.Name = "txtGeneroAlumno";
-            this.txtGeneroAlumno.Size = new System.Drawing.Size(100, 22);
-            this.txtGeneroAlumno.TabIndex = 9;
-            // 
-            // btnAgregar
-            // 
-            this.btnAgregar.Location = new System.Drawing.Point(15, 174);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregar.TabIndex = 10;
-            this.btnAgregar.Text = "Agregar";
-            this.btnAgregar.UseVisualStyleBackColor = true;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(342, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(434, 193);
-            this.dataGridView1.TabIndex = 11;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Location = new System.Drawing.Point(177, 174);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 12;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(96, 174);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 13;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(258, 174);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 14;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.pictureBox1.Image = global::ClaseCapas.Properties.Resources._10132012;
+            this.pictureBox1.Location = new System.Drawing.Point(346, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 82);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.txtGeneroAlumno);
-            this.Controls.Add(this.txtEdadAlumno);
-            this.Controls.Add(this.txtApellidoAlumno);
-            this.Controls.Add(this.txtNombreAlumno);
-            this.Controls.Add(this.txtIdAlumno);
+            this.BackColor = System.Drawing.Color.FloralWhite;
+            this.BackgroundImage = global::ClaseCapas.Properties.Resources._01;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(513, 295);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.txtContrasenia);
+            this.Controls.Add(this.btnIngresar);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtIdAlumno;
-        private System.Windows.Forms.TextBox txtNombreAlumno;
-        private System.Windows.Forms.TextBox txtApellidoAlumno;
-        private System.Windows.Forms.TextBox txtEdadAlumno;
-        private System.Windows.Forms.TextBox txtGeneroAlumno;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.TextBox txtUsuario;
+        private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.TextBox txtContrasenia;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 
