@@ -13,47 +13,71 @@ namespace ClaseCapas
 {
     public partial class Form1 : Form
     {
-        BLL.Alumno alumnoBLL = new BLL.Alumno();
+        
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-        void refresh()
+        private void Form1_Load(object sender, EventArgs e)
         {
            
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        string usuario = "admin";
+        string passw = "1122";
+        private void btnIngresar_Click(object sender, EventArgs e)
         {
-            refresh();
+            if (txtUsuario.Text == usuario && txtContrasenia.Text == passw)
+            {
+                Inicio inicio = new Inicio();
+                inicio.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos.");
+                txtUsuario.Text = "";
+                txtContrasenia.Text = "";
+            }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void txtUsuario_Enter(object sender, EventArgs e)
         {
-          
+            if (txtUsuario.Text == "Usuario")
+            {
+                txtUsuario.Text = "";
+                txtUsuario.ForeColor = Color.Black;
+            }
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void txtUsuario_Leave(object sender, EventArgs e)
         {
-            
+            if (txtUsuario.Text == "")
+            {
+                txtUsuario.Text = "Usuario";
+                txtUsuario.ForeColor = Color.LightGray;
+            }
         }
 
-        
-        public void LimpiarCampos()
+        private void txtContrasenia_Enter(object sender, EventArgs e)
         {
-            
+            if (txtContrasenia.Text == "Contraseña")
+            {
+                txtContrasenia.Text = "";
+                txtContrasenia.ForeColor = Color.Black;
+                txtContrasenia.UseSystemPasswordChar = true;
+            }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void txtContrasenia_Leave(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            if (txtContrasenia.Text == "")
+            {
+                txtContrasenia.UseSystemPasswordChar = false;
+                txtContrasenia.Text = "Contraseña";
+                txtContrasenia.ForeColor = Color.LightGray;
+            }
         }
     }
 }

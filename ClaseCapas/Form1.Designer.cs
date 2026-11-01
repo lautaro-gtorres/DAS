@@ -70,11 +70,13 @@
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.txtUsuario.Location = new System.Drawing.Point(329, 113);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(145, 26);
             this.txtUsuario.TabIndex = 6;
             this.txtUsuario.Text = "Usuario";
+            this.txtUsuario.Enter += new System.EventHandler(this.txtUsuario_Enter);
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
             // 
             // btnIngresar
             // 
@@ -84,13 +86,13 @@
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIngresar.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.Location = new System.Drawing.Point(329, 226);
-            this.btnIngresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(2);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(145, 39);
             this.btnIngresar.TabIndex = 14;
             this.btnIngresar.Text = "INGRESAR";
             this.btnIngresar.UseVisualStyleBackColor = false;
-            this.btnIngresar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // txtContrasenia
             // 
@@ -103,6 +105,8 @@
             this.txtContrasenia.Size = new System.Drawing.Size(145, 26);
             this.txtContrasenia.TabIndex = 15;
             this.txtContrasenia.Text = "Contraseña";
+            this.txtContrasenia.Enter += new System.EventHandler(this.txtContrasenia_Enter);
+            this.txtContrasenia.Leave += new System.EventHandler(this.txtContrasenia_Leave);
             // 
             // pictureBox3
             // 
@@ -141,7 +145,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
