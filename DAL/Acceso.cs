@@ -17,7 +17,7 @@ namespace DAL
         
         public void Conectar()
         {
-                cn.ConnectionString = "Data Source=LAUTARO-THERA\\MSSQLSERVER01;Initial Catalog=Prueba;Integrated Security=True"; // Implement connection logic here
+                cn.ConnectionString = "Data Source=LAUTARO-THERA\\MSSQLSERVER01;Initial Catalog=Lotes;Integrated Security=True"; // Implement connection logic here
                 cn.Open();
         }
         public void Desconectar()
@@ -42,6 +42,23 @@ namespace DAL
             dr.Close();
             Desconectar();
             return dt;
+        }
+        public string LeerResult(string storedProcedure, SqlParameter[] parameters = null)
+        {
+            
+            Conectar();
+            cmd = cn.CreateCommand();
+            cmd.Connection = cn;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = storedProcedure;
+            if (parameters != null)
+            {
+                cmd.Parameters.AddRange(parameters);
+            }
+            var result = cmd.BeginExecuteNonQuery().ToString();
+
+            Desconectar();
+            return result;
         }
         public int Escribir(string query, SqlParameter[] parameters)
         {

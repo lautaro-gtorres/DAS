@@ -13,7 +13,9 @@ namespace ClaseCapas
 {
     public partial class Form1 : Form
     {
-        BLL.Alumno alumnoBLL = new BLL.Alumno();
+        BLL.Lotes lotesBLL = new BLL.Lotes();
+        BLL.Ubicacion ubicacionBLL = new BLL.Ubicacion();
+        BLL.Pago pagoBLL = new BLL.Pago();
         public Form1()
         {
             InitializeComponent();
@@ -24,22 +26,22 @@ namespace ClaseCapas
             try
             {
                   int fa = 0;
-            BE.Alumno alumno = new BE.Alumno();
-            alumno.Nombre = txtNombreAlumno.Text;
-            alumno.Apellido = txtApellidoAlumno.Text;
-            alumno.Edad = int.Parse(txtEdadAlumno.Text);
-            alumno.Genero = txtGeneroAlumno.Text;
+            BE.Lotes lote = new BE.Lotes();
+            lote.NombrePropietario = txtNombrePropietario.Text;
+            lote.MedidaFrente = int.Parse(txtMedidaFrente.Text);
+            lote.MedidaFondo = int.Parse(txtMedidaFondo.Text);
+            lote.TotalMts2 = int.Parse(txtTotalMt2.Text);
 
-            fa = alumnoBLL.Alta(alumno);
+            fa = lotesBLL.Alta(lote);
 
             if (fa != 0)
             {
-                MessageBox.Show("Alumno agregado correctamente");
+                MessageBox.Show("Lote agregado correctamente");
                 
             }
             else
             {
-                MessageBox.Show("Error al agregar alumno");
+                MessageBox.Show("Error al agregar lote");
             }
                 refresh();
             }
@@ -56,83 +58,152 @@ namespace ClaseCapas
         {
             
             dataGridView1.DataSource = null;       
-            dataGridView1.DataSource = alumnoBLL.Listar();
+            dataGridView1.DataSource = lotesBLL.Listar();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             refresh();
+            comboBox1.DataSource = null;
+            comboBox1.DataSource = lotesBLL.Listar();
+            comboBox1.DisplayMember = "nroLote";
+
+            comboBox2.DataSource = null;
+            comboBox2.DataSource = ubicacionBLL.Listar();
+            comboBox2.DisplayMember = "idUbicacion";
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            BE.Alumno alumn = (BE.Alumno)dataGridView1.SelectedRows[0].DataBoundItem;
-            txtIdAlumno.Text = alumn.IdAlumno.ToString();
-            txtNombreAlumno.Text = alumn.Nombre;
-            txtApellidoAlumno.Text = alumn.Apellido;
-            txtEdadAlumno.Text = alumn.Edad.ToString();
-            txtGeneroAlumno.Text = alumn.Genero;
+            BE.Lotes lote = (BE.Lotes)dataGridView1.SelectedRows[0].DataBoundItem;
+            txtIdAlumno.Text = lote.NroLote.ToString();
+            txtNombrePropietario.Text = lote.NombrePropietario;
+            txtMedidaFrente.Text = lote.MedidaFrente.ToString();
+            txtMedidaFondo.Text = lote.MedidaFondo.ToString();
+            txtTotalMt2.Text = lote.TotalMts2.ToString();
         }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            if (txtIdAlumno.Text != "")
-            {
-                int idAlumno = int.Parse(txtIdAlumno.Text);
-                int fa = alumnoBLL.Baja(idAlumno);
-                if (fa != 0)
-                {
-                    MessageBox.Show("Alumno " + idAlumno + " eliminado correctamente");
-                    refresh();
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar alumno");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un alumno de la lista para eliminar");
-            }
-            refresh();
-        }
+        
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
             int fa = 0;
-            BE.Alumno alumno = new BE.Alumno();
-            alumno.IdAlumno = int.Parse(txtIdAlumno.Text);
-            alumno.Nombre = txtNombreAlumno.Text;
-            alumno.Apellido = txtApellidoAlumno.Text;
-            alumno.Edad = int.Parse(txtEdadAlumno.Text);
-            alumno.Genero = txtGeneroAlumno.Text;
+            BE.Lotes lote = new BE.Lotes();
+            lote.NroLote = int.Parse(txtIdAlumno.Text);
+            lote.NombrePropietario = txtNombrePropietario.Text;
+            lote.MedidaFrente = int.Parse(txtMedidaFrente.Text);
+            lote.MedidaFondo = int.Parse(txtMedidaFondo.Text);
+            lote.TotalMts2 = int.Parse(txtTotalMt2.Text);
 
-            fa = alumnoBLL.Modificar(alumno);
+            fa = lotesBLL.Modificar(lote);
 
             if (fa != 0)
             {
-                MessageBox.Show("Alumno modificado correctamente");
+                MessageBox.Show("Lote modificado correctamente");
 
             }
             else
             {
-                MessageBox.Show("Error al modificar alumno");
+                MessageBox.Show("Error al modificar lote");
             }
             refresh();
         }
 
-        public void LimpiarCampos()
+        private void txtMedidaFrente_TextChanged(object sender, EventArgs e)
         {
-            txtIdAlumno.Text = "";
-            txtNombreAlumno.Text = "";
-            txtApellidoAlumno.Text = "";
-            txtEdadAlumno.Text = "";
-            txtGeneroAlumno.Text = "";
+            if (int.TryParse(txtMedidaFrente.Text.Trim(), out var frente) &&
+                int.TryParse(txtMedidaFondo.Text.Trim(), out var fondo))
+            {
+                txtTotalMt2.Text = (frente * fondo).ToString();
+            }
+            else
+            {
+                txtTotalMt2.Text = "";
+            }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void txtMedidaFondo_TextChanged(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            if (int.TryParse(txtMedidaFrente.Text.Trim(), out var frente) &&
+                int.TryParse(txtMedidaFondo.Text.Trim(), out var fondo))
+            {
+                txtTotalMt2.Text = (frente * fondo).ToString();
+            }
+            else
+            {
+                txtTotalMt2.Text = "";
+            }
+        }
+       
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            BE.Lotes lote = (BE.Lotes)comboBox1.SelectedItem;
+            textBox1.Text = lote.TotalMts2.ToString();
+            if (int.TryParse(textBox1.Text.Trim(), out var totalMt2) &&
+                int.TryParse(textBox2.Text.Trim(), out var valorMt2))
+            {
+                textBox3.Text = (totalMt2 * valorMt2).ToString();
+            }
+            else
+            {
+                textBox3.Text = "";
+            }
+        }
+
+        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            BE.Ubicacion ubicacion = (BE.Ubicacion)comboBox2.SelectedItem;
+            textBox2.Text = ubicacion.ValorMt2.ToString();
+            if (int.TryParse(textBox1.Text.Trim(), out var totalMt2) &&
+                int.TryParse(textBox2.Text.Trim(), out var valorMt2))
+            {
+                textBox3.Text = (totalMt2 * valorMt2).ToString();
+            }
+            else
+            {
+                textBox3.Text = "";
+            }
+        }
+
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int fa = 0;
+                BE.Pago pago = new BE.Pago();
+                pago.NroLote = int.Parse(comboBox1.Text);
+                pago.Ubicacion = comboBox2.Text;
+                pago.Mt2Total = int.Parse(textBox1.Text);
+                pago.PrecioMt2 = int.Parse(textBox2.Text);
+                pago.Total = int.Parse(textBox3.Text);
+
+                fa = pagoBLL.Alta(pago);
+
+                if (fa != 0)
+                {
+                    MessageBox.Show("Pago registrado correctamente");
+                }
+                else
+                {
+                    MessageBox.Show("Error al registrar pago");
+                }
+                refresh();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void btnListaPagados_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(string.Join(", ", pagoBLL.ListaPagados()));
+        }
+
+        private void btnPromedioTotal_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("El promedio total de los pagos es: " + pagoBLL.PromedioTotal());
         }
     }
 }
