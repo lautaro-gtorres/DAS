@@ -8,13 +8,12 @@ namespace BE
 {
     public class Usuario
     {
-        private int nroUsuario;
-        public int NroUsuario
+        private int idUsuario;
+        public int IdUsuario
         {
-            get { return nroUsuario; }
-            set { nroUsuario = value; }
+            get { return idUsuario; }
+            set { idUsuario = value; }
         }
-
 
         private string nombreUsuario;
         public string NombreUsuario
@@ -23,14 +22,22 @@ namespace BE
             set { nombreUsuario = value; }
         }
 
-        private string contrasenia;
-
-        public string Contrasenia
+        // Guarda el hash de la contraseña, nunca la contraseña en texto plano.
+        private string contrasena;
+        public string Contrasena
         {
-            get { return contrasenia; }
-            set { contrasenia = value; }
+            get { return contrasena; }
+            set { contrasena = value; }
         }
 
+        private int idRol;
+        public int IdRol
+        {
+            get { return idRol; }
+            set { idRol = value; }
+        }
+
+        // Descripción del rol (tabla Rol): "Administrador" u "Operario".
         private string rol;
         public string Rol
         {
@@ -44,6 +51,5 @@ namespace BE
             get { return activo; }
             set { activo = value; }
         }
-
     }
 }

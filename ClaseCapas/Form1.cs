@@ -23,11 +23,11 @@ namespace ClaseCapas
         {
            
         }
-        string usuario = "admin";
-        string passw = "1122";
+        
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == usuario && txtContrasenia.Text == passw)
+            BLL.BLLUsuario bll = new BLL.BLLUsuario();
+            if (bll.ValidarUsuario(txtUsuario.Text, txtContrasenia.Text))
             {
                 Inicio inicio = new Inicio();
                 inicio.Show();

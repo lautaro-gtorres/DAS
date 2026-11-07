@@ -67,6 +67,10 @@
       <Project>{24eba172-c31e-4b30-839d-ce3341638ff8}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MAPPERS\MAPPERS.csproj">
+      <Project>{BA5D8B2C-8231-4B32-A552-C5DDDF6C13E2}</Project>
+      <Name>MAPPERS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
 ﻿using BE;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,8 +18,11 @@ namespace DAL
         
         public void Conectar()
         {
-                cn.ConnectionString = "Data Source=LAUTARO-THERA\\MSSQLSERVER01;Initial Catalog=Prueba;Integrated Security=True"; // Implement connection logic here
-                cn.Open();
+            var cs = ConfigurationManager.ConnectionStrings["DBPollos"];
+            if (cs == null)
+                throw new InvalidOperationException("Falta la cadena de conexión 'DBPollos'. Copiá ConnectionStrings.example.config como ConnectionStrings.config y completalo.");
+            cn.ConnectionString = cs.ConnectionString;
+            cn.Open();
         }
         public void Desconectar()
         {

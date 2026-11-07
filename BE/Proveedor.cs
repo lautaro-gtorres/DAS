@@ -6,49 +6,43 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Proveedor.
+    /// </summary>
     public class Proveedor
     {
-        private int nroProveedor;
-        private string nombre;
-        private string telefono;
-        private string email;
-        private string direccion;
-        private bool activo;
-
-        public int NroProveedor
+        private int idProveedor;
+        public int IdProveedor
         {
-            get { return nroProveedor; }
-            set { nroProveedor = value; }
+            get { return idProveedor; }
+            set { idProveedor = value; }
         }
 
+        private string nombre;
         public string Nombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
 
+        private string telefono;
         public string Telefono
         {
             get { return telefono; }
             set { telefono = value; }
         }
 
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-
+        private string direccion;
         public string Direccion
         {
             get { return direccion; }
             set { direccion = value; }
         }
 
-        public bool Activo
+        // Lo que se muestra cuando el objeto está en un ComboBox o ListBox.
+        public override string ToString()
         {
-            get { return activo; }
-            set { activo = value; }
+            return Nombre;
         }
     }
 }

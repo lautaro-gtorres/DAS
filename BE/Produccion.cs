@@ -6,17 +6,28 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Produccion: huevos recolectados por corral y por día (uno por corral y fecha).
+    /// </summary>
     public class Produccion
     {
-        private int nroProduccion;
-        public int NroProduccion
+        private int idProduccion;
+        public int IdProduccion
         {
-            get { return nroProduccion; }
-            set { nroProduccion = value; }
+            get { return idProduccion; }
+            set { idProduccion = value; }
         }
 
-        private int nroCorral;
-        public int NroCorral
+        private int idCorral;
+        public int IdCorral
+        {
+            get { return idCorral; }
+            set { idCorral = value; }
+        }
+
+        // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
+        private string nroCorral;
+        public string NroCorral
         {
             get { return nroCorral; }
             set { nroCorral = value; }
@@ -34,13 +45,6 @@ namespace BE
         {
             get { return cantidadHuevos; }
             set { cantidadHuevos = value; }
-        }
-
-        private string observaciones;
-        public string Observaciones
-        {
-            get { return observaciones; }
-            set { observaciones = value; }
         }
     }
 }
