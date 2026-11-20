@@ -54,17 +54,6 @@ namespace ClaseCapas
             refresh();
         }
 
-        private void btnPasajeros_Click(object sender, EventArgs e)
-        {
-            new FrmPasajeros().ShowDialog();
-            refresh();
-        }
-
-        private void btnReportes_Click(object sender, EventArgs e)
-        {
-            new FrmReportes().ShowDialog();
-        }
-
         // Calcula el importe al escribir los km
         private void txtKm_TextoCambiado(object sender, EventArgs e)
         {

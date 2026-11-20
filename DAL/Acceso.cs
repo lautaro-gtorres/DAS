@@ -17,7 +17,7 @@ namespace DAL
 
         public void Conectar()
         {
-            cn.ConnectionString = "Data Source=LAUTARO-THERA\\MSSQLSERVER01;Initial Catalog=Prueba;Integrated Security=True";
+            cn.ConnectionString = "Data Source=LAUTARO-THERA\\MSSQLSERVER01;Initial Catalog=Taxi;Integrated Security=True";
             cn.Open();
         }
         public void Desconectar()

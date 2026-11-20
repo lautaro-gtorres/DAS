@@ -54,6 +54,12 @@
     <Compile Include="Controles\CampoTexto.Designer.cs">
       <DependentUpon>CampoTexto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMenu.Designer.cs">
+      <DependentUpon>FrmMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPasajeros.cs">
       <SubType>Form</SubType>
     </Compile>

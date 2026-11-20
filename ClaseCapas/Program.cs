@@ -16,7 +16,7 @@ namespace ClaseCapas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmViajes());
+            Application.Run(new FrmMenu());
         }
     }
 }

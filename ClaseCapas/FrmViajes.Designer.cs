@@ -17,8 +17,6 @@ namespace ClaseCapas
 
         private void InitializeComponent()
         {
-            this.btnPasajeros = new System.Windows.Forms.Button();
-            this.btnReportes = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPasajero = new System.Windows.Forms.ComboBox();
             this.btnNuevoPasajero = new System.Windows.Forms.Button();
@@ -34,26 +32,6 @@ namespace ClaseCapas
             this.btnLiberar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            //
-            // btnPasajeros
-            //
-            this.btnPasajeros.Location = new System.Drawing.Point(12, 12);
-            this.btnPasajeros.Name = "btnPasajeros";
-            this.btnPasajeros.Size = new System.Drawing.Size(130, 25);
-            this.btnPasajeros.TabIndex = 0;
-            this.btnPasajeros.Text = "ABM Pasajeros";
-            this.btnPasajeros.UseVisualStyleBackColor = true;
-            this.btnPasajeros.Click += new System.EventHandler(this.btnPasajeros_Click);
-            //
-            // btnReportes
-            //
-            this.btnReportes.Location = new System.Drawing.Point(148, 12);
-            this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(130, 25);
-            this.btnReportes.TabIndex = 1;
-            this.btnReportes.Text = "Reportes";
-            this.btnReportes.UseVisualStyleBackColor = true;
-            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             //
             // label1
             //
@@ -199,8 +177,6 @@ namespace ClaseCapas
             this.Controls.Add(this.btnNuevoPasajero);
             this.Controls.Add(this.cmbPasajero);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnReportes);
-            this.Controls.Add(this.btnPasajeros);
             this.Name = "FrmViajes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Radio Taxi - Viajes";
@@ -212,8 +188,6 @@ namespace ClaseCapas
 
         #endregion
 
-        private System.Windows.Forms.Button btnPasajeros;
-        private System.Windows.Forms.Button btnReportes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPasajero;
         private System.Windows.Forms.Button btnNuevoPasajero;
