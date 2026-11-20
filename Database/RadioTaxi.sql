@@ -6,7 +6,7 @@
    ===================================================================== */
 
 CREATE TABLE Vehiculo (
-    IdVehiculo int IDENTITY(1,1) PRIMARY KEY,
+    IdVehiculo int PRIMARY KEY,
     Marca      varchar(50) NOT NULL,
     Modelo     varchar(50) NOT NULL,
     Patente    varchar(10) NOT NULL,
@@ -14,14 +14,14 @@ CREATE TABLE Vehiculo (
 );
 
 CREATE TABLE Pasajero (
-    IdPasajero int IDENTITY(1,1) PRIMARY KEY,
+    IdPasajero int PRIMARY KEY,
     Nombre     varchar(50)  NOT NULL,
     Apellido   varchar(50)  NOT NULL,
     Direccion  varchar(100) NOT NULL
 );
 
 CREATE TABLE Viaje (
-    IdViaje    int IDENTITY(1,1) PRIMARY KEY,
+    IdViaje    int PRIMARY KEY,
     IdVehiculo int NOT NULL REFERENCES Vehiculo (IdVehiculo),
     IdPasajero int NOT NULL REFERENCES Pasajero (IdPasajero),
     Fecha      datetime      NOT NULL,
@@ -32,11 +32,11 @@ CREATE TABLE Viaje (
 GO
 
 -- Punto 2: los vehículos se cargan desde la base
-INSERT INTO Vehiculo (Marca, Modelo, Patente) VALUES
-    ('Toyota', 'Etios', 'AB123CD'),
-    ('Chevrolet', 'Prisma', 'AC456EF'),
-    ('Fiat', 'Cronos', 'AD789GH'),
-    ('Renault', 'Logan', 'AE012IJ');
+INSERT INTO Vehiculo (IdVehiculo, Marca, Modelo, Patente) VALUES
+    (1, 'Toyota', 'Etios', 'AB123CD'),
+    (2, 'Chevrolet', 'Prisma', 'AC456EF'),
+    (3, 'Fiat', 'Cronos', 'AD789GH'),
+    (4, 'Renault', 'Logan', 'AE012IJ');
 GO
 
 /* ---------------- Pasajeros (ABM) ---------------- */
@@ -44,7 +44,9 @@ GO
 CREATE PROCEDURE AltaPasajero
     @nombre varchar(50), @apellido varchar(50), @direccion varchar(100)
 AS
-    INSERT INTO Pasajero (Nombre, Apellido, Direccion) VALUES (@nombre, @apellido, @direccion);
+    -- Sin IDENTITY: el Id es el máximo + 1
+    INSERT INTO Pasajero (IdPasajero, Nombre, Apellido, Direccion)
+    VALUES ((SELECT ISNULL(MAX(IdPasajero), 0) + 1 FROM Pasajero), @nombre, @apellido, @direccion);
 GO
 
 CREATE PROCEDURE ModificarPasajero
@@ -98,8 +100,9 @@ BEGIN
         THROW 50001, 'El vehículo ya está asignado a otro viaje.', 1;
 
     BEGIN TRAN;
-        INSERT INTO Viaje (IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe)
-        VALUES (@idVehiculo, @idPasajero, @fecha, @destino, @kilometro, @importe);
+        INSERT INTO Viaje (IdViaje, IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe)
+        VALUES ((SELECT ISNULL(MAX(IdViaje), 0) + 1 FROM Viaje),
+                @idVehiculo, @idPasajero, @fecha, @destino, @kilometro, @importe);
         UPDATE Vehiculo SET Disponible = 0 WHERE IdVehiculo = @idVehiculo;
     COMMIT;
 END
