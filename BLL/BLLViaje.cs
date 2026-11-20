@@ -49,22 +49,18 @@ namespace BLL
         }
 
         // Punto 6
-        public List<BE.Viaje> GuardarXmlMayores25000(string ruta)
+        public void GuardarXmlMayores25000(string ruta)
         {
-            List<BE.Viaje> viajes = mapper.Listar().Where(v => v.Importe > 25000).ToList();
-            mapper.GuardarXml(viajes, ruta);
-            return viajes;
+            mapper.GuardarXml("ListarViajesMayores25000", ruta);
         }
 
         // Punto 7
-        public List<BE.Viaje> GuardarXmlHasta20Km(string ruta)
+        public void GuardarXmlHasta20Km(string ruta)
         {
-            List<BE.Viaje> viajes = mapper.Listar().Where(v => v.Kilometro <= 20).ToList();
-            mapper.GuardarXml(viajes, ruta);
-            return viajes;
+            mapper.GuardarXml("ListarViajesHasta20Km", ruta);
         }
 
-        public List<BE.Viaje> LeerXml(string ruta)
+        public System.Data.DataSet LeerXml(string ruta)
         {
             return mapper.LeerXml(ruta);
         }

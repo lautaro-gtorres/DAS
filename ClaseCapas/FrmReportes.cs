@@ -43,7 +43,8 @@ namespace ClaseCapas
             {
                 string ruta = Path.Combine(Application.StartupPath, "ViajesMayores25000.xml");
                 viajeBLL.GuardarXmlMayores25000(ruta);
-                dataGridView1.DataSource = viajeBLL.LeerXml(ruta);
+                DataSet DS = viajeBLL.LeerXml(ruta);
+                dataGridView1.DataSource = DS.Tables["Viaje"];   // null si no hubo viajes
                 lblGrilla.Text = "Leído de " + ruta;
             }
             catch (Exception ex)
@@ -59,7 +60,8 @@ namespace ClaseCapas
             {
                 string ruta = Path.Combine(Application.StartupPath, "ViajesHasta20Km.xml");
                 viajeBLL.GuardarXmlHasta20Km(ruta);
-                dataGridView1.DataSource = viajeBLL.LeerXml(ruta);
+                DataSet DS = viajeBLL.LeerXml(ruta);
+                dataGridView1.DataSource = DS.Tables["Viaje"];
                 lblGrilla.Text = "Leído de " + ruta;
             }
             catch (Exception ex)

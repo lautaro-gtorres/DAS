@@ -3,11 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace DAL
 {
@@ -72,22 +70,30 @@ namespace DAL
 
         // ---- XML ----
 
-        public void EscribirXml<T>(List<T> lista, string ruta)
+        // Llena un DataSet con el SP y lo guarda en el archivo XML
+        public void EscribirXml(string storedProcedure, string tabla, string ruta)
         {
-            XmlSerializer xs = new XmlSerializer(typeof(List<T>));
-            using (StreamWriter sw = new StreamWriter(ruta))
+            DataSet DS = new DataSet();
+            try
             {
-                xs.Serialize(sw, lista);
+                Conectar();
+                SqlDataAdapter DA = new SqlDataAdapter(storedProcedure, cn);
+                DA.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DA.Fill(DS, tabla);
             }
+            finally
+            {
+                Desconectar();
+            }
+            DS.WriteXml(ruta);
         }
 
-        public List<T> LeerXml<T>(string ruta)
+        // Lee el archivo XML y lo devuelve en un DataSet
+        public DataSet LeerXml(string ruta)
         {
-            XmlSerializer xs = new XmlSerializer(typeof(List<T>));
-            using (StreamReader sr = new StreamReader(ruta))
-            {
-                return (List<T>)xs.Deserialize(sr);
-            }
+            DataSet DS = new DataSet();
+            DS.ReadXml(ruta);
+            return DS;
         }
     }
 }

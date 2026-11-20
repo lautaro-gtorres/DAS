@@ -42,14 +42,14 @@ namespace MAPPERS
             return lista;
         }
 
-        public void GuardarXml(List<BE.Viaje> viajes, string ruta)
+        public void GuardarXml(string storedProcedure, string ruta)
         {
-            acc.EscribirXml(viajes, ruta);
+            acc.EscribirXml(storedProcedure, "Viaje", ruta);
         }
 
-        public List<BE.Viaje> LeerXml(string ruta)
+        public DataSet LeerXml(string ruta)
         {
-            return acc.LeerXml<BE.Viaje>(ruta);
+            return acc.LeerXml(ruta);
         }
     }
 }

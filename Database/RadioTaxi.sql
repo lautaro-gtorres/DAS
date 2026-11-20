@@ -110,3 +110,19 @@ AS
     SELECT IdViaje, IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe
     FROM Viaje ORDER BY Fecha DESC;
 GO
+
+/* ---------------- XML ---------------- */
+
+-- Punto 6
+CREATE PROCEDURE ListarViajesMayores25000
+AS
+    SELECT IdViaje, IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe
+    FROM Viaje WHERE Importe > 25000;
+GO
+
+-- Punto 7
+CREATE PROCEDURE ListarViajesHasta20Km
+AS
+    SELECT IdViaje, IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe
+    FROM Viaje WHERE Kilometro <= 20;
+GO
