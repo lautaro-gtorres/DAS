@@ -48,17 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controles\CampoTexto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\CampoTexto.Designer.cs">
+      <DependentUpon>CampoTexto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPasajeros.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmPasajeros.Designer.cs">
+      <DependentUpon>FrmPasajeros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportes.Designer.cs">
+      <DependentUpon>FrmReportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmViajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmViajes.Designer.cs">
+      <DependentUpon>FrmViajes.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

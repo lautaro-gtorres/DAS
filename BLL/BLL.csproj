@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alumno.cs" />
+    <Compile Include="BLLPasajero.cs" />
+    <Compile Include="BLLVehiculo.cs" />
+    <Compile Include="BLLViaje.cs" />
     <Compile Include="IABMeable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,9 +52,9 @@
       <Project>{04072942-ed9f-4c7b-b004-8c0ddf5a34ad}</Project>
       <Name>BE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{24eba172-c31e-4b30-839d-ce3341638ff8}</Project>
-      <Name>DAL</Name>
+    <ProjectReference Include="..\MAPPERS\MAPPERS.csproj">
+      <Project>{b93e929c-438a-46ee-b94c-67e84f2b74cf}</Project>
+      <Name>MAPPERS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
