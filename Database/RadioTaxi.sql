@@ -95,17 +95,10 @@ CREATE PROCEDURE AltaViaje
     @idVehiculo int, @idPasajero int, @fecha datetime, @destino varchar(100),
     @kilometro decimal(10,2), @importe decimal(12,2)
 AS
-BEGIN
-    IF (SELECT Disponible FROM Vehiculo WHERE IdVehiculo = @idVehiculo) = 0
-        THROW 50001, 'El vehículo ya está asignado a otro viaje.', 1;
-
-    BEGIN TRAN;
-        INSERT INTO Viaje (IdViaje, IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe)
-        VALUES ((SELECT ISNULL(MAX(IdViaje), 0) + 1 FROM Viaje),
-                @idVehiculo, @idPasajero, @fecha, @destino, @kilometro, @importe);
-        UPDATE Vehiculo SET Disponible = 0 WHERE IdVehiculo = @idVehiculo;
-    COMMIT;
-END
+    INSERT INTO Viaje (IdViaje, IdVehiculo, IdPasajero, Fecha, Destino, Kilometro, Importe)
+    VALUES ((SELECT ISNULL(MAX(IdViaje), 0) + 1 FROM Viaje),
+            @idVehiculo, @idPasajero, @fecha, @destino, @kilometro, @importe);
+    UPDATE Vehiculo SET Disponible = 0 WHERE IdVehiculo = @idVehiculo;
 GO
 
 CREATE PROCEDURE ListarViajes

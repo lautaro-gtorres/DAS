@@ -13,6 +13,7 @@ namespace DAL
     {
         SqlConnection cn = new SqlConnection();
         SqlCommand cmd;
+        SqlTransaction tr;
 
         public void Conectar()
         {
@@ -51,15 +52,23 @@ namespace DAL
         public int Escribir(string query, SqlParameter[] parameters)
         {
             int fa = 0;
+            Conectar();
             try
             {
-                Conectar();
+                tr = cn.BeginTransaction();
                 cmd = cn.CreateCommand();
                 cmd.Connection = cn;
+                cmd.Transaction = tr;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = query;
                 cmd.Parameters.AddRange(parameters);
                 fa = cmd.ExecuteNonQuery();
+                tr.Commit();
+            }
+            catch (Exception)
+            {
+                tr.Rollback();
+                throw;   // se relanza para que el formulario muestre el error
             }
             finally
             {

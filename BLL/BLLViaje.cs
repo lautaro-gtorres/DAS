@@ -27,6 +27,11 @@ namespace BLL
             if (viaje.Kilometro <= 0)
                 throw new ArgumentException("Los kilómetros deben ser mayores a 0.");
 
+            // El vehículo no se puede asignar hasta que se libere
+            BLLVehiculo vehiculoBLL = new BLLVehiculo();
+            if (!vehiculoBLL.ListarDisponibles().Any(v => v.IdVehiculo == viaje.IdVehiculo))
+                throw new Exception("El vehículo ya está asignado a otro viaje.");
+
             viaje.Importe = CalcularImporte(viaje.Kilometro);
             return mapper.Alta(viaje);
         }
