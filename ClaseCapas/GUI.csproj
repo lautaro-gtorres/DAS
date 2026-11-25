@@ -48,6 +48,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agenda.Designer.cs">
+      <DependentUpon>Agenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarAlimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarAlimento.Designer.cs">
+      <DependentUpon>CargarAlimento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarCorrales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarCorrales.Designer.cs">
+      <DependentUpon>CargarCorrales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarGallina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarGallina.Designer.cs">
+      <DependentUpon>CargarGallina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarProveedor.Designer.cs">
+      <DependentUpon>CargarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarVacunas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarVacunas.Designer.cs">
+      <DependentUpon>CargarVacunas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar.Designer.cs">
+      <DependentUpon>Comprar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultarStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultarStock.Designer.cs">
+      <DependentUpon>ConsultarStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,12 +122,78 @@
     <Compile Include="Proveedores.Designer.cs">
       <DependentUpon>Proveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistrosVender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrosVender.Designer.cs">
+      <DependentUpon>RegistrosVender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioNuevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsuarioNuevo.Designer.cs">
+      <DependentUpon>UsuarioNuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vender.Designer.cs">
+      <DependentUpon>Vender.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ventas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ventas.Designer.cs">
       <DependentUpon>Ventas.cs</DependentUpon>
     </Compile>
+    <Compile Include="VerClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerClientes.Designer.cs">
+      <DependentUpon>VerClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerGallinas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerGallinas.Designer.cs">
+      <DependentUpon>VerGallinas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerProveedor.Designer.cs">
+      <DependentUpon>VerProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerUsuarios.Designer.cs">
+      <DependentUpon>VerUsuarios.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Agenda.resx">
+      <DependentUpon>Agenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarAlimento.resx">
+      <DependentUpon>CargarAlimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarCorrales.resx">
+      <DependentUpon>CargarCorrales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarGallina.resx">
+      <DependentUpon>CargarGallina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarProveedor.resx">
+      <DependentUpon>CargarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CargarVacunas.resx">
+      <DependentUpon>CargarVacunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar.resx">
+      <DependentUpon>Comprar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultarStock.resx">
+      <DependentUpon>ConsultarStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -102,8 +216,29 @@
     <EmbeddedResource Include="Proveedores.resx">
       <DependentUpon>Proveedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegistrosVender.resx">
+      <DependentUpon>RegistrosVender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsuarioNuevo.resx">
+      <DependentUpon>UsuarioNuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vender.resx">
+      <DependentUpon>Vender.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ventas.resx">
       <DependentUpon>Ventas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerClientes.resx">
+      <DependentUpon>VerClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerGallinas.resx">
+      <DependentUpon>VerGallinas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerProveedor.resx">
+      <DependentUpon>VerProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerUsuarios.resx">
+      <DependentUpon>VerUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -154,6 +289,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="img\boton3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\mas.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
