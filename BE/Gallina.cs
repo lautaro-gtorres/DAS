@@ -6,22 +6,37 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Gallina.
+    /// </summary>
     public class Gallina
     {
-        private int nroGallina;
-        public int NroGallina
+        public const char Macho = 'M';
+        public const char Hembra = 'H';
+
+        private int idGallina;
+        public int IdGallina
         {
-            get { return nroGallina; }
-            set { nroGallina = value; }
+            get { return idGallina; }
+            set { idGallina = value; }
         }
 
-        private string nombre;
-        public string Nombre
+        // Código visible de la gallina. Es único.
+        private string codGallina;
+        public string CodGallina
         {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return codGallina; }
+            set { codGallina = value; }
         }
 
+        private int idRaza;
+        public int IdRaza
+        {
+            get { return idRaza; }
+            set { idRaza = value; }
+        }
+
+        // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
         private string raza;
         public string Raza
         {
@@ -29,25 +44,66 @@ namespace BE
             set { raza = value; }
         }
 
-        private DateTime fechaNacimiento;
-        public DateTime FechaNacimiento
+        private int idTipoGallina;
+        public int IdTipoGallina
+        {
+            get { return idTipoGallina; }
+            set { idTipoGallina = value; }
+        }
+
+        // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
+        // Ponedora, Engorde o Gallo.
+        private string tipoGallina;
+        public string TipoGallina
+        {
+            get { return tipoGallina; }
+            set { tipoGallina = value; }
+        }
+
+        // 'M' (macho) o 'H' (hembra). Ver constantes Macho y Hembra.
+        private char sexo;
+        public char Sexo
+        {
+            get { return sexo; }
+            set { sexo = value; }
+        }
+
+        // Opcional en la base.
+        private DateTime? fechaNacimiento;
+        public DateTime? FechaNacimiento
         {
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
         }
 
-        private string estado;
-        public string Estado
+        private int idCorral;
+        public int IdCorral
         {
-            get { return estado; }
-            set { estado = value; }
+            get { return idCorral; }
+            set { idCorral = value; }
         }
 
-        private int nroCorral;
-        public int NroCorral
+        // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
+        private string nroCorral;
+        public string NroCorral
         {
             get { return nroCorral; }
             set { nroCorral = value; }
+        }
+
+        // Observaciones (hasta 500 caracteres).
+        private string detalle;
+        public string Detalle
+        {
+            get { return detalle; }
+            set { detalle = value; }
+        }
+
+        private bool activo;
+        public bool Activo
+        {
+            get { return activo; }
+            set { activo = value; }
         }
     }
 }

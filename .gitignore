@@ -19,3 +19,6 @@
 /EJ1Contrataciones
 /DAS Parcial 01.jpeg
 /DAS Parcial 1.jpeg
+
+# Credenciales locales (usar ConnectionStrings.example.config como plantilla)
+ConnectionStrings.config

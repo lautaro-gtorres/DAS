@@ -6,42 +6,47 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Alimento.
+    /// </summary>
     public class Alimento
     {
-        private int nroAlimento;
-        public int NroAlimento
+        private int idAlimento;
+        public int IdAlimento
         {
-            get { return nroAlimento; }
-            set { nroAlimento = value; }
+            get { return idAlimento; }
+            set { idAlimento = value; }
         }
 
-        private string nombre;
-        public string Nombre
+        private string nombreAlimento;
+        public string NombreAlimento
         {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return nombreAlimento; }
+            set { nombreAlimento = value; }
         }
 
-        private string tipo;
-        public string Tipo
+        // Stock disponible (no puede ser negativo).
+        private decimal cantidadDisponible;
+        public decimal CantidadDisponible
         {
-            get { return tipo; }
-            set { tipo = value; }
+            get { return cantidadDisponible; }
+            set { cantidadDisponible = value; }
         }
 
-        private string unidadMedida;
-        public string UnidadMedida
+        private int idProveedor;
+        public int IdProveedor
         {
-            get { return unidadMedida; }
-            set { unidadMedida = value; }
+            get { return idProveedor; }
+            set { idProveedor = value; }
         }
 
-        private decimal stock;
-        public decimal Stock
+        // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
+        // Nombre del proveedor.
+        private string proveedor;
+        public string Proveedor
         {
-            get { return stock; }
-            set { stock = value; }
+            get { return proveedor; }
+            set { proveedor = value; }
         }
-
     }
 }

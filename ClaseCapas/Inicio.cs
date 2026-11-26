@@ -15,6 +15,9 @@ namespace ClaseCapas
         public Inicio()
         {
             InitializeComponent();
+            // Muestra el usuario logueado debajo del "Hola!".
+            if (BLL.Sesion.Instancia.HaySesion)
+                label3.Text = BLL.Sesion.Instancia.UsuarioActual.NombreUsuario;
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
@@ -47,8 +50,10 @@ namespace ClaseCapas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            form1.Show();
+            // Cierra la sesión y vuelve al login que quedó oculto (si no existe, crea uno).
+            new BLL.BLLUsuario().Logout();
+            Form1 login = Application.OpenForms.OfType<Form1>().FirstOrDefault() ?? new Form1();
+            login.Show();
             this.Close();
         }
     }

@@ -6,41 +6,54 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Corral.
+    /// </summary>
     public class Corral
     {
-        private int nroCorral;
-        public int NroCorral
+        private int idCorral;
+        public int IdCorral
+        {
+            get { return idCorral; }
+            set { idCorral = value; }
+        }
+
+        // Número visible del corral (ej: "C-01"). Es único.
+        private string nroCorral;
+        public string NroCorral
         {
             get { return nroCorral; }
             set { nroCorral = value; }
         }
 
-        private string nombre;
-        public string Nombre
+        private int idTipoCorral;
+        public int IdTipoCorral
         {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return idTipoCorral; }
+            set { idTipoCorral = value; }
         }
 
-        private int capacidad;
-        public int Capacidad
+        // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
+        // Ponedoras, Engorde o Cria.
+        private string tipoCorral;
+        public string TipoCorral
+        {
+            get { return tipoCorral; }
+            set { tipoCorral = value; }
+        }
+
+        // Opcional en la base.
+        private int? capacidad;
+        public int? Capacidad
         {
             get { return capacidad; }
             set { capacidad = value; }
         }
 
-        private string descripcion;
-        public string Descripcion
+        // Lo que se muestra cuando el objeto está en un ComboBox o ListBox.
+        public override string ToString()
         {
-            get { return descripcion; }
-            set { descripcion = value; }
-        }
-
-        private bool estado;
-        public bool Estado
-        {
-            get { return estado; }
-            set { estado = value; }
+            return NroCorral;
         }
     }
 }

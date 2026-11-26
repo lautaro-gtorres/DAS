@@ -23,21 +23,28 @@ namespace ClaseCapas
         {
            
         }
-        string usuario = "admin";
-        string passw = "1122";
+        
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == usuario && txtContrasenia.Text == passw)
+            BLL.BLLUsuario bll = new BLL.BLLUsuario();
+            try
             {
-                Inicio inicio = new Inicio();
-                inicio.Show();
-                this.Hide();
+                if (bll.ValidarUsuario(txtUsuario.Text, txtContrasenia.Text))
+                {
+                    Inicio inicio = new Inicio();
+                    inicio.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                    txtUsuario.Text = "";
+                    txtContrasenia.Text = "";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuario o contraseña incorrectos.");
-                txtUsuario.Text = "";
-                txtContrasenia.Text = "";
+                MessageBox.Show("No se pudo conectar con la base de datos.\n\n" + ex.Message);
             }
         }
 
