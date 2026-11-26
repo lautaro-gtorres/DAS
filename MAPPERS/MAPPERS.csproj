@@ -52,6 +52,7 @@
     <Compile Include="MapperPedido.cs" />
     <Compile Include="MapperProduccion.cs" />
     <Compile Include="MapperProveedor.cs" />
+    <Compile Include="MapperRaza.cs" />
     <Compile Include="MapperUsuario.cs" />
     <Compile Include="MapperVacuna.cs" />
     <Compile Include="MapperVacunacion.cs" />

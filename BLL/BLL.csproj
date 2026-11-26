@@ -51,10 +51,12 @@
     <Compile Include="BLLPedido.cs" />
     <Compile Include="BLLProduccion.cs" />
     <Compile Include="BLLProveedor.cs" />
+    <Compile Include="BLLRaza.cs" />
     <Compile Include="BLLUsuario.cs" />
     <Compile Include="BLLVacuna.cs" />
     <Compile Include="BLLVacunacion.cs" />
     <Compile Include="BLLVenta.cs" />
+    <Compile Include="ErrorBD.cs" />
     <Compile Include="IABMeable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesion.cs" />

@@ -23,15 +23,8 @@ namespace BLL
 
         public int Baja(int id)
         {
-            try
-            {
-                return mapper.Baja(id);
-            }
-            catch (System.Data.SqlClient.SqlException ex) when (ex.Number == 547)
-            {
-                // 547 = conflicto de FK: el corral tiene gallinas o producción cargada.
-                throw new ArgumentException("No se puede eliminar el corral porque tiene gallinas o producción cargada.", ex);
-            }
+            return ErrorBD.Ejecutar(() => mapper.Baja(id),
+                mensajeEnUso: "No se puede eliminar el corral porque tiene gallinas o producción cargada.");
         }
 
         public int Modificar(BE.Corral corral)
