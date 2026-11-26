@@ -27,17 +27,24 @@ namespace ClaseCapas
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             BLL.BLLUsuario bll = new BLL.BLLUsuario();
-            if (bll.ValidarUsuario(txtUsuario.Text, txtContrasenia.Text))
+            try
             {
-                Inicio inicio = new Inicio();
-                inicio.Show();
-                this.Hide();
+                if (bll.ValidarUsuario(txtUsuario.Text, txtContrasenia.Text))
+                {
+                    Inicio inicio = new Inicio();
+                    inicio.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                    txtUsuario.Text = "";
+                    txtContrasenia.Text = "";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuario o contraseña incorrectos.");
-                txtUsuario.Text = "";
-                txtContrasenia.Text = "";
+                MessageBox.Show("No se pudo conectar con la base de datos.\n\n" + ex.Message);
             }
         }
 

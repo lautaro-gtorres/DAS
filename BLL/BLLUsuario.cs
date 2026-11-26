@@ -37,10 +37,21 @@ namespace BLL
             throw new NotImplementedException();
         }
 
+        public const string RolAdministrador = "Administrador";
+
+        // Si usuario y contraseña coinciden en la BD, inicia la sesión y devuelve true.
         public bool ValidarUsuario(string usuario, string password)
         {
-            
-            return map.ValidarUsuario(usuario, password);
+            Usuario u = map.ValidarUsuario(usuario, password);
+            if (u == null)
+                return false;
+            Sesion.Instancia.Iniciar(u);
+            return true;
+        }
+
+        public void Logout()
+        {
+            Sesion.Instancia.Cerrar();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace BLL
             get { return HaySesion && usuarioActual.Rol == BLLUsuario.RolAdministrador; }
         }
 
-        // Solo BLLUsuario.Login puede iniciar la sesión.
+        // Solo BLLUsuario.ValidarUsuario puede iniciar la sesión.
         internal void Iniciar(BE.Usuario usuario)
         {
             usuarioActual = usuario;

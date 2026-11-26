@@ -38,7 +38,7 @@ Fuentes revisadas:
 | Raza | IdRaza, NombreRaza | nombre único | vacía |
 
 Problemas detectados:
-1. **Ninguna PK es IDENTITY:** la aplicación tendría que generar los IDs a mano.
+1. **Ninguna PK es IDENTITY (decisión del equipo):** los IDs se generan a mano con `MAX(Id) + 1` dentro de los SP de alta.
 2. **Faltan tablas:** Cliente, DetalleVenta, Pedido, DetallePedido, Vacuna, Vacunación y Alimentación.
 3. **Venta es de una sola línea:** el cliente se guarda como texto y no hay medio de pago.
 4. **A Proveedor y Usuario les faltan campos del diseño:** mail, CUIL/DNI, localidad, estado, nombre y apellido.
@@ -73,7 +73,7 @@ El doc también tiene inconsistencias internas: el árbol de carpetas lista 10 B
 0. **Sincronizar:** guardar el trabajo local pendiente, pasarse a `LRChickens` y hacer pull.
 1. **Reunión de equipo:** definir la BD como fuente de verdad, cerrar las inconsistencias de la sección 3 y el alcance de la Entrega 1.
 2. **Ajustar DBPollos** (las tablas están vacías, así que se pueden recrear sin perder nada):
-   - IDENTITY en todas las PKs.
+   - Sin IDENTITY: los SP de alta calculan el Id con `MAX(Id) + 1`.
    - Agregar Cliente, Venta (cabecera) + DetalleVenta, Pedido + DetallePedido, Vacuna + AplicacionVacuna.
    - Completar Proveedor y Usuario.
    - Exportar el script a `/Database` en el repo.
@@ -81,7 +81,7 @@ El doc también tiene inconsistencias internas: el árbol de carpetas lista 10 B
 3. **Limpieza del repo:** borrar `Capas/`, Alumno y los `Class1`. Renombrar a LRChickens / GUI / FrmLogin. Agregar el proyecto Mapper (BE ← DAL ← Mapper ← BLL ← GUI). Alinear BE a la BD (`Id*`).
 4. **DAL:** `Acceso` Singleton (consigna 11), connection string de Azure en `App.config`, try-catch y transacciones para ventas y pedidos.
 5. **Caso completo de punta a punta:** Gallina + Corral, desde el BE hasta el formulario con validaciones. Queda como plantilla para el resto.
-6. **Resto de los ABM:** Cliente, Proveedor, Usuario (login real con contraseña hasheada), Alimento y Vacuna.
+6. **Resto de los ABM:** Cliente, Proveedor, Usuario (login simple: usuario y contraseña en texto plano en la BD), Alimento y Vacuna.
 7. **Operaciones:** Vender, Comprar, Registros y Consultar stock.
 8. **Opcionales:** Agenda, Consultar a proveedores, Producción y Olvidé mi contraseña.
 9. **Cierre:** checklist contra las 12 consignas y prueba completa.
