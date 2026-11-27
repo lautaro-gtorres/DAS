@@ -21,6 +21,7 @@ namespace DAL
         }
 
         private readonly SqlConnection cn;
+        SqlCommand cmd = new SqlCommand();
         private SqlTransaction tr;
 
         // Constructor privado: nadie fuera de esta clase puede crear otra instancia.
@@ -180,6 +181,27 @@ namespace DAL
                 tr = null;
                 Desconectar();
             }
+        }
+        public void ExportarXML(string query, string tabla, string ruta)
+        {
+            DataSet ds = new DataSet();
+            Conectar();
+            
+            cmd.CommandText = query;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = cn;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.Fill(ds, tabla);
+            Desconectar();
+            ds.WriteXml(ruta);
+        }
+
+        public DataSet LeerXML(string ruta)
+        {
+            DataSet ds = new DataSet();
+            ds.WriteXml(ruta);
+            return ds;
         }
     }
 }
