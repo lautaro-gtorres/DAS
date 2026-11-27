@@ -199,6 +199,28 @@ namespace DAL
             ds.WriteXml(ruta);
         }
 
+        // Igual que el anterior, para un SP con parámetros (ej: el comprobante de una venta).
+        public void ExportarXML(string storedProcedure, SqlParameter[] parameters, string tabla, string ruta)
+        {
+            DataSet ds = new DataSet();
+            try
+            {
+                Conectar();
+                SqlDataAdapter da = new SqlDataAdapter(storedProcedure, cn);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                if (parameters != null)
+                {
+                    da.SelectCommand.Parameters.AddRange(parameters);
+                }
+                da.Fill(ds, tabla);
+            }
+            finally
+            {
+                Desconectar();
+            }
+            ds.WriteXml(ruta);
+        }
+
         // Lee el archivo XML y lo devuelve en un DataSet.
         public DataSet LeerXML(string ruta)
         {

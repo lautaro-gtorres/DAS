@@ -51,5 +51,12 @@ namespace ClaseCapas
             inicio.Show();
             this.Close();
         }
+
+        private void btnVender_Click(object sender, EventArgs e)
+        {
+            Vender vender = new Vender();
+            vender.Show();
+            this.Close();
+        }
     }
 }

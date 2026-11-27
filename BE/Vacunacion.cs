@@ -6,48 +6,61 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Vacunacion: se vacuna por corral.
+    /// </summary>
     public class Vacunacion
     {
-        private int nroVacunacion;
-        public int NroVacunacion
+        private int idVacunacion;
+        public int IdVacunacion
         {
-            get { return nroVacunacion; }
-            set { nroVacunacion = value; }
+            get { return idVacunacion; }
+            set { idVacunacion = value; }
         }
 
-        private int nroGallina;
-        public int NroGallina
+        // Nombre de la vacuna.
+        private string nombre;
+        public string Nombre
         {
-            get { return nroGallina; }
-            set { nroGallina = value; }
+            get { return nombre; }
+            set { nombre = value; }
         }
 
-        private int nroVacuna;
-        public int NroVacuna
+        private int cantidad;
+        public int Cantidad
         {
-            get { return nroVacuna; }
-            set { nroVacuna = value; }
+            get { return cantidad; }
+            set { cantidad = value; }
         }
 
-        private DateTime fecha;
-        public DateTime Fecha
+        private int idCorral;
+        public int IdCorral
         {
-            get { return fecha; }
-            set { fecha = value; }
+            get { return idCorral; }
+            set { idCorral = value; }
         }
 
-        private DateTime proximaDosis;
-        public DateTime ProximaDosis
+        // Número del corral (lo completa el mapper con un JOIN, para mostrar en listados).
+        private string nroCorral;
+        public string NroCorral
         {
-            get { return proximaDosis; }
-            set { proximaDosis = value; }
+            get { return nroCorral; }
+            set { nroCorral = value; }
         }
 
-        private string observaciones;
-        public string Observaciones
+        private DateTime fechaAplicacion;
+        public DateTime FechaAplicacion
         {
-            get { return observaciones; }
-            set { observaciones = value; }
+            get { return fechaAplicacion; }
+            set { fechaAplicacion = value; }
+        }
+
+        // Opcional en la base.
+        private DateTime? proximaAplicacion;
+        public DateTime? ProximaAplicacion
+        {
+            get { return proximaAplicacion; }
+            set { proximaAplicacion = value; }
         }
     }
 }

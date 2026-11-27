@@ -44,6 +44,7 @@
     <Compile Include="BLLAlimentacion.cs" />
     <Compile Include="BLLAlimento.cs" />
     <Compile Include="BLLCliente.cs" />
+    <Compile Include="BLLComprobante.cs" />
     <Compile Include="BLLCorral.cs" />
     <Compile Include="BLLDetallePedido.cs" />
     <Compile Include="BLLDetalleVenta.cs" />

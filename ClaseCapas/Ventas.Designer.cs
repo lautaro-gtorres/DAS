@@ -111,6 +111,7 @@
             this.button8.Size = new System.Drawing.Size(152, 55);
             this.button8.TabIndex = 61;
             this.button8.Text = "Vender";
+            this.button8.Click += new System.EventHandler(this.btnVender_Click);
             this.button8.UseVisualStyleBackColor = false;
             // 
             // button7

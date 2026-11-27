@@ -207,6 +207,7 @@
             this.button8.Size = new System.Drawing.Size(152, 55);
             this.button8.TabIndex = 46;
             this.button8.Text = "Vender";
+            this.button8.Click += new System.EventHandler(this.btnVender_Click);
             this.button8.UseVisualStyleBackColor = false;
             // 
             // button9
@@ -259,6 +260,7 @@
             this.button11.Size = new System.Drawing.Size(152, 55);
             this.button11.TabIndex = 49;
             this.button11.Text = "Cargar vacunas";
+            this.button11.Click += new System.EventHandler(this.btnCargarVacunas_Click);
             this.button11.UseVisualStyleBackColor = false;
             // 
             // Gallinas

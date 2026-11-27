@@ -134,6 +134,12 @@
     <Compile Include="UsuarioNuevo.Designer.cs">
       <DependentUpon>UsuarioNuevo.cs</DependentUpon>
     </Compile>
+    <Compile Include="VerComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerComprobante.Designer.cs">
+      <DependentUpon>VerComprobante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vender.cs">
       <SubType>Form</SubType>
     </Compile>

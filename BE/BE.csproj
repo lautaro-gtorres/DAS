@@ -44,6 +44,7 @@
     <Compile Include="Alimentacion.cs" />
     <Compile Include="Alimento.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Comprobante.cs" />
     <Compile Include="Corral.cs" />
     <Compile Include="DetallePedido.cs" />
     <Compile Include="DetalleVenta.cs" />

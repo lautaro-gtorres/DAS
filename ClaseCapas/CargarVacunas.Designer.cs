@@ -28,86 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.cmbCorral = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpAplicacion = new System.Windows.Forms.DateTimePicker();
+            this.dtpProxima = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox3.Location = new System.Drawing.Point(175, 143);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 116;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(53, 179);
+            this.label2.Location = new System.Drawing.Point(51, 142);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 18);
             this.label2.TabIndex = 115;
             this.label2.Text = "CORRAL:";
             // 
-            // button3
+            // btnRegistrar
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(414, 309);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 114;
-            this.button3.Text = "Registrar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnRegistrar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Location = new System.Drawing.Point(414, 309);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(100, 32);
+            this.btnRegistrar.TabIndex = 114;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(236, 309);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 32);
-            this.button2.TabIndex = 113;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCancelar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancelar.Location = new System.Drawing.Point(236, 309);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 32);
+            this.btnCancelar.TabIndex = 113;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox1.Location = new System.Drawing.Point(480, 140);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 20);
-            this.textBox1.TabIndex = 112;
+            this.txtNombre.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtNombre.Location = new System.Drawing.Point(480, 140);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(145, 20);
+            this.txtNombre.TabIndex = 112;
             // 
-            // comboBox2
+            // cmbCorral
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.Orange;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(133, 180);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 111;
+            this.cmbCorral.BackColor = System.Drawing.Color.Orange;
+            this.cmbCorral.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCorral.FormattingEnabled = true;
+            this.cmbCorral.Location = new System.Drawing.Point(133, 139);
+            this.cmbCorral.Name = "cmbCorral";
+            this.cmbCorral.Size = new System.Drawing.Size(121, 21);
+            this.cmbCorral.TabIndex = 111;
             // 
             // label8
             // 
@@ -128,16 +121,6 @@
             this.label7.Size = new System.Drawing.Size(86, 18);
             this.label7.TabIndex = 109;
             this.label7.Text = "CANTIDAD:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(51, 142);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 18);
-            this.label3.TabIndex = 108;
-            this.label3.Text = "N° DE VACUNA:";
             // 
             // label5
             // 
@@ -185,21 +168,22 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 105;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtCantidad
             // 
-            this.textBox2.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox2.Location = new System.Drawing.Point(487, 176);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 118;
+            this.txtCantidad.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtCantidad.Location = new System.Drawing.Point(487, 176);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.TabIndex = 118;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(60, 219);
+            this.label4.Location = new System.Drawing.Point(51, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 18);
             this.label4.TabIndex = 120;
@@ -209,27 +193,28 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(60, 254);
+            this.label6.Location = new System.Drawing.Point(51, 214);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(171, 18);
             this.label6.TabIndex = 119;
             this.label6.Text = "PRÓXIMA APLICACIÓN:";
             // 
-            // dateTimePicker1
+            // dtpAplicacion
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(245, 216);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(101, 20);
-            this.dateTimePicker1.TabIndex = 121;
+            this.dtpAplicacion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpAplicacion.Location = new System.Drawing.Point(236, 176);
+            this.dtpAplicacion.Name = "dtpAplicacion";
+            this.dtpAplicacion.Size = new System.Drawing.Size(101, 20);
+            this.dtpAplicacion.TabIndex = 121;
             // 
-            // dateTimePicker2
+            // dtpProxima
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(245, 252);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(101, 20);
-            this.dateTimePicker2.TabIndex = 122;
+            this.dtpProxima.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpProxima.Location = new System.Drawing.Point(236, 212);
+            this.dtpProxima.Name = "dtpProxima";
+            this.dtpProxima.ShowCheckBox = true;
+            this.dtpProxima.Size = new System.Drawing.Size(115, 20);
+            this.dtpProxima.TabIndex = 122;
             // 
             // CargarVacunas
             // 
@@ -237,25 +222,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpProxima);
+            this.Controls.Add(this.dtpAplicacion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.cmbCorral);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
             this.Name = "CargarVacunas";
+            this.Load += new System.EventHandler(this.CargarVacunas_Load);
             this.Text = "CargarVacunas";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -264,23 +248,21 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.ComboBox cmbCorral;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpAplicacion;
+        private System.Windows.Forms.DateTimePicker dtpProxima;
     }
 }

@@ -52,6 +52,20 @@ namespace ClaseCapas
             this.Close();
         }
 
+        private void btnVender_Click(object sender, EventArgs e)
+        {
+            Vender vender = new Vender();
+            vender.Show();
+            this.Close();
+        }
+
+        private void btnCargarVacunas_Click(object sender, EventArgs e)
+        {
+            CargarVacunas vacunas = new CargarVacunas();
+            vacunas.Show();
+            this.Close();
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Inicio inicio = new Inicio();

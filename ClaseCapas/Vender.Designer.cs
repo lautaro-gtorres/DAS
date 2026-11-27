@@ -37,16 +37,18 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
+            this.lblProducto = new System.Windows.Forms.Label();
+            this.cmbProducto = new System.Windows.Forms.ComboBox();
+            this.cmbTipoGallina = new System.Windows.Forms.ComboBox();
+            this.cmbRaza = new System.Windows.Forms.ComboBox();
+            this.cmbSexo = new System.Windows.Forms.ComboBox();
+            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.btnNuevoCliente = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnVender = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -146,103 +148,133 @@
             this.label9.TabIndex = 64;
             this.label9.Text = "TOTAL:";
             // 
-            // comboBox1
+            // lblProducto
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Orange;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(132, 102);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 65;
+            this.lblProducto.AutoSize = true;
+            this.lblProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProducto.Location = new System.Drawing.Point(428, 106);
+            this.lblProducto.Name = "lblProducto";
+            this.lblProducto.Size = new System.Drawing.Size(97, 18);
+            this.lblProducto.TabIndex = 75;
+            this.lblProducto.Text = "PRODUCTO:";
             // 
-            // comboBox2
+            // cmbProducto
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.Orange;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(167, 139);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 66;
+            this.cmbProducto.BackColor = System.Drawing.Color.Orange;
+            this.cmbProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProducto.FormattingEnabled = true;
+            this.cmbProducto.Location = new System.Drawing.Point(531, 102);
+            this.cmbProducto.Name = "cmbProducto";
+            this.cmbProducto.Size = new System.Drawing.Size(121, 21);
+            this.cmbProducto.TabIndex = 76;
+            this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectedIndexChanged);
             // 
-            // comboBox3
+            // cmbCliente
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.Orange;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(171, 177);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 67;
+            this.cmbCliente.BackColor = System.Drawing.Color.Orange;
+            this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(132, 102);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(121, 21);
+            this.cmbCliente.TabIndex = 65;
             // 
-            // comboBox4
+            // cmbTipoGallina
             // 
-            this.comboBox4.BackColor = System.Drawing.Color.Orange;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(175, 213);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 68;
+            this.cmbTipoGallina.BackColor = System.Drawing.Color.Orange;
+            this.cmbTipoGallina.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoGallina.FormattingEnabled = true;
+            this.cmbTipoGallina.Location = new System.Drawing.Point(167, 139);
+            this.cmbTipoGallina.Name = "cmbTipoGallina";
+            this.cmbTipoGallina.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipoGallina.TabIndex = 66;
             // 
-            // textBox1
+            // cmbRaza
             // 
-            this.textBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox1.Location = new System.Drawing.Point(521, 139);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 69;
+            this.cmbRaza.BackColor = System.Drawing.Color.Orange;
+            this.cmbRaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRaza.FormattingEnabled = true;
+            this.cmbRaza.Location = new System.Drawing.Point(171, 177);
+            this.cmbRaza.Name = "cmbRaza";
+            this.cmbRaza.Size = new System.Drawing.Size(121, 21);
+            this.cmbRaza.TabIndex = 67;
             // 
-            // textBox2
+            // cmbSexo
             // 
-            this.textBox2.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox2.Location = new System.Drawing.Point(576, 177);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 70;
+            this.cmbSexo.BackColor = System.Drawing.Color.Orange;
+            this.cmbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSexo.FormattingEnabled = true;
+            this.cmbSexo.Location = new System.Drawing.Point(175, 213);
+            this.cmbSexo.Name = "cmbSexo";
+            this.cmbSexo.Size = new System.Drawing.Size(121, 21);
+            this.cmbSexo.TabIndex = 68;
             // 
-            // textBox3
+            // txtCantidad
             // 
-            this.textBox3.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox3.Location = new System.Drawing.Point(499, 230);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 71;
+            this.txtCantidad.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtCantidad.Location = new System.Drawing.Point(521, 139);
+            this.txtCantidad.Name = "txtCantidad";
+            this.txtCantidad.Size = new System.Drawing.Size(100, 20);
+            this.txtCantidad.TabIndex = 69;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.CalcularTotal);
             // 
-            // button1
+            // txtPrecio
             // 
-            this.button1.BackColor = System.Drawing.Color.Aquamarine;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.Location = new System.Drawing.Point(289, 100);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 23);
-            this.button1.TabIndex = 72;
-            this.button1.Text = "Nuevo";
-            this.button1.UseVisualStyleBackColor = false;
+            this.txtPrecio.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtPrecio.Location = new System.Drawing.Point(576, 177);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecio.TabIndex = 70;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.CalcularTotal);
             // 
-            // button2
+            // txtTotal
             // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(236, 309);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 32);
-            this.button2.TabIndex = 73;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.txtTotal.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtTotal.Location = new System.Drawing.Point(499, 230);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtTotal.TabIndex = 71;
             // 
-            // button3
+            // btnNuevoCliente
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(414, 309);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 74;
-            this.button3.Text = "Vender";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnNuevoCliente.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnNuevoCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevoCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoCliente.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnNuevoCliente.Location = new System.Drawing.Point(289, 100);
+            this.btnNuevoCliente.Name = "btnNuevoCliente";
+            this.btnNuevoCliente.Size = new System.Drawing.Size(59, 23);
+            this.btnNuevoCliente.TabIndex = 72;
+            this.btnNuevoCliente.Text = "Nuevo";
+            this.btnNuevoCliente.UseVisualStyleBackColor = false;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancelar.Location = new System.Drawing.Point(236, 309);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 32);
+            this.btnCancelar.TabIndex = 73;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            // 
+            // btnVender
+            // 
+            this.btnVender.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnVender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVender.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVender.Location = new System.Drawing.Point(414, 309);
+            this.btnVender.Name = "btnVender";
+            this.btnVender.Size = new System.Drawing.Size(100, 32);
+            this.btnVender.TabIndex = 74;
+            this.btnVender.Text = "Vender";
+            this.btnVender.Click += new System.EventHandler(this.btnVender_Click);
+            this.btnVender.UseVisualStyleBackColor = false;
             // 
             // pictureBox3
             // 
@@ -266,6 +298,7 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 55;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
             // Vender
@@ -274,16 +307,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbProducto);
+            this.Controls.Add(this.lblProducto);
+            this.Controls.Add(this.btnVender);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnNuevoCliente);
+            this.Controls.Add(this.txtTotal);
+            this.Controls.Add(this.txtPrecio);
+            this.Controls.Add(this.txtCantidad);
+            this.Controls.Add(this.cmbSexo);
+            this.Controls.Add(this.cmbRaza);
+            this.Controls.Add(this.cmbTipoGallina);
+            this.Controls.Add(this.cmbCliente);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -297,6 +332,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Vender";
+            this.Load += new System.EventHandler(this.Vender_Load);
             this.Text = "Vender";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -317,15 +353,17 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox cmbCliente;
+        private System.Windows.Forms.Label lblProducto;
+        private System.Windows.Forms.ComboBox cmbProducto;
+        private System.Windows.Forms.ComboBox cmbTipoGallina;
+        private System.Windows.Forms.ComboBox cmbRaza;
+        private System.Windows.Forms.ComboBox cmbSexo;
+        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Button btnNuevoCliente;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnVender;
     }
 }
