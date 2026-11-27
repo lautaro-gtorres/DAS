@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BE
 {
     /// <summary>
-    /// Tabla TipoProducto (catálogo): Huevo, Pollo.
+    /// Tabla TipoProducto (catálogo): Huevo, Gallina.
     /// </summary>
     public class TipoProducto
     {

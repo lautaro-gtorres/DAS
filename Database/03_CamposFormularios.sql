@@ -141,7 +141,7 @@ GO
 
 
 -- =====================  VENTA  (Vender)  =====================
--- Se venden gallinas y huevos (TipoProducto: 1 = Huevo, 2 = Pollo).
+-- Se venden gallinas y huevos (TipoProducto: 1 = Huevo, 2 = Gallina; ver 05_TipoProductoGallina.sql).
 -- Formulario: CLIENTE (combo), TIPO GALLINA, RAZA GALLINA, SEXO GALLINA,
 --             CANTIDAD, PRECIO UNITARIO, TOTAL (calculado).
 -- Tipo, raza y sexo solo se cargan cuando se venden gallinas; en una venta de huevos quedan en NULL.

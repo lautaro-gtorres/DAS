@@ -33,7 +33,7 @@ namespace BE
         }
 
         // Dato de la tabla relacionada (lo completa el mapper con un JOIN, para mostrar en listados).
-        // Huevo o Pollo.
+        // Huevo o Gallina.
         private string tipoProducto;
         public string TipoProducto
         {

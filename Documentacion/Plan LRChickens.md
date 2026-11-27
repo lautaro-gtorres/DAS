@@ -34,7 +34,7 @@ Fuentes revisadas:
 | Rol | Administrador, Operario | | cargada |
 | TipoCorral | Ponedoras, Engorde, Cria | | cargada |
 | TipoGallina | Ponedora, Engorde, Gallo | | cargada |
-| TipoProducto | Huevo, Pollo | | cargada |
+| TipoProducto | Huevo, Gallina ("Pollo" era el nombre de los primeros prototipos) | | cargada |
 | Raza | IdRaza, NombreRaza | nombre único | vacía |
 
 Problemas detectados:
@@ -51,7 +51,7 @@ Problemas detectados:
 |---|---|---|---|
 | Nombres de ID | `Nro*` | — | `Id*` |
 | Gallina | Nombre, Raza (texto), Estado | Cod, Tipo, Raza, Sexo, Detalle | Igual al diseño |
-| Venta | Venta + DetalleVenta + Cliente + MedioPago | Vende por tipo/raza/sexo de gallina | Una línea por TipoProducto (Huevo/Pollo) |
+| Venta | Venta + DetalleVenta + Cliente + MedioPago | Vende por tipo/raza/sexo de gallina | Una línea por TipoProducto (Huevo/Gallina) |
 | Corral | Nombre, Descripción, Estado | Número, Sector, Ubicación | NroCorral, TipoCorral, Capacidad |
 | Vacunas | Vacunación por gallina | Por corral, con cantidad | No existe |
 | Personas | Pocos campos | DNI/CUIL, apellido, localidad, mail, estado | Pocos campos |
