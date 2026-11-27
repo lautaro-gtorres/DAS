@@ -72,10 +72,10 @@ namespace BLL
                 throw new ArgumentException("Ingrese el nombre del alimento.");
             if (alimento.NombreAlimento.Length > 100)
                 throw new ArgumentException("El nombre no puede tener más de 100 caracteres.");
-            if (alimento.CantidadDisponible < 0)
-                throw new ArgumentException("La cantidad disponible no puede ser negativa.");
-            if (alimento.CantidadDisponible > 99999999.99m)
-                throw new ArgumentException("La cantidad disponible es demasiado grande.");
+            if (alimento.Kilogramos < 0)
+                throw new ArgumentException("Los kilogramos no pueden ser negativos.");
+            if (alimento.Kilogramos > 99999999.99m)
+                throw new ArgumentException("La cantidad de kilogramos es demasiado grande.");
             if (alimento.IdProveedor <= 0)
                 throw new ArgumentException("Seleccione el proveedor.");
         }

@@ -15,7 +15,7 @@ namespace MAPPERS
         {
             SqlParameter[] parametros = new SqlParameter[3];
             parametros[0] = new SqlParameter("@nombreAlimento", alimento.NombreAlimento);
-            parametros[1] = new SqlParameter("@cantidadDisponible", alimento.CantidadDisponible);
+            parametros[1] = new SqlParameter("@kilogramos", alimento.Kilogramos);
             parametros[2] = new SqlParameter("@idProveedor", alimento.IdProveedor);
             return Acceso.Instancia.Escribir("AltaAlimento", parametros);
         }
@@ -32,7 +32,7 @@ namespace MAPPERS
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("@idAlimento", alimento.IdAlimento);
             parametros[1] = new SqlParameter("@nombreAlimento", alimento.NombreAlimento);
-            parametros[2] = new SqlParameter("@cantidadDisponible", alimento.CantidadDisponible);
+            parametros[2] = new SqlParameter("@kilogramos", alimento.Kilogramos);
             parametros[3] = new SqlParameter("@idProveedor", alimento.IdProveedor);
             return Acceso.Instancia.Escribir("ModificarAlimento", parametros);
         }
@@ -62,7 +62,7 @@ namespace MAPPERS
                 BE.Alimento alimento = new BE.Alimento();
                 alimento.IdAlimento = Convert.ToInt32(row["IdAlimento"]);
                 alimento.NombreAlimento = row["NombreAlimento"].ToString();
-                alimento.CantidadDisponible = Convert.ToDecimal(row["CantidadDisponible"]);
+                alimento.Kilogramos = Convert.ToDecimal(row["Kilogramos"]);
                 alimento.IdProveedor = Convert.ToInt32(row["IdProveedor"]);
                 alimento.Proveedor = row["Proveedor"].ToString();
                 lista.Add(alimento);

@@ -187,6 +187,8 @@ GO
 
 
 -- =====================  ALIMENTO  =====================
+-- OJO: 03_CamposFormularios.sql renombra CantidadDisponible a Kilogramos y
+-- reemplaza estos SP. Correr siempre 01, 02 y 03 en ese orden.
 
 CREATE OR ALTER PROCEDURE AltaAlimento
     @nombreAlimento varchar(100), @cantidadDisponible decimal(10,2), @idProveedor int

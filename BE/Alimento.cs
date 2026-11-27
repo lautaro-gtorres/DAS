@@ -25,12 +25,12 @@ namespace BE
             set { nombreAlimento = value; }
         }
 
-        // Stock disponible (no puede ser negativo).
-        private decimal cantidadDisponible;
-        public decimal CantidadDisponible
+        // Stock disponible en kilogramos (no puede ser negativo).
+        private decimal kilogramos;
+        public decimal Kilogramos
         {
-            get { return cantidadDisponible; }
-            set { cantidadDisponible = value; }
+            get { return kilogramos; }
+            set { kilogramos = value; }
         }
 
         private int idProveedor;
