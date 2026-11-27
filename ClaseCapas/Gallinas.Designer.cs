@@ -242,6 +242,7 @@
             this.button10.TabIndex = 48;
             this.button10.Text = "Cargar corrales";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.btnCargarCorrales_Click);
             // 
             // button11
             // 

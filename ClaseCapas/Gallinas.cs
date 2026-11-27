@@ -45,6 +45,13 @@ namespace ClaseCapas
             this.Close();
         }
 
+        private void btnCargarCorrales_Click(object sender, EventArgs e)
+        {
+            CargarCorrales corrales = new CargarCorrales();
+            corrales.Show();
+            this.Close();
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Inicio inicio = new Inicio();
