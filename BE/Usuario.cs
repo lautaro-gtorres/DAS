@@ -22,7 +22,7 @@ namespace BE
             set { nombreUsuario = value; }
         }
 
-        // Guarda el hash de la contraseña, nunca la contraseña en texto plano.
+        // Contraseña en texto plano (los listados no la traen).
         private string contrasena;
         public string Contrasena
         {
@@ -50,6 +50,51 @@ namespace BE
         {
             get { return activo; }
             set { activo = value; }
+        }
+
+        // ---- Datos personales (formulario UsuarioNuevo) ----
+
+        private string nombre;
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        private string apellido;
+        public string Apellido
+        {
+            get { return apellido; }
+            set { apellido = value; }
+        }
+
+        private string dni;
+        public string Dni
+        {
+            get { return dni; }
+            set { dni = value; }
+        }
+
+        // Opcional en la base.
+        private DateTime? fechaNacimiento;
+        public DateTime? FechaNacimiento
+        {
+            get { return fechaNacimiento; }
+            set { fechaNacimiento = value; }
+        }
+
+        private string telefono;
+        public string Telefono
+        {
+            get { return telefono; }
+            set { telefono = value; }
+        }
+
+        private string email;
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
         }
     }
 }

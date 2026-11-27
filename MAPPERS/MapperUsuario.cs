@@ -25,10 +25,16 @@ namespace MAPPERS
 
         public int Alta(BE.Usuario usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[3];
+            SqlParameter[] parametros = new SqlParameter[9];
             parametros[0] = new SqlParameter("@nombreUsuario", usuario.NombreUsuario);
             parametros[1] = new SqlParameter("@contrasena", usuario.Contrasena);
             parametros[2] = new SqlParameter("@idRol", usuario.IdRol);
+            parametros[3] = new SqlParameter("@nombre", TextoONulo(usuario.Nombre));
+            parametros[4] = new SqlParameter("@apellido", TextoONulo(usuario.Apellido));
+            parametros[5] = new SqlParameter("@dni", TextoONulo(usuario.Dni));
+            parametros[6] = ParametroFechaNacimiento(usuario);
+            parametros[7] = new SqlParameter("@telefono", TextoONulo(usuario.Telefono));
+            parametros[8] = new SqlParameter("@email", TextoONulo(usuario.Email));
             return Acceso.Instancia.Escribir("AltaUsuario", parametros);
         }
 
@@ -42,11 +48,17 @@ namespace MAPPERS
 
         public int Modificar(BE.Usuario usuario)
         {
-            SqlParameter[] parametros = new SqlParameter[4];
+            SqlParameter[] parametros = new SqlParameter[10];
             parametros[0] = new SqlParameter("@idUsuario", usuario.IdUsuario);
             parametros[1] = new SqlParameter("@nombreUsuario", usuario.NombreUsuario);
             parametros[2] = new SqlParameter("@contrasena", usuario.Contrasena);
             parametros[3] = new SqlParameter("@idRol", usuario.IdRol);
+            parametros[4] = new SqlParameter("@nombre", TextoONulo(usuario.Nombre));
+            parametros[5] = new SqlParameter("@apellido", TextoONulo(usuario.Apellido));
+            parametros[6] = new SqlParameter("@dni", TextoONulo(usuario.Dni));
+            parametros[7] = ParametroFechaNacimiento(usuario);
+            parametros[8] = new SqlParameter("@telefono", TextoONulo(usuario.Telefono));
+            parametros[9] = new SqlParameter("@email", TextoONulo(usuario.Email));
             return Acceso.Instancia.Escribir("ModificarUsuario", parametros);
         }
 
@@ -82,6 +94,21 @@ namespace MAPPERS
             return lista;
         }
 
+        // Los campos opcionales que vienen en null se mandan como NULL a la base.
+        object TextoONulo(string texto)
+        {
+            if (texto == null)
+                return DBNull.Value;
+            return texto;
+        }
+
+        SqlParameter ParametroFechaNacimiento(BE.Usuario usuario)
+        {
+            if (usuario.FechaNacimiento == null)
+                return new SqlParameter("@fechaNacimiento", DBNull.Value);
+            return new SqlParameter("@fechaNacimiento", usuario.FechaNacimiento.Value.Date);
+        }
+
         // ---- Filas de la base -> entidades BE ----
 
         List<BE.Usuario> Mapear(DataTable dt)
@@ -102,7 +129,29 @@ namespace MAPPERS
             // La descripción del rol solo viene si el SP hace JOIN con Rol.
             if (row.Table.Columns.Contains("Rol"))
                 usuario.Rol = row["Rol"].ToString();
+
+            // Los datos personales vienen en ListarUsuarios y BuscarUsuario (el login no los trae).
+            if (row.Table.Columns.Contains("Nombre"))
+            {
+                usuario.Nombre = TextoDeFila(row, "Nombre");
+                usuario.Apellido = TextoDeFila(row, "Apellido");
+                usuario.Dni = TextoDeFila(row, "DNI");
+                if (row["FechaNacimiento"] == DBNull.Value)
+                    usuario.FechaNacimiento = null;
+                else
+                    usuario.FechaNacimiento = Convert.ToDateTime(row["FechaNacimiento"]);
+                usuario.Telefono = TextoDeFila(row, "Telefono");
+                usuario.Email = TextoDeFila(row, "Email");
+            }
             return usuario;
+        }
+
+        // Los campos opcionales que vienen NULL de la base quedan en null.
+        string TextoDeFila(DataRow row, string columna)
+        {
+            if (row[columna] == DBNull.Value)
+                return null;
+            return row[columna].ToString();
         }
     }
 }

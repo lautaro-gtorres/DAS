@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Tabla Cliente.
+    /// </summary>
     public class Cliente
     {
-        private int nroCliente;
-        public int NroCliente
+        private int idCliente;
+        public int IdCliente
         {
-            get { return nroCliente; }
-            set { nroCliente = value; }
+            get { return idCliente; }
+            set { idCliente = value; }
         }
-
 
         private string nombre;
         public string Nombre
@@ -49,6 +51,19 @@ namespace BE
         {
             get { return direccion; }
             set { direccion = value; }
+        }
+
+        private bool activo;
+        public bool Activo
+        {
+            get { return activo; }
+            set { activo = value; }
+        }
+
+        // Lo que se muestra en el ComboBox de clientes (Vender).
+        public override string ToString()
+        {
+            return Apellido + ", " + Nombre;
         }
     }
 }

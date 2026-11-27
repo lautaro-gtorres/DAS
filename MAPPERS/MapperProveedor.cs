@@ -13,10 +13,15 @@ namespace MAPPERS
     {
         public int Alta(BE.Proveedor proveedor)
         {
-            SqlParameter[] parametros = new SqlParameter[3];
+            SqlParameter[] parametros = new SqlParameter[8];
             parametros[0] = new SqlParameter("@nombre", proveedor.Nombre);
-            parametros[1] = new SqlParameter("@telefono", TextoONulo(proveedor.Telefono));
+            parametros[1] = new SqlParameter("@cuil", TextoONulo(proveedor.Cuil));
             parametros[2] = new SqlParameter("@direccion", TextoONulo(proveedor.Direccion));
+            parametros[3] = new SqlParameter("@localidad", TextoONulo(proveedor.Localidad));
+            parametros[4] = new SqlParameter("@telefono", TextoONulo(proveedor.Telefono));
+            parametros[5] = new SqlParameter("@email", TextoONulo(proveedor.Email));
+            parametros[6] = new SqlParameter("@servicioProducto", TextoONulo(proveedor.ServicioProducto));
+            parametros[7] = new SqlParameter("@activo", proveedor.Activo);
             return Acceso.Instancia.Escribir("AltaProveedor", parametros);
         }
 
@@ -29,14 +34,20 @@ namespace MAPPERS
 
         public int Modificar(BE.Proveedor proveedor)
         {
-            SqlParameter[] parametros = new SqlParameter[4];
+            SqlParameter[] parametros = new SqlParameter[9];
             parametros[0] = new SqlParameter("@idProveedor", proveedor.IdProveedor);
             parametros[1] = new SqlParameter("@nombre", proveedor.Nombre);
-            parametros[2] = new SqlParameter("@telefono", TextoONulo(proveedor.Telefono));
+            parametros[2] = new SqlParameter("@cuil", TextoONulo(proveedor.Cuil));
             parametros[3] = new SqlParameter("@direccion", TextoONulo(proveedor.Direccion));
+            parametros[4] = new SqlParameter("@localidad", TextoONulo(proveedor.Localidad));
+            parametros[5] = new SqlParameter("@telefono", TextoONulo(proveedor.Telefono));
+            parametros[6] = new SqlParameter("@email", TextoONulo(proveedor.Email));
+            parametros[7] = new SqlParameter("@servicioProducto", TextoONulo(proveedor.ServicioProducto));
+            parametros[8] = new SqlParameter("@activo", proveedor.Activo);
             return Acceso.Instancia.Escribir("ModificarProveedor", parametros);
         }
 
+        // Activos e inactivos.
         public List<BE.Proveedor> Listar()
         {
             return Mapear(Acceso.Instancia.Leer("ListarProveedores"));
@@ -62,6 +73,14 @@ namespace MAPPERS
             return texto;
         }
 
+        // Los campos opcionales que vienen NULL de la base quedan en null.
+        string TextoDeFila(DataRow row, string columna)
+        {
+            if (row[columna] == DBNull.Value)
+                return null;
+            return row[columna].ToString();
+        }
+
         List<BE.Proveedor> Mapear(DataTable dt)
         {
             List<BE.Proveedor> lista = new List<BE.Proveedor>();
@@ -70,10 +89,13 @@ namespace MAPPERS
                 BE.Proveedor proveedor = new BE.Proveedor();
                 proveedor.IdProveedor = Convert.ToInt32(row["IdProveedor"]);
                 proveedor.Nombre = row["Nombre"].ToString();
-                if (row["Telefono"] != DBNull.Value)
-                    proveedor.Telefono = row["Telefono"].ToString();
-                if (row["Direccion"] != DBNull.Value)
-                    proveedor.Direccion = row["Direccion"].ToString();
+                proveedor.Cuil = TextoDeFila(row, "CUIL");
+                proveedor.Direccion = TextoDeFila(row, "Direccion");
+                proveedor.Localidad = TextoDeFila(row, "Localidad");
+                proveedor.Telefono = TextoDeFila(row, "Telefono");
+                proveedor.Email = TextoDeFila(row, "Email");
+                proveedor.ServicioProducto = TextoDeFila(row, "ServicioProducto");
+                proveedor.Activo = Convert.ToBoolean(row["Activo"]);
                 lista.Add(proveedor);
             }
             return lista;

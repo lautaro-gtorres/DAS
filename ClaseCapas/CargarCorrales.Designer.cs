@@ -41,7 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbUbicacion = new System.Windows.Forms.ComboBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
@@ -133,7 +133,6 @@
             this.label7.Size = new System.Drawing.Size(93, 18);
             this.label7.TabIndex = 94;
             this.label7.Text = "UBICACION:";
-            this.label7.Visible = false;
             //
             // label3
             //
@@ -194,15 +193,15 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             //
-            // comboBox1
+            // cmbUbicacion
             //
-            this.comboBox1.BackColor = System.Drawing.Color.Orange;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(504, 176);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 103;
-            this.comboBox1.Visible = false;
+            this.cmbUbicacion.BackColor = System.Drawing.Color.Orange;
+            this.cmbUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUbicacion.FormattingEnabled = true;
+            this.cmbUbicacion.Location = new System.Drawing.Point(504, 176);
+            this.cmbUbicacion.Name = "cmbUbicacion";
+            this.cmbUbicacion.Size = new System.Drawing.Size(121, 21);
+            this.cmbUbicacion.TabIndex = 103;
             //
             // btnEliminar
             //
@@ -264,7 +263,7 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbUbicacion);
             this.Controls.Add(this.txtCapacidad);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnRegistrar);
@@ -303,7 +302,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbUbicacion;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.TextBox txtBuscar;

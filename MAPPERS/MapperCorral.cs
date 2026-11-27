@@ -13,10 +13,11 @@ namespace MAPPERS
     {
         public int Alta(BE.Corral corral)
         {
-            SqlParameter[] parametros = new SqlParameter[3];
+            SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("@nroCorral", corral.NroCorral);
             parametros[1] = new SqlParameter("@idTipoCorral", corral.IdTipoCorral);
             parametros[2] = ParametroCapacidad(corral);
+            parametros[3] = ParametroUbicacion(corral);
             return Acceso.Instancia.Escribir("AltaCorral", parametros);
         }
 
@@ -29,11 +30,12 @@ namespace MAPPERS
 
         public int Modificar(BE.Corral corral)
         {
-            SqlParameter[] parametros = new SqlParameter[4];
+            SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("@idCorral", corral.IdCorral);
             parametros[1] = new SqlParameter("@nroCorral", corral.NroCorral);
             parametros[2] = new SqlParameter("@idTipoCorral", corral.IdTipoCorral);
             parametros[3] = ParametroCapacidad(corral);
+            parametros[4] = ParametroUbicacion(corral);
             return Acceso.Instancia.Escribir("ModificarCorral", parametros);
         }
 
@@ -69,6 +71,29 @@ namespace MAPPERS
             return lista;
         }
 
+        // Catálogo para el ComboBox de ubicación.
+        public List<BE.Ubicacion> ListarUbicaciones()
+        {
+            List<BE.Ubicacion> lista = new List<BE.Ubicacion>();
+            DataTable dt = Acceso.Instancia.Leer("ListarUbicaciones");
+            foreach (DataRow row in dt.Rows)
+            {
+                BE.Ubicacion ubicacion = new BE.Ubicacion();
+                ubicacion.IdUbicacion = Convert.ToInt32(row["IdUbicacion"]);
+                ubicacion.Nombre = row["Nombre"].ToString();
+                lista.Add(ubicacion);
+            }
+            return lista;
+        }
+
+        // La ubicación es opcional: si no tiene valor se manda NULL a la base.
+        SqlParameter ParametroUbicacion(BE.Corral corral)
+        {
+            if (corral.IdUbicacion == null)
+                return new SqlParameter("@idUbicacion", DBNull.Value);
+            return new SqlParameter("@idUbicacion", corral.IdUbicacion.Value);
+        }
+
         // La capacidad es opcional: si no tiene valor se manda NULL a la base.
         SqlParameter ParametroCapacidad(BE.Corral corral)
         {
@@ -93,6 +118,15 @@ namespace MAPPERS
                     corral.Capacidad = null;
                 else
                     corral.Capacidad = Convert.ToInt32(row["Capacidad"]);
+                if (row["IdUbicacion"] == DBNull.Value)
+                {
+                    corral.IdUbicacion = null;
+                }
+                else
+                {
+                    corral.IdUbicacion = Convert.ToInt32(row["IdUbicacion"]);
+                    corral.Ubicacion = row["Ubicacion"].ToString();
+                }
                 lista.Add(corral);
             }
             return lista;

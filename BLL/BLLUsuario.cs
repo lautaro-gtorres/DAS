@@ -115,6 +115,76 @@ namespace BLL
                 throw new ArgumentException("La contraseña no puede tener más de 256 caracteres.");
             if (usuario.IdRol <= 0)
                 throw new ArgumentException("Seleccione el rol.");
+
+            // ---- Datos personales ----
+            usuario.Nombre = SacarEspacios(usuario.Nombre);
+            if (usuario.Nombre == null)
+                throw new ArgumentException("Ingrese el nombre.");
+            if (usuario.Nombre.Length > 50)
+                throw new ArgumentException("El nombre no puede tener más de 50 caracteres.");
+
+            usuario.Apellido = SacarEspacios(usuario.Apellido);
+            if (usuario.Apellido == null)
+                throw new ArgumentException("Ingrese el apellido.");
+            if (usuario.Apellido.Length > 50)
+                throw new ArgumentException("El apellido no puede tener más de 50 caracteres.");
+
+            // DNI, fecha de nacimiento, teléfono y e-mail son opcionales.
+            usuario.Dni = SacarEspacios(usuario.Dni);
+            if (usuario.Dni != null)
+            {
+                // Se acepta con puntos (12.345.678) y se guarda solo con los números.
+                usuario.Dni = usuario.Dni.Replace(".", "");
+                foreach (char c in usuario.Dni)
+                {
+                    if (!char.IsDigit(c))
+                        throw new ArgumentException("El DNI solo puede tener números.");
+                }
+                if (usuario.Dni.Length < 7 || usuario.Dni.Length > 8)
+                    throw new ArgumentException("El DNI tiene que tener 7 u 8 números.");
+            }
+
+            if (usuario.FechaNacimiento != null)
+            {
+                if (usuario.FechaNacimiento.Value.Date > DateTime.Today)
+                    throw new ArgumentException("La fecha de nacimiento no puede ser futura.");
+                if (usuario.FechaNacimiento.Value.Year < 1900)
+                    throw new ArgumentException("La fecha de nacimiento no es válida.");
+            }
+
+            usuario.Telefono = SacarEspacios(usuario.Telefono);
+            if (usuario.Telefono != null && usuario.Telefono.Length > 20)
+                throw new ArgumentException("El teléfono no puede tener más de 20 caracteres.");
+
+            usuario.Email = SacarEspacios(usuario.Email);
+            if (usuario.Email != null)
+            {
+                if (usuario.Email.Length > 100)
+                    throw new ArgumentException("El e-mail no puede tener más de 100 caracteres.");
+                if (!EsEmailValido(usuario.Email))
+                    throw new ArgumentException("El e-mail no es válido.");
+            }
+        }
+
+        // Control simple: algo antes de la @ y un punto después.
+        bool EsEmailValido(string email)
+        {
+            int arroba = email.IndexOf('@');
+            if (arroba < 1)
+                return false;
+            if (email.LastIndexOf('.') < arroba + 2)
+                return false;
+            if (email.EndsWith("."))
+                return false;
+            return true;
+        }
+
+        // Devuelve el texto sin espacios de los costados, o null si está vacío.
+        string SacarEspacios(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return null;
+            return texto.Trim();
         }
     }
 }

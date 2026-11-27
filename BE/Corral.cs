@@ -50,6 +50,22 @@ namespace BE
             set { capacidad = value; }
         }
 
+        // Opcional en la base (tabla Ubicacion).
+        private int? idUbicacion;
+        public int? IdUbicacion
+        {
+            get { return idUbicacion; }
+            set { idUbicacion = value; }
+        }
+
+        // Nombre de la ubicación (lo completa el mapper con un JOIN, para mostrar en listados).
+        private string ubicacion;
+        public string Ubicacion
+        {
+            get { return ubicacion; }
+            set { ubicacion = value; }
+        }
+
         // Lo que se muestra cuando el objeto está en un ComboBox o ListBox.
         public override string ToString()
         {

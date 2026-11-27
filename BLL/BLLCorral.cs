@@ -17,7 +17,15 @@ namespace BLL
         public int Alta(BE.Corral corral)
         {
             Validar(corral);
-            return mapper.Alta(corral);
+            try
+            {
+                return mapper.Alta(corral);
+            }
+            catch (SqlException ex)
+            {
+                TraducirError(ex);
+                throw;
+            }
         }
 
         public int Baja(int id)
@@ -38,7 +46,22 @@ namespace BLL
         public int Modificar(BE.Corral corral)
         {
             Validar(corral);
-            return mapper.Modificar(corral);
+            try
+            {
+                return mapper.Modificar(corral);
+            }
+            catch (SqlException ex)
+            {
+                TraducirError(ex);
+                throw;
+            }
+        }
+
+        // 547 = el tipo o la ubicación elegidos no existen (FK).
+        void TraducirError(SqlException ex)
+        {
+            if (ex.Number == 547)
+                throw new ArgumentException("El tipo o la ubicación seleccionados no existen.");
         }
 
         public List<BE.Corral> Listar()
@@ -54,6 +77,11 @@ namespace BLL
         public List<BE.TipoCorral> ListarTipos()
         {
             return mapper.ListarTipos();
+        }
+
+        public List<BE.Ubicacion> ListarUbicaciones()
+        {
+            return mapper.ListarUbicaciones();
         }
 
         void Validar(BE.Corral corral)
@@ -72,6 +100,9 @@ namespace BLL
                 throw new ArgumentException("Seleccione el tipo de corral.");
             if (corral.Capacidad < 0)
                 throw new ArgumentException("La capacidad no puede ser negativa.");
+            // La ubicación es opcional: 0 (o nada elegido) se guarda como NULL.
+            if (corral.IdUbicacion != null && corral.IdUbicacion <= 0)
+                corral.IdUbicacion = null;
 
             // El número es único: se avisa antes de que lo rechace la base.
             foreach (BE.Corral otro in mapper.Listar())

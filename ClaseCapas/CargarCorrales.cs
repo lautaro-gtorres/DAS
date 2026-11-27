@@ -35,6 +35,10 @@ namespace ClaseCapas
                 cmbTipo.ValueMember = "IdTipoCorral";
                 cmbTipo.DataSource = bll.ListarTipos();
                 cmbTipo.SelectedIndex = -1;
+                cmbUbicacion.DisplayMember = "Nombre";
+                cmbUbicacion.ValueMember = "IdUbicacion";
+                cmbUbicacion.DataSource = bll.ListarUbicaciones();
+                cmbUbicacion.SelectedIndex = -1;
                 CargarGrilla();
             }
             catch (Exception ex)
@@ -131,6 +135,10 @@ namespace ClaseCapas
                 txtCapacidad.Text = "";
             else
                 txtCapacidad.Text = corral.Capacidad.Value.ToString();
+            if (corral.IdUbicacion == null)
+                cmbUbicacion.SelectedIndex = -1;
+            else
+                cmbUbicacion.SelectedValue = corral.IdUbicacion.Value;
 
             btnRegistrar.Text = "Guardar";
             btnEliminar.Enabled = true;
@@ -150,6 +158,8 @@ namespace ClaseCapas
             dgvCorrales.DataSource = corrales;
             dgvCorrales.Columns["IdCorral"].Visible = false;
             dgvCorrales.Columns["IdTipoCorral"].Visible = false;
+            dgvCorrales.Columns["IdUbicacion"].Visible = false;
+            dgvCorrales.Columns["Ubicacion"].HeaderText = "Ubicación";
             dgvCorrales.Columns["NroCorral"].HeaderText = "Número";
             dgvCorrales.Columns["TipoCorral"].HeaderText = "Tipo";
             dgvCorrales.Columns["Capacidad"].HeaderText = "Capacidad máx.";
@@ -165,6 +175,9 @@ namespace ClaseCapas
             corral.NroCorral = txtNroCorral.Text;
             if (cmbTipo.SelectedValue != null)
                 corral.IdTipoCorral = (int)cmbTipo.SelectedValue;
+            // La ubicación es opcional.
+            if (cmbUbicacion.SelectedValue != null)
+                corral.IdUbicacion = (int)cmbUbicacion.SelectedValue;
 
             // La capacidad es opcional; si se carga tiene que ser un número entero.
             string capacidad = txtCapacidad.Text.Trim();
@@ -184,6 +197,7 @@ namespace ClaseCapas
             txtNroCorral.Text = "";
             txtCapacidad.Text = "";
             cmbTipo.SelectedIndex = -1;
+            cmbUbicacion.SelectedIndex = -1;
             btnRegistrar.Text = "Registrar";
             btnEliminar.Enabled = false;
             dgvCorrales.ClearSelection();
