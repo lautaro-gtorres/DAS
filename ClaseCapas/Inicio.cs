@@ -47,6 +47,13 @@ namespace ClaseCapas
             this.Close();
         }
 
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            Reportes reportes = new Reportes();
+            reportes.Show();
+            this.Close();
+        }
+
         private void btnUsuarioNuevo_Click(object sender, EventArgs e)
         {
             UsuarioNuevo usuario = new UsuarioNuevo();

@@ -62,10 +62,10 @@ namespace ClaseCapas
                     produccion.IdCorral = (int)cmbCorral.SelectedValue;
                 produccion.Fecha = dtpFecha.Value.Date;
 
-                int huevos;
-                if (!int.TryParse(txtHuevos.Text.Trim(), out huevos))
-                    throw new ArgumentException("La cantidad de huevos tiene que ser un número entero.");
-                produccion.CantidadHuevos = huevos;
+                // El User Control controla que sea un número entero y que no esté vacío.
+                if (!ctlHuevos.EsValido())
+                    throw new ArgumentException(ctlHuevos.ErrorCompleto());
+                produccion.CantidadHuevos = int.Parse(ctlHuevos.Valor);
 
                 if (idEditando == 0)
                 {
@@ -95,7 +95,7 @@ namespace ClaseCapas
             idEditando = produccion.IdProduccion;
             cmbCorral.SelectedValue = produccion.IdCorral;
             dtpFecha.Value = produccion.Fecha;
-            txtHuevos.Text = produccion.CantidadHuevos.ToString();
+            ctlHuevos.Valor = produccion.CantidadHuevos.ToString();
             btnRegistrar.Text = "Guardar";
             btnEliminar.Enabled = true;
         }
@@ -128,7 +128,7 @@ namespace ClaseCapas
             idEditando = 0;
             cmbCorral.SelectedIndex = -1;
             dtpFecha.Value = DateTime.Today;
-            txtHuevos.Text = "";
+            ctlHuevos.Limpiar();
             btnRegistrar.Text = "Registrar";
             btnEliminar.Enabled = false;
             dgvProduccion.ClearSelection();

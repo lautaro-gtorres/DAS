@@ -37,9 +37,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
+            this.ctlTelefono = new ClaseCapas.CampoValidado();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.ctlEmail = new ClaseCapas.CampoValidado();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDireccion = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -144,14 +144,16 @@
             this.label4.TabIndex = 103;
             this.label4.Text = "TELEFONO:";
             //
-            // txtTelefono
+            // ctlTelefono
             //
-            this.txtTelefono.BackColor = System.Drawing.Color.PeachPuff;
-            this.txtTelefono.Location = new System.Drawing.Point(146, 180);
-            this.txtTelefono.MaxLength = 20;
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(150, 20);
-            this.txtTelefono.TabIndex = 2;
+            this.ctlTelefono.Location = new System.Drawing.Point(146, 180);
+            this.ctlTelefono.LargoMaximo = 20;
+            this.ctlTelefono.Name = "ctlTelefono";
+            this.ctlTelefono.NombreCampo = "El teléfono";
+            this.ctlTelefono.Obligatorio = false;
+            this.ctlTelefono.TipoDato = ClaseCapas.TipoCampo.Telefono;
+            this.ctlTelefono.Size = new System.Drawing.Size(150, 34);
+            this.ctlTelefono.TabIndex = 2;
             //
             // label9
             //
@@ -163,14 +165,16 @@
             this.label9.TabIndex = 104;
             this.label9.Text = "E-MAIL:";
             //
-            // txtEmail
+            // ctlEmail
             //
-            this.txtEmail.BackColor = System.Drawing.Color.PeachPuff;
-            this.txtEmail.Location = new System.Drawing.Point(520, 105);
-            this.txtEmail.MaxLength = 100;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(180, 20);
-            this.txtEmail.TabIndex = 3;
+            this.ctlEmail.Location = new System.Drawing.Point(520, 105);
+            this.ctlEmail.LargoMaximo = 100;
+            this.ctlEmail.Name = "ctlEmail";
+            this.ctlEmail.NombreCampo = "El e-mail";
+            this.ctlEmail.Obligatorio = false;
+            this.ctlEmail.TipoDato = ClaseCapas.TipoCampo.Email;
+            this.ctlEmail.Size = new System.Drawing.Size(180, 34);
+            this.ctlEmail.TabIndex = 3;
             //
             // label3
             //
@@ -228,9 +232,9 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.ctlEmail);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtTelefono);
+            this.Controls.Add(this.ctlTelefono);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.label8);
@@ -260,9 +264,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTelefono;
+        private ClaseCapas.CampoValidado ctlTelefono;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtEmail;
+        private ClaseCapas.CampoValidado ctlEmail;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Button btnCancelar;

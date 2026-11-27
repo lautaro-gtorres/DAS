@@ -47,6 +47,7 @@
             this.btnVerUsuarios = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -266,7 +267,7 @@
             this.btnUsuarioNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarioNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarioNuevo.ForeColor = System.Drawing.Color.DimGray;
-            this.btnUsuarioNuevo.Location = new System.Drawing.Point(527, 210);
+            this.btnUsuarioNuevo.Location = new System.Drawing.Point(527, 185);
             this.btnUsuarioNuevo.Name = "btnUsuarioNuevo";
             this.btnUsuarioNuevo.Click += new System.EventHandler(this.btnUsuarioNuevo_Click);
             this.btnUsuarioNuevo.Size = new System.Drawing.Size(152, 55);
@@ -284,13 +285,31 @@
             this.btnVerUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVerUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerUsuarios.ForeColor = System.Drawing.Color.DimGray;
-            this.btnVerUsuarios.Location = new System.Drawing.Point(527, 290);
+            this.btnVerUsuarios.Location = new System.Drawing.Point(527, 246);
             this.btnVerUsuarios.Name = "btnVerUsuarios";
             this.btnVerUsuarios.Click += new System.EventHandler(this.btnVerUsuarios_Click);
             this.btnVerUsuarios.Size = new System.Drawing.Size(152, 55);
             this.btnVerUsuarios.TabIndex = 34;
             this.btnVerUsuarios.Text = "VER USUARIOS";
             this.btnVerUsuarios.UseVisualStyleBackColor = false;
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.BackColor = System.Drawing.Color.Transparent;
+            this.btnReportes.BackgroundImage = global::ClaseCapas.Properties.Resources.boton2;
+            this.btnReportes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReportes.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
+            this.btnReportes.FlatAppearance.BorderSize = 0;
+            this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.ForeColor = System.Drawing.Color.DimGray;
+            this.btnReportes.Location = new System.Drawing.Point(527, 307);
+            this.btnReportes.Size = new System.Drawing.Size(152, 55);
+            this.btnReportes.TabIndex = 35;
+            this.btnReportes.Text = "REPORTES";
+            this.btnReportes.UseVisualStyleBackColor = false;
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // Inicio
             // 
@@ -300,6 +319,7 @@
             this.BackgroundImage = global::ClaseCapas.Properties.Resources._02;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(756, 375);
+            this.Controls.Add(this.btnReportes);
             this.Controls.Add(this.btnVerUsuarios);
             this.Controls.Add(this.btnUsuarioNuevo);
             this.Controls.Add(this.btnAgenda);
@@ -327,6 +347,7 @@
         }
 
         #endregion
+        private System.Windows.Forms.Button btnReportes;
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSalir;

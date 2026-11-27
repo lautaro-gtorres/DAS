@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    // Validaciones que usan varias BLL (para no repetir el mismo código en cada una).
-    internal static class Validaciones
+    // Validaciones que usan varias BLL y el control CampoValidado de la interfaz (para no repetir el mismo código).
+    public static class Validaciones
     {
         // Devuelve el texto sin espacios de los costados, o null si está vacío.
         public static string SacarEspacios(string texto)

@@ -47,6 +47,7 @@
     <Compile Include="Comprobante.cs" />
     <Compile Include="Corral.cs" />
     <Compile Include="Gallina.cs" />
+    <Compile Include="LineaReporte.cs" />
     <Compile Include="Movimiento.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Produccion.cs" />

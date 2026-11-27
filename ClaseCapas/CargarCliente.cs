@@ -40,8 +40,8 @@ namespace ClaseCapas
             btnRegistrar.Text = "Guardar";
             txtNombre.Text = editando.Nombre;
             txtApellido.Text = editando.Apellido;
-            txtTelefono.Text = editando.Telefono;
-            txtEmail.Text = editando.Email;
+            ctlTelefono.Valor = editando.Telefono;
+            ctlEmail.Valor = editando.Email;
             txtDireccion.Text = editando.Direccion;
         }
 
@@ -49,13 +49,19 @@ namespace ClaseCapas
         {
             try
             {
+                // Los User Control revisan el formato del teléfono y del e-mail.
+                if (!ctlTelefono.EsValido())
+                    throw new ArgumentException(ctlTelefono.ErrorCompleto());
+                if (!ctlEmail.EsValido())
+                    throw new ArgumentException(ctlEmail.ErrorCompleto());
+
                 BE.Cliente cliente = new BE.Cliente();
                 if (editando != null)
                     cliente.IdCliente = editando.IdCliente;
                 cliente.Nombre = txtNombre.Text;
                 cliente.Apellido = txtApellido.Text;
-                cliente.Telefono = txtTelefono.Text;
-                cliente.Email = txtEmail.Text;
+                cliente.Telefono = ctlTelefono.Valor;
+                cliente.Email = ctlEmail.Valor;
                 cliente.Direccion = txtDireccion.Text;
 
                 if (editando == null)
@@ -99,8 +105,8 @@ namespace ClaseCapas
         {
             txtNombre.Text = "";
             txtApellido.Text = "";
-            txtTelefono.Text = "";
-            txtEmail.Text = "";
+            ctlTelefono.Limpiar();
+            ctlEmail.Limpiar();
             txtDireccion.Text = "";
             txtNombre.Focus();
         }

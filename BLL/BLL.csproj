@@ -51,6 +51,7 @@
     <Compile Include="BLLProduccion.cs" />
     <Compile Include="BLLProveedor.cs" />
     <Compile Include="BLLRaza.cs" />
+    <Compile Include="BLLReporte.cs" />
     <Compile Include="BLLUsuario.cs" />
     <Compile Include="BLLVacunacion.cs" />
     <Compile Include="BLLVenta.cs" />

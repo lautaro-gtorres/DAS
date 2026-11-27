@@ -37,7 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtHuevos = new System.Windows.Forms.TextBox();
+            this.ctlHuevos = new ClaseCapas.CampoValidado();
             this.lblStock = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -144,14 +144,16 @@
             this.label4.TabIndex = 103;
             this.label4.Text = "HUEVOS:";
             //
-            // txtHuevos
+            // ctlHuevos
             //
-            this.txtHuevos.BackColor = System.Drawing.Color.PeachPuff;
-            this.txtHuevos.Location = new System.Drawing.Point(562, 99);
-            this.txtHuevos.MaxLength = 9;
-            this.txtHuevos.Name = "txtHuevos";
-            this.txtHuevos.Size = new System.Drawing.Size(90, 20);
-            this.txtHuevos.TabIndex = 2;
+            this.ctlHuevos.Location = new System.Drawing.Point(562, 99);
+            this.ctlHuevos.LargoMaximo = 9;
+            this.ctlHuevos.Name = "ctlHuevos";
+            this.ctlHuevos.NombreCampo = "La cantidad de huevos";
+            this.ctlHuevos.Obligatorio = true;
+            this.ctlHuevos.TipoDato = ClaseCapas.TipoCampo.Entero;
+            this.ctlHuevos.Size = new System.Drawing.Size(150, 34);
+            this.ctlHuevos.TabIndex = 2;
             //
             // lblStock
             //
@@ -226,7 +228,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.lblStock);
-            this.Controls.Add(this.txtHuevos);
+            this.Controls.Add(this.ctlHuevos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dtpFecha);
             this.Controls.Add(this.label3);
@@ -257,7 +259,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtHuevos;
+        private ClaseCapas.CampoValidado ctlHuevos;
         private System.Windows.Forms.Label lblStock;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnCancelar;

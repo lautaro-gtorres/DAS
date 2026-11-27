@@ -133,6 +133,18 @@
       <DependentUpon>VerCompras.cs</DependentUpon>
     </Compile>
     <Compile Include="Pantalla.cs" />
+    <Compile Include="CampoValidado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CampoValidado.Designer.cs">
+      <DependentUpon>CampoValidado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs">
