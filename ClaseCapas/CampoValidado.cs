@@ -11,17 +11,6 @@ using System.Windows.Forms;
 
 namespace ClaseCapas
 {
-    // Qué tipo de dato acepta un CampoValidado.
-    public enum TipoCampo
-    {
-        Texto,
-        Entero,
-        Decimal,
-        Email,
-        Dni,
-        Telefono
-    }
-
     /// <summary>
     /// User Control: caja de texto que valida su propio contenido mientras se escribe.
     /// - Según el TipoDato no deja tipear caracteres inválidos (por ejemplo letras en un número).
