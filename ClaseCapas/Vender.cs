@@ -22,9 +22,28 @@ namespace ClaseCapas
         // Primer ítem del combo de clientes: venta sin cliente.
         const string SinCliente = "(Sin cliente)";
 
+        // Venta que se está corrigiendo desde Registros (null = venta nueva).
+        BE.Venta editando = null;
+
+        // Para volver al menú desde el que se abrió (Gallinas o Ventas).
+        bool desdeGallinas = false;
+
         public Vender()
         {
             InitializeComponent();
+        }
+
+        public Vender(bool desdeGallinas)
+        {
+            InitializeComponent();
+            this.desdeGallinas = desdeGallinas;
+        }
+
+        // Corrección de una venta: solo se pueden cambiar el cliente y el precio unitario.
+        public Vender(BE.Venta venta)
+        {
+            InitializeComponent();
+            editando = venta;
         }
 
         private void Vender_Load(object sender, EventArgs e)
@@ -50,10 +69,12 @@ namespace ClaseCapas
 
                 CargarClientes();
                 LimpiarCampos();
+                if (editando != null)
+                    MostrarVenta();
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Vender");
             }
         }
 
@@ -64,6 +85,69 @@ namespace ClaseCapas
             cmbCliente.Items.Add(SinCliente);
             foreach (BE.Cliente cliente in bllCliente.Listar())
                 cmbCliente.Items.Add(cliente);
+        }
+
+        // Elige en el combo el cliente con ese Id (o "Sin cliente").
+        private void ElegirCliente(int? idCliente)
+        {
+            cmbCliente.SelectedIndex = 0;
+            if (idCliente == null)
+                return;
+            for (int i = 1; i < cmbCliente.Items.Count; i++)
+            {
+                if (((BE.Cliente)cmbCliente.Items[i]).IdCliente == idCliente.Value)
+                    cmbCliente.SelectedIndex = i;
+            }
+        }
+
+        // Modo corrección: se muestra la venta y solo quedan habilitados cliente y precio.
+        private void MostrarVenta()
+        {
+            label1.Text = "CORREGIR VENTA";
+            btnVender.Text = "Guardar";
+            cmbProducto.SelectedValue = editando.IdTipoProducto;
+            if (editando.IdTipoGallina != null)
+            {
+                cmbTipoGallina.SelectedValue = editando.IdTipoGallina.Value;
+                cmbRaza.SelectedValue = editando.IdRaza.Value;
+                if (editando.Sexo == BE.Gallina.Macho)
+                    cmbSexo.SelectedIndex = 1;
+                else
+                    cmbSexo.SelectedIndex = 0;
+            }
+            txtCantidad.Text = editando.Cantidad.ToString();
+            txtPrecio.Text = editando.PrecioUnitario.ToString("0.##");
+            ElegirCliente(editando.IdCliente);
+
+            cmbProducto.Enabled = false;
+            cmbTipoGallina.Enabled = false;
+            cmbRaza.Enabled = false;
+            cmbSexo.Enabled = false;
+            txtCantidad.Enabled = false;
+        }
+
+        // Nuevo cliente: se carga y queda elegido en el combo (es el de Id más alto).
+        private void btnNuevoCliente_Click(object sender, EventArgs e)
+        {
+            CargarCliente nuevo = new CargarCliente();
+            if (nuevo.ShowDialog(this) != DialogResult.OK)
+                return;
+            try
+            {
+                CargarClientes();
+                int idNuevo = 0;
+                for (int i = 1; i < cmbCliente.Items.Count; i++)
+                {
+                    BE.Cliente cliente = (BE.Cliente)cmbCliente.Items[i];
+                    if (cliente.IdCliente > idNuevo)
+                        idNuevo = cliente.IdCliente;
+                }
+                ElegirCliente(idNuevo);
+            }
+            catch (Exception ex)
+            {
+                Pantalla.MostrarError(ex, "Vender");
+            }
         }
 
         // ---- Selector de producto ----
@@ -110,6 +194,18 @@ namespace ClaseCapas
             try
             {
                 BE.Venta venta = LeerCampos();
+                if (editando != null)
+                {
+                    // Corrección: se conserva el número y la fecha de la venta.
+                    venta.IdVenta = editando.IdVenta;
+                    venta.Fecha = editando.Fecha;
+                    bll.Modificar(venta);
+                    Pantalla.Avisar("Venta corregida.", "Vender");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                    return;
+                }
+
                 bll.Alta(venta);
                 LimpiarCampos();
 
@@ -119,17 +215,34 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Vender");
             }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            if (editando != null)
+            {
+                this.Close();
+                return;
+            }
             LimpiarCampos();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            if (this.Modal)
+            {
+                this.Close();
+                return;
+            }
+            if (desdeGallinas)
+            {
+                Gallinas gallinas = new Gallinas();
+                gallinas.Show();
+                this.Close();
+                return;
+            }
             Ventas ventas = new Ventas();
             ventas.Show();
             this.Close();
@@ -181,17 +294,6 @@ namespace ClaseCapas
             txtPrecio.Text = "";
             txtTotal.Text = "";
             cmbProducto_SelectedIndexChanged(null, null);
-        }
-
-        // Los errores de validación (ArgumentException) se muestran como aviso;
-        // cualquier otro, como error de conexión o de la base.
-        private void MostrarError(Exception ex)
-        {
-            if (ex is ArgumentException)
-                MessageBox.Show(ex.Message, "Vender", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else
-                MessageBox.Show("Ocurrió un error al acceder a la base de datos.\n\n" + ex.Message, "Vender",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

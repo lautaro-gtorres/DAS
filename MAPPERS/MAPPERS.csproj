@@ -41,20 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conversion.cs" />
     <Compile Include="IMapper.cs" />
-    <Compile Include="MapperAlimentacion.cs" />
     <Compile Include="MapperAlimento.cs" />
     <Compile Include="MapperCliente.cs" />
+    <Compile Include="MapperCompra.cs" />
     <Compile Include="MapperCorral.cs" />
-    <Compile Include="MapperDetallePedido.cs" />
-    <Compile Include="MapperDetalleVenta.cs" />
     <Compile Include="MapperGallina.cs" />
-    <Compile Include="MapperPedido.cs" />
     <Compile Include="MapperProduccion.cs" />
     <Compile Include="MapperProveedor.cs" />
     <Compile Include="MapperRaza.cs" />
     <Compile Include="MapperUsuario.cs" />
-    <Compile Include="MapperVacuna.cs" />
     <Compile Include="MapperVacunacion.cs" />
     <Compile Include="MapperVenta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

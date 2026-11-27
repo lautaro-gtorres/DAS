@@ -30,6 +30,12 @@ namespace BLL
                 if (disponibles < venta.Cantidad)
                     throw new ArgumentException("No hay suficientes gallinas de ese tipo, raza y sexo: hay " + disponibles + " disponibles.");
             }
+            else
+            {
+                int huevos = mapper.StockHuevos();
+                if (huevos < venta.Cantidad)
+                    throw new ArgumentException("No hay suficientes huevos: hay " + huevos + " disponibles.");
+            }
 
             try
             {
@@ -86,10 +92,17 @@ namespace BLL
             return mapper.ContarGallinasDisponibles(idTipoGallina, idRaza, char.ToUpper(sexo));
         }
 
-        // 50001 = el SP no encontró suficientes gallinas; 547 = cliente, tipo o raza inexistente (FK).
+        // Huevos disponibles = producidos - vendidos.
+        public int StockHuevos()
+        {
+            return mapper.StockHuevos();
+        }
+
+        // 50001 / 50002 = el SP no encontró suficientes gallinas / huevos;
+        // 547 = cliente, tipo o raza inexistente (FK).
         void TraducirError(SqlException ex)
         {
-            if (ex.Number == 50001)
+            if (ex.Number == 50001 || ex.Number == 50002)
                 throw new ArgumentException(ex.Message);
             if (ex.Number == 547)
                 throw new ArgumentException("El cliente, el tipo o la raza seleccionados no existen.");

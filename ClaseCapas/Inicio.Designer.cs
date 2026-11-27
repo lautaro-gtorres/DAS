@@ -40,11 +40,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnProduccion = new System.Windows.Forms.Button();
+            this.btnRegistros = new System.Windows.Forms.Button();
+            this.btnAgenda = new System.Windows.Forms.Button();
+            this.btnUsuarioNuevo = new System.Windows.Forms.Button();
+            this.btnVerUsuarios = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -202,90 +202,95 @@
             this.label4.TabIndex = 28;
             this.label4.Text = "¿Con qué empezamos hoy?";
             // 
-            // button6
+            // btnProduccion
             // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = global::ClaseCapas.Properties.Resources.boton1;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.DimGray;
-            this.button6.Location = new System.Drawing.Point(319, 185);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(152, 55);
-            this.button6.TabIndex = 29;
-            this.button6.Text = "INICIO";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnProduccion.BackColor = System.Drawing.Color.Transparent;
+            this.btnProduccion.BackgroundImage = global::ClaseCapas.Properties.Resources.boton1;
+            this.btnProduccion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnProduccion.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
+            this.btnProduccion.FlatAppearance.BorderSize = 0;
+            this.btnProduccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProduccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProduccion.ForeColor = System.Drawing.Color.DimGray;
+            this.btnProduccion.Location = new System.Drawing.Point(319, 185);
+            this.btnProduccion.Name = "btnProduccion";
+            this.btnProduccion.Click += new System.EventHandler(this.btnProduccion_Click);
+            this.btnProduccion.Size = new System.Drawing.Size(152, 55);
+            this.btnProduccion.TabIndex = 29;
+            this.btnProduccion.Text = "PRODUCCIÓN";
+            this.btnProduccion.UseVisualStyleBackColor = false;
             // 
-            // button7
+            // btnRegistros
             // 
-            this.button7.BackColor = System.Drawing.Color.Transparent;
-            this.button7.BackgroundImage = global::ClaseCapas.Properties.Resources.boton1;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.Color.DimGray;
-            this.button7.Location = new System.Drawing.Point(319, 246);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(152, 55);
-            this.button7.TabIndex = 31;
-            this.button7.Text = "REGISTROS";
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnRegistros.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegistros.BackgroundImage = global::ClaseCapas.Properties.Resources.boton1;
+            this.btnRegistros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRegistros.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
+            this.btnRegistros.FlatAppearance.BorderSize = 0;
+            this.btnRegistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistros.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistros.ForeColor = System.Drawing.Color.DimGray;
+            this.btnRegistros.Location = new System.Drawing.Point(319, 246);
+            this.btnRegistros.Name = "btnRegistros";
+            this.btnRegistros.Click += new System.EventHandler(this.btnRegistros_Click);
+            this.btnRegistros.Size = new System.Drawing.Size(152, 55);
+            this.btnRegistros.TabIndex = 31;
+            this.btnRegistros.Text = "REGISTROS";
+            this.btnRegistros.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // btnAgenda
             // 
-            this.button8.BackColor = System.Drawing.Color.Transparent;
-            this.button8.BackgroundImage = global::ClaseCapas.Properties.Resources.boton1;
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.ForeColor = System.Drawing.Color.DimGray;
-            this.button8.Location = new System.Drawing.Point(319, 307);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(152, 55);
-            this.button8.TabIndex = 32;
-            this.button8.Text = "INICIO";
-            this.button8.UseVisualStyleBackColor = false;
+            this.btnAgenda.BackColor = System.Drawing.Color.Transparent;
+            this.btnAgenda.BackgroundImage = global::ClaseCapas.Properties.Resources.boton1;
+            this.btnAgenda.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAgenda.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
+            this.btnAgenda.FlatAppearance.BorderSize = 0;
+            this.btnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgenda.ForeColor = System.Drawing.Color.DimGray;
+            this.btnAgenda.Location = new System.Drawing.Point(319, 307);
+            this.btnAgenda.Name = "btnAgenda";
+            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
+            this.btnAgenda.Size = new System.Drawing.Size(152, 55);
+            this.btnAgenda.TabIndex = 32;
+            this.btnAgenda.Text = "AGENDA";
+            this.btnAgenda.UseVisualStyleBackColor = false;
             // 
-            // button9
+            // btnUsuarioNuevo
             // 
-            this.button9.BackColor = System.Drawing.Color.Transparent;
-            this.button9.BackgroundImage = global::ClaseCapas.Properties.Resources.boton2;
-            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
-            this.button9.FlatAppearance.BorderSize = 0;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.DimGray;
-            this.button9.Location = new System.Drawing.Point(527, 210);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(152, 55);
-            this.button9.TabIndex = 33;
-            this.button9.Text = "USUARIO NUEVO";
-            this.button9.UseVisualStyleBackColor = false;
+            this.btnUsuarioNuevo.BackColor = System.Drawing.Color.Transparent;
+            this.btnUsuarioNuevo.BackgroundImage = global::ClaseCapas.Properties.Resources.boton2;
+            this.btnUsuarioNuevo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnUsuarioNuevo.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
+            this.btnUsuarioNuevo.FlatAppearance.BorderSize = 0;
+            this.btnUsuarioNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarioNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarioNuevo.ForeColor = System.Drawing.Color.DimGray;
+            this.btnUsuarioNuevo.Location = new System.Drawing.Point(527, 210);
+            this.btnUsuarioNuevo.Name = "btnUsuarioNuevo";
+            this.btnUsuarioNuevo.Click += new System.EventHandler(this.btnUsuarioNuevo_Click);
+            this.btnUsuarioNuevo.Size = new System.Drawing.Size(152, 55);
+            this.btnUsuarioNuevo.TabIndex = 33;
+            this.btnUsuarioNuevo.Text = "USUARIO NUEVO";
+            this.btnUsuarioNuevo.UseVisualStyleBackColor = false;
             // 
-            // button10
+            // btnVerUsuarios
             // 
-            this.button10.BackColor = System.Drawing.Color.Transparent;
-            this.button10.BackgroundImage = global::ClaseCapas.Properties.Resources.boton2;
-            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button10.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ForeColor = System.Drawing.Color.DimGray;
-            this.button10.Location = new System.Drawing.Point(527, 290);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(152, 55);
-            this.button10.TabIndex = 34;
-            this.button10.Text = "VER USUARIOS";
-            this.button10.UseVisualStyleBackColor = false;
+            this.btnVerUsuarios.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerUsuarios.BackgroundImage = global::ClaseCapas.Properties.Resources.boton2;
+            this.btnVerUsuarios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnVerUsuarios.FlatAppearance.BorderColor = System.Drawing.Color.MediumAquamarine;
+            this.btnVerUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnVerUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerUsuarios.ForeColor = System.Drawing.Color.DimGray;
+            this.btnVerUsuarios.Location = new System.Drawing.Point(527, 290);
+            this.btnVerUsuarios.Name = "btnVerUsuarios";
+            this.btnVerUsuarios.Click += new System.EventHandler(this.btnVerUsuarios_Click);
+            this.btnVerUsuarios.Size = new System.Drawing.Size(152, 55);
+            this.btnVerUsuarios.TabIndex = 34;
+            this.btnVerUsuarios.Text = "VER USUARIOS";
+            this.btnVerUsuarios.UseVisualStyleBackColor = false;
             // 
             // Inicio
             // 
@@ -295,11 +300,11 @@
             this.BackgroundImage = global::ClaseCapas.Properties.Resources._02;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnVerUsuarios);
+            this.Controls.Add(this.btnUsuarioNuevo);
+            this.Controls.Add(this.btnAgenda);
+            this.Controls.Add(this.btnRegistros);
+            this.Controls.Add(this.btnProduccion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -335,10 +340,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnProduccion;
+        private System.Windows.Forms.Button btnRegistros;
+        private System.Windows.Forms.Button btnAgenda;
+        private System.Windows.Forms.Button btnUsuarioNuevo;
+        private System.Windows.Forms.Button btnVerUsuarios;
     }
 }

@@ -32,7 +32,17 @@ namespace BLL
 
         public int Baja(int id)
         {
-            return mapper.Baja(id);
+            try
+            {
+                return mapper.Baja(id);
+            }
+            catch (SqlException ex)
+            {
+                // 547 = el alimento tiene compras registradas (FK).
+                if (ex.Number == 547)
+                    throw new ArgumentException("No se puede eliminar el alimento porque tiene compras registradas.");
+                throw;
+            }
         }
 
         public int Modificar(BE.Alimento alimento)

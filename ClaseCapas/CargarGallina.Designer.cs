@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnPorMayor = new System.Windows.Forms.Button();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.cmbSexo = new System.Windows.Forms.ComboBox();
+            this.cmbRaza = new System.Windows.Forms.ComboBox();
+            this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,86 +44,94 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCorral = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.dtpNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.txtDetalle = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.SuspendLayout();
             // 
-            // button3
+            // btnRegistrar
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(414, 309);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 95;
-            this.button3.Text = "Vender";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnRegistrar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Location = new System.Drawing.Point(414, 309);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnRegistrar.Size = new System.Drawing.Size(100, 32);
+            this.btnRegistrar.TabIndex = 95;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(236, 309);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 32);
-            this.button2.TabIndex = 94;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCancelar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancelar.Location = new System.Drawing.Point(236, 309);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 32);
+            this.btnCancelar.TabIndex = 94;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnPorMayor
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button1.Location = new System.Drawing.Point(54, 98);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 23);
-            this.button1.TabIndex = 93;
-            this.button1.Text = "Carga por mayor";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnPorMayor.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnPorMayor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPorMayor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPorMayor.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnPorMayor.Location = new System.Drawing.Point(54, 98);
+            this.btnPorMayor.Name = "btnPorMayor";
+            this.btnPorMayor.Click += new System.EventHandler(this.btnPorMayor_Click);
+            this.btnPorMayor.Size = new System.Drawing.Size(115, 23);
+            this.btnPorMayor.TabIndex = 93;
+            this.btnPorMayor.Text = "Carga por mayor";
+            this.btnPorMayor.UseVisualStyleBackColor = false;
             // 
-            // textBox1
+            // txtCodigo
             // 
-            this.textBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox1.Location = new System.Drawing.Point(548, 139);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 90;
+            this.txtCodigo.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtCodigo.Location = new System.Drawing.Point(548, 139);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(100, 20);
+            this.txtCodigo.TabIndex = 90;
             // 
-            // comboBox4
+            // cmbSexo
             // 
-            this.comboBox4.BackColor = System.Drawing.Color.Orange;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(175, 213);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 89;
+            this.cmbSexo.BackColor = System.Drawing.Color.Orange;
+            this.cmbSexo.FormattingEnabled = true;
+            this.cmbSexo.Location = new System.Drawing.Point(175, 213);
+            this.cmbSexo.Name = "cmbSexo";
+            this.cmbSexo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSexo.Size = new System.Drawing.Size(121, 21);
+            this.cmbSexo.TabIndex = 89;
             // 
-            // comboBox3
+            // cmbRaza
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.Orange;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(171, 177);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 88;
+            this.cmbRaza.BackColor = System.Drawing.Color.Orange;
+            this.cmbRaza.FormattingEnabled = true;
+            this.cmbRaza.Location = new System.Drawing.Point(171, 177);
+            this.cmbRaza.Name = "cmbRaza";
+            this.cmbRaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRaza.Size = new System.Drawing.Size(121, 21);
+            this.cmbRaza.TabIndex = 88;
             // 
-            // comboBox2
+            // cmbTipo
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.Orange;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(167, 139);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 87;
+            this.cmbTipo.BackColor = System.Drawing.Color.Orange;
+            this.cmbTipo.FormattingEnabled = true;
+            this.cmbTipo.Location = new System.Drawing.Point(167, 139);
+            this.cmbTipo.Name = "cmbTipo";
+            this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipo.Size = new System.Drawing.Size(121, 21);
+            this.cmbTipo.TabIndex = 87;
             // 
             // label8
             // 
@@ -219,18 +227,20 @@
             this.btnSalir.ForeColor = System.Drawing.Color.FloralWhite;
             this.btnSalir.Location = new System.Drawing.Point(711, 12);
             this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 76;
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cmbCorral
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Orange;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(527, 178);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 96;
+            this.cmbCorral.BackColor = System.Drawing.Color.Orange;
+            this.cmbCorral.FormattingEnabled = true;
+            this.cmbCorral.Location = new System.Drawing.Point(527, 178);
+            this.cmbCorral.Name = "cmbCorral";
+            this.cmbCorral.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCorral.Size = new System.Drawing.Size(121, 21);
+            this.cmbCorral.TabIndex = 96;
             // 
             // label2
             // 
@@ -242,23 +252,24 @@
             this.label2.TabIndex = 97;
             this.label2.Text = "FECHA NACIMIENTO:";
             // 
-            // dateTimePicker1
+            // dtpNacimiento
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(592, 216);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(82, 20);
-            this.dateTimePicker1.TabIndex = 98;
-            this.dateTimePicker1.Value = new System.DateTime(2026, 11, 25, 0, 0, 0, 0);
+            this.dtpNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNacimiento.Location = new System.Drawing.Point(592, 216);
+            this.dtpNacimiento.Name = "dtpNacimiento";
+            this.dtpNacimiento.ShowCheckBox = true;
+            this.dtpNacimiento.Size = new System.Drawing.Size(100, 20);
+            this.dtpNacimiento.TabIndex = 98;
+            this.dtpNacimiento.Value = new System.DateTime(2026, 11, 25, 0, 0, 0, 0);
             // 
-            // textBox2
+            // txtDetalle
             // 
-            this.textBox2.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox2.Location = new System.Drawing.Point(215, 254);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(327, 34);
-            this.textBox2.TabIndex = 100;
+            this.txtDetalle.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtDetalle.Location = new System.Drawing.Point(215, 254);
+            this.txtDetalle.Multiline = true;
+            this.txtDetalle.Name = "txtDetalle";
+            this.txtDetalle.Size = new System.Drawing.Size(327, 34);
+            this.txtDetalle.TabIndex = 100;
             // 
             // label9
             // 
@@ -270,24 +281,47 @@
             this.label9.TabIndex = 99;
             this.label9.Text = "DETALLES/\r\nOBSERVACIONES:";
             // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidad.Location = new System.Drawing.Point(185, 100);
+            this.lblCantidad.Size = new System.Drawing.Size(86, 18);
+            this.lblCantidad.Text = "CANTIDAD:";
+            this.lblCantidad.Visible = false;
+            this.lblCantidad.Name = "lblCantidad";
+            // 
+            // nudCantidad
+            // 
+            this.nudCantidad.BackColor = System.Drawing.Color.PeachPuff;
+            this.nudCantidad.Location = new System.Drawing.Point(277, 100);
+            this.nudCantidad.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
+            this.nudCantidad.Maximum = new decimal(new int[] { 500, 0, 0, 0 });
+            this.nudCantidad.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            this.nudCantidad.Size = new System.Drawing.Size(60, 20);
+            this.nudCantidad.Visible = false;
+            this.nudCantidad.Name = "nudCantidad";
+            // 
             // CargarGallina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.nudCantidad);
+            this.Controls.Add(this.lblCantidad);
+            this.Controls.Add(this.txtDetalle);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpNacimiento);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbCorral);
+            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnPorMayor);
+            this.Controls.Add(this.txtCodigo);
+            this.Controls.Add(this.cmbSexo);
+            this.Controls.Add(this.cmbRaza);
+            this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -298,6 +332,7 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
             this.Name = "CargarGallina";
+            this.Load += new System.EventHandler(this.CargarGallina_Load);
             this.Text = "CargarGallina";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -306,14 +341,16 @@
         }
 
         #endregion
+        private System.Windows.Forms.NumericUpDown nudCantidad;
+        private System.Windows.Forms.Label lblCantidad;
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnPorMayor;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.ComboBox cmbSexo;
+        private System.Windows.Forms.ComboBox cmbRaza;
+        private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -323,10 +360,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbCorral;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DateTimePicker dtpNacimiento;
+        private System.Windows.Forms.TextBox txtDetalle;
         private System.Windows.Forms.Label label9;
     }
 }

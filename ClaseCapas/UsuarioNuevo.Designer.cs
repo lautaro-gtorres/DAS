@@ -28,62 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtDni = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dtpNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.cmbRol = new System.Windows.Forms.ComboBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtContrasena = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtConfirmar = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // button3
+            // btnRegistrar
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(493, 309);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 84;
-            this.button3.Text = "Registrar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnRegistrar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Location = new System.Drawing.Point(493, 309);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnRegistrar.Size = new System.Drawing.Size(100, 32);
+            this.btnRegistrar.TabIndex = 84;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // txtApellido
             // 
-            this.textBox2.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox2.Location = new System.Drawing.Point(146, 141);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 82;
+            this.txtApellido.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtApellido.Location = new System.Drawing.Point(146, 141);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(100, 20);
+            this.txtApellido.TabIndex = 82;
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox1.Location = new System.Drawing.Point(146, 105);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 81;
+            this.txtNombre.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtNombre.Location = new System.Drawing.Point(146, 105);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 81;
             // 
             // label8
             // 
@@ -129,13 +129,14 @@
             this.label1.TabIndex = 75;
             this.label1.Text = "USUARIO NUEVO";
             // 
-            // textBox4
+            // txtDni
             // 
-            this.textBox4.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox4.Location = new System.Drawing.Point(96, 179);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(150, 20);
-            this.textBox4.TabIndex = 87;
+            this.txtDni.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtDni.Location = new System.Drawing.Point(96, 179);
+            this.txtDni.Name = "txtDni";
+            this.txtDni.MaxLength = 10;
+            this.txtDni.Size = new System.Drawing.Size(150, 20);
+            this.txtDni.TabIndex = 87;
             // 
             // label2
             // 
@@ -157,13 +158,13 @@
             this.label3.TabIndex = 85;
             this.label3.Text = "DNI:";
             // 
-            // textBox5
+            // txtTelefono
             // 
-            this.textBox5.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox5.Location = new System.Drawing.Point(146, 287);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 92;
+            this.txtTelefono.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtTelefono.Location = new System.Drawing.Point(146, 287);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefono.TabIndex = 92;
             // 
             // label4
             // 
@@ -185,13 +186,13 @@
             this.label6.TabIndex = 89;
             this.label6.Text = "ROL:";
             // 
-            // textBox8
+            // txtUsuario
             // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox8.Location = new System.Drawing.Point(493, 126);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 95;
+            this.txtUsuario.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtUsuario.Location = new System.Drawing.Point(493, 126);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(100, 20);
+            this.txtUsuario.TabIndex = 95;
             // 
             // label10
             // 
@@ -203,30 +204,32 @@
             this.label10.TabIndex = 93;
             this.label10.Text = "USUARIO";
             // 
-            // dateTimePicker1
+            // dtpNacimiento
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(243, 214);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(79, 20);
-            this.dateTimePicker1.TabIndex = 96;
+            this.dtpNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNacimiento.Location = new System.Drawing.Point(243, 214);
+            this.dtpNacimiento.Name = "dtpNacimiento";
+            this.dtpNacimiento.ShowCheckBox = true;
+            this.dtpNacimiento.Size = new System.Drawing.Size(100, 20);
+            this.dtpNacimiento.TabIndex = 96;
             // 
-            // comboBox1
+            // cmbRol
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Orange;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(102, 255);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 97;
+            this.cmbRol.BackColor = System.Drawing.Color.Orange;
+            this.cmbRol.FormattingEnabled = true;
+            this.cmbRol.Location = new System.Drawing.Point(102, 255);
+            this.cmbRol.Name = "cmbRol";
+            this.cmbRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRol.Size = new System.Drawing.Size(121, 21);
+            this.cmbRol.TabIndex = 97;
             // 
-            // textBox3
+            // txtEmail
             // 
-            this.textBox3.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox3.Location = new System.Drawing.Point(119, 321);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(127, 20);
-            this.textBox3.TabIndex = 100;
+            this.txtEmail.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtEmail.Location = new System.Drawing.Point(119, 321);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(127, 20);
+            this.txtEmail.TabIndex = 100;
             // 
             // label9
             // 
@@ -238,13 +241,14 @@
             this.label9.TabIndex = 99;
             this.label9.Text = "E-MAIL:";
             // 
-            // textBox6
+            // txtContrasena
             // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox6.Location = new System.Drawing.Point(493, 185);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 102;
+            this.txtContrasena.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtContrasena.Location = new System.Drawing.Point(493, 185);
+            this.txtContrasena.Name = "txtContrasena";
+            this.txtContrasena.PasswordChar = '*';
+            this.txtContrasena.Size = new System.Drawing.Size(100, 20);
+            this.txtContrasena.TabIndex = 102;
             // 
             // label11
             // 
@@ -256,13 +260,14 @@
             this.label11.TabIndex = 101;
             this.label11.Text = "CONTRASEÑA";
             // 
-            // textBox7
+            // txtConfirmar
             // 
-            this.textBox7.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBox7.Location = new System.Drawing.Point(493, 247);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 104;
+            this.txtConfirmar.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtConfirmar.Location = new System.Drawing.Point(493, 247);
+            this.txtConfirmar.Name = "txtConfirmar";
+            this.txtConfirmar.PasswordChar = '*';
+            this.txtConfirmar.Size = new System.Drawing.Size(100, 20);
+            this.txtConfirmar.TabIndex = 104;
             // 
             // label12
             // 
@@ -273,18 +278,6 @@
             this.label12.Size = new System.Drawing.Size(205, 18);
             this.label12.TabIndex = 103;
             this.label12.Text = "CONFIRMAR CONTRASEÑA";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::ClaseCapas.Properties.Resources.mas;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(230, 252);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 23);
-            this.button1.TabIndex = 98;
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // pictureBox3
             // 
@@ -306,6 +299,7 @@
             this.btnSalir.ForeColor = System.Drawing.Color.FloralWhite;
             this.btnSalir.Location = new System.Drawing.Point(711, 12);
             this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 76;
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -316,26 +310,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtConfirmar);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtContrasena);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.cmbRol);
+            this.Controls.Add(this.dtpNacimiento);
+            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtDni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.txtApellido);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox3);
@@ -343,6 +336,7 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
             this.Name = "UsuarioNuevo";
+            this.Load += new System.EventHandler(this.UsuarioNuevo_Load);
             this.Text = "UsuarioNuevo";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -352,31 +346,30 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.DateTimePicker dtpNacimiento;
+        private System.Windows.Forms.ComboBox cmbRol;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtContrasena;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtConfirmar;
         private System.Windows.Forms.Label label12;
     }
 }

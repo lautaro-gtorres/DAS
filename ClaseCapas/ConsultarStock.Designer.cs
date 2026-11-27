@@ -28,62 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnReponer = new System.Windows.Forms.Button();
+            this.dgvStock = new System.Windows.Forms.DataGridView();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.lblResumen = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btnReponer
             // 
-            this.button1.BackColor = System.Drawing.Color.Aqua;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(451, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 32);
-            this.button1.TabIndex = 126;
-            this.button1.Text = "Reponer";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnReponer.BackColor = System.Drawing.Color.Aqua;
+            this.btnReponer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReponer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReponer.Location = new System.Drawing.Point(451, 308);
+            this.btnReponer.Name = "btnReponer";
+            this.btnReponer.Click += new System.EventHandler(this.btnReponer_Click);
+            this.btnReponer.Size = new System.Drawing.Size(100, 32);
+            this.btnReponer.TabIndex = 126;
+            this.btnReponer.Text = "Reponer";
+            this.btnReponer.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgvStock
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(104, 99);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(550, 150);
-            this.dataGridView1.TabIndex = 125;
+            this.dgvStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStock.Location = new System.Drawing.Point(104, 99);
+            this.dgvStock.Name = "dgvStock";
+            this.dgvStock.Size = new System.Drawing.Size(550, 150);
+            this.dgvStock.TabIndex = 125;
             // 
-            // button3
+            // btnActualizar
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(320, 308);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 124;
-            this.button3.Text = "Actualizar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnActualizar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.Location = new System.Drawing.Point(320, 308);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            this.btnActualizar.Size = new System.Drawing.Size(100, 32);
+            this.btnActualizar.TabIndex = 124;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnEliminar
             // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(191, 308);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 32);
-            this.button2.TabIndex = 123;
-            this.button2.Text = "Eliminar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnEliminar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminar.Location = new System.Drawing.Point(191, 308);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.btnEliminar.Size = new System.Drawing.Size(100, 32);
+            this.btnEliminar.TabIndex = 123;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -129,9 +133,20 @@
             this.btnSalir.ForeColor = System.Drawing.Color.FloralWhite;
             this.btnSalir.Location = new System.Drawing.Point(711, 12);
             this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 120;
             this.btnSalir.UseVisualStyleBackColor = true;
+            // 
+            // lblResumen
+            // 
+            this.lblResumen.AutoSize = true;
+            this.lblResumen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResumen.ForeColor = System.Drawing.Color.DimGray;
+            this.lblResumen.Location = new System.Drawing.Point(104, 72);
+            this.lblResumen.Size = new System.Drawing.Size(40, 16);
+            this.lblResumen.Text = "";
+            this.lblResumen.Name = "lblResumen";
             // 
             // ConsultarStock
             // 
@@ -139,17 +154,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.lblResumen);
+            this.Controls.Add(this.btnReponer);
+            this.Controls.Add(this.dgvStock);
+            this.Controls.Add(this.btnActualizar);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
             this.Name = "ConsultarStock";
+            this.Load += new System.EventHandler(this.ConsultarStock_Load);
             this.Text = "ConsultarStock";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -157,11 +174,12 @@
         }
 
         #endregion
+        private System.Windows.Forms.Label lblResumen;
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnReponer;
+        private System.Windows.Forms.DataGridView dgvStock;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;

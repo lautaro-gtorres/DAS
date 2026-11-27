@@ -24,6 +24,36 @@ namespace MAPPERS
             return Acceso.Instancia.Escribir("AltaGallina", parametros);
         }
 
+        // Carga por mayor: da de alta todas las gallinas en una sola transacción
+        // (si una falla, por ejemplo por código repetido, no se guarda ninguna).
+        public int AltaVarias(List<BE.Gallina> gallinas)
+        {
+            int filas = 0;
+            Acceso.Instancia.IniciarTransaccion();
+            try
+            {
+                foreach (BE.Gallina gallina in gallinas)
+                {
+                    SqlParameter[] parametros = new SqlParameter[7];
+                    parametros[0] = new SqlParameter("@codGallina", gallina.CodGallina);
+                    parametros[1] = new SqlParameter("@idRaza", gallina.IdRaza);
+                    parametros[2] = new SqlParameter("@idTipoGallina", gallina.IdTipoGallina);
+                    parametros[3] = new SqlParameter("@sexo", gallina.Sexo.ToString());
+                    parametros[4] = ParametroFechaNacimiento(gallina);
+                    parametros[5] = new SqlParameter("@idCorral", gallina.IdCorral);
+                    parametros[6] = ParametroDetalle(gallina);
+                    filas = filas + Acceso.Instancia.EscribirEnTransaccion("AltaGallina", parametros);
+                }
+                Acceso.Instancia.ConfirmarTransaccion();
+            }
+            catch (Exception)
+            {
+                Acceso.Instancia.CancelarTransaccion();
+                throw;
+            }
+            return filas;
+        }
+
         // Baja lógica: la gallina queda con Activo = 0.
         public int Baja(int id)
         {

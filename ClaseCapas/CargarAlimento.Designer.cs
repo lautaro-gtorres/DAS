@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.cmbProveedor = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,60 +40,64 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtKilogramos = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // button3
+            // btnRegistrar
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(414, 309);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 86;
-            this.button3.Text = "Registrar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnRegistrar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Location = new System.Drawing.Point(414, 309);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnRegistrar.Size = new System.Drawing.Size(100, 32);
+            this.btnRegistrar.TabIndex = 86;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.BackColor = System.Drawing.Color.OrangeRed;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(236, 309);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 32);
-            this.button2.TabIndex = 85;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnCancelar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnCancelar.Location = new System.Drawing.Point(236, 309);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Size = new System.Drawing.Size(100, 32);
+            this.btnCancelar.TabIndex = 85;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
             // 
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.PeachPuff;
             this.textBox2.Location = new System.Drawing.Point(521, 179);
             this.textBox2.Name = "textBox2";
+            this.textBox2.Visible = false;
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 84;
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox1.Location = new System.Drawing.Point(521, 139);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 83;
+            this.txtNombre.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtNombre.Location = new System.Drawing.Point(521, 139);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 83;
             // 
-            // comboBox2
+            // cmbProveedor
             // 
-            this.comboBox2.BackColor = System.Drawing.Color.Orange;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(167, 139);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 82;
+            this.cmbProveedor.BackColor = System.Drawing.Color.Orange;
+            this.cmbProveedor.FormattingEnabled = true;
+            this.cmbProveedor.Location = new System.Drawing.Point(167, 139);
+            this.cmbProveedor.Name = "cmbProveedor";
+            this.cmbProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProveedor.Size = new System.Drawing.Size(121, 21);
+            this.cmbProveedor.TabIndex = 82;
             // 
             // label8
             // 
@@ -111,6 +115,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(428, 176);
             this.label7.Name = "label7";
+            this.label7.Visible = false;
             this.label7.Size = new System.Drawing.Size(86, 18);
             this.label7.TabIndex = 80;
             this.label7.Text = "CANTIDAD:";
@@ -169,17 +174,18 @@
             this.btnSalir.ForeColor = System.Drawing.Color.FloralWhite;
             this.btnSalir.Location = new System.Drawing.Point(711, 12);
             this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 76;
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // txtKilogramos
             // 
-            this.textBox3.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox3.Location = new System.Drawing.Point(167, 177);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 88;
+            this.txtKilogramos.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtKilogramos.Location = new System.Drawing.Point(167, 177);
+            this.txtKilogramos.Name = "txtKilogramos";
+            this.txtKilogramos.Size = new System.Drawing.Size(100, 20);
+            this.txtKilogramos.TabIndex = 88;
             // 
             // label2
             // 
@@ -197,13 +203,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtKilogramos);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.cmbProveedor);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
@@ -212,6 +218,7 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
             this.Name = "CargarAlimento";
+            this.Load += new System.EventHandler(this.CargarAlimento_Load);
             this.Text = "CargarAlimento";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -221,11 +228,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.ComboBox cmbProveedor;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
@@ -233,7 +240,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtKilogramos;
         private System.Windows.Forms.Label label2;
     }
 }

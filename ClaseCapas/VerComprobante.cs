@@ -39,7 +39,7 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Comprobante");
                 btnImprimir.Enabled = false;
                 btnGuardarXML.Enabled = false;
             }
@@ -94,22 +94,13 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Comprobante");
             }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void MostrarError(Exception ex)
-        {
-            if (ex is ArgumentException)
-                MessageBox.Show(ex.Message, "Comprobante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else
-                MessageBox.Show("Ocurrió un error al acceder a la base de datos.\n\n" + ex.Message, "Comprobante",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

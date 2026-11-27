@@ -17,7 +17,22 @@ namespace BLL
         public int Alta(BE.Proveedor proveedor)
         {
             Validar(proveedor);
-            return mapper.Alta(proveedor);
+            try
+            {
+                return mapper.Alta(proveedor);
+            }
+            catch (SqlException ex)
+            {
+                TraducirError(ex, proveedor);
+                throw;
+            }
+        }
+
+        // 2601 = CUIL repetido (índice único).
+        void TraducirError(SqlException ex, BE.Proveedor proveedor)
+        {
+            if (ex.Number == 2601)
+                throw new ArgumentException("Ya hay un proveedor con el CUIL " + proveedor.Cuil + ".");
         }
 
         public int Baja(int id)
@@ -38,7 +53,15 @@ namespace BLL
         public int Modificar(BE.Proveedor proveedor)
         {
             Validar(proveedor);
-            return mapper.Modificar(proveedor);
+            try
+            {
+                return mapper.Modificar(proveedor);
+            }
+            catch (SqlException ex)
+            {
+                TraducirError(ex, proveedor);
+                throw;
+            }
         }
 
         // Activos e inactivos (para el ABM, que muestra el estado).
@@ -78,32 +101,32 @@ namespace BLL
                 throw new ArgumentException("El nombre no puede tener más de 100 caracteres.");
 
             // El resto es opcional: si viene vacío se guarda como NULL.
-            proveedor.Cuil = SacarEspacios(proveedor.Cuil);
+            proveedor.Cuil = Validaciones.SacarEspacios(proveedor.Cuil);
             if (proveedor.Cuil != null)
                 ValidarCuil(proveedor.Cuil);
 
-            proveedor.Direccion = SacarEspacios(proveedor.Direccion);
+            proveedor.Direccion = Validaciones.SacarEspacios(proveedor.Direccion);
             if (proveedor.Direccion != null && proveedor.Direccion.Length > 150)
                 throw new ArgumentException("La dirección no puede tener más de 150 caracteres.");
 
-            proveedor.Localidad = SacarEspacios(proveedor.Localidad);
+            proveedor.Localidad = Validaciones.SacarEspacios(proveedor.Localidad);
             if (proveedor.Localidad != null && proveedor.Localidad.Length > 50)
                 throw new ArgumentException("La localidad no puede tener más de 50 caracteres.");
 
-            proveedor.Telefono = SacarEspacios(proveedor.Telefono);
+            proveedor.Telefono = Validaciones.SacarEspacios(proveedor.Telefono);
             if (proveedor.Telefono != null && proveedor.Telefono.Length > 20)
                 throw new ArgumentException("El teléfono no puede tener más de 20 caracteres.");
 
-            proveedor.Email = SacarEspacios(proveedor.Email);
+            proveedor.Email = Validaciones.SacarEspacios(proveedor.Email);
             if (proveedor.Email != null)
             {
                 if (proveedor.Email.Length > 100)
                     throw new ArgumentException("El e-mail no puede tener más de 100 caracteres.");
-                if (!EsEmailValido(proveedor.Email))
+                if (!Validaciones.EsEmailValido(proveedor.Email))
                     throw new ArgumentException("El e-mail no es válido.");
             }
 
-            proveedor.ServicioProducto = SacarEspacios(proveedor.ServicioProducto);
+            proveedor.ServicioProducto = Validaciones.SacarEspacios(proveedor.ServicioProducto);
             if (proveedor.ServicioProducto != null && proveedor.ServicioProducto.Length > 100)
                 throw new ArgumentException("El servicio/producto no puede tener más de 100 caracteres.");
         }
@@ -121,27 +144,6 @@ namespace BLL
             }
             if (numeros != 11 || cuil.Length > 13)
                 throw new ArgumentException("El CUIL tiene que tener 11 números (ej: 20-12345678-9).");
-        }
-
-        // Control simple: algo antes de la @ y un punto después.
-        bool EsEmailValido(string email)
-        {
-            int arroba = email.IndexOf('@');
-            if (arroba < 1)
-                return false;
-            if (email.LastIndexOf('.') < arroba + 2)
-                return false;
-            if (email.EndsWith("."))
-                return false;
-            return true;
-        }
-
-        // Devuelve el texto sin espacios de los costados, o null si está vacío.
-        string SacarEspacios(string texto)
-        {
-            if (string.IsNullOrWhiteSpace(texto))
-                return null;
-            return texto.Trim();
         }
     }
 }

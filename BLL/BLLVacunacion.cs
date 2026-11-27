@@ -57,6 +57,24 @@ namespace BLL
             return mapper.Buscar(filtro);
         }
 
+        // Agenda: vacunaciones con próxima aplicación de hoy en adelante, la más cercana primero.
+        public List<BE.Vacunacion> ListarProximas()
+        {
+            List<BE.Vacunacion> proximas = new List<BE.Vacunacion>();
+            foreach (BE.Vacunacion vacunacion in mapper.Listar())
+            {
+                if (vacunacion.ProximaAplicacion != null && vacunacion.ProximaAplicacion.Value.Date >= DateTime.Today)
+                {
+                    // Se inserta ordenada por fecha de la próxima aplicación.
+                    int posicion = 0;
+                    while (posicion < proximas.Count && proximas[posicion].ProximaAplicacion.Value <= vacunacion.ProximaAplicacion.Value)
+                        posicion++;
+                    proximas.Insert(posicion, vacunacion);
+                }
+            }
+            return proximas;
+        }
+
         // 547 = el corral no existe (FK).
         void TraducirError(SqlException ex)
         {

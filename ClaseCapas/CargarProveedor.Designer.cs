@@ -28,38 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtDireccion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.txtCuil = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbActivo = new System.Windows.Forms.RadioButton();
+            this.rbInactivo = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtServicio = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox3
+            // txtEmail
             // 
-            this.textBox3.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox3.Location = new System.Drawing.Point(117, 290);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(127, 20);
-            this.textBox3.TabIndex = 120;
+            this.txtEmail.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtEmail.Location = new System.Drawing.Point(117, 290);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(127, 20);
+            this.txtEmail.TabIndex = 120;
             // 
             // label9
             // 
@@ -71,13 +71,13 @@
             this.label9.TabIndex = 119;
             this.label9.Text = "E-MAIL:";
             // 
-            // textBox5
+            // txtTelefono
             // 
-            this.textBox5.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox5.Location = new System.Drawing.Point(144, 256);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 115;
+            this.txtTelefono.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtTelefono.Location = new System.Drawing.Point(144, 256);
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefono.TabIndex = 115;
             // 
             // label4
             // 
@@ -89,13 +89,13 @@
             this.label4.TabIndex = 114;
             this.label4.Text = "TELEFONO:";
             // 
-            // textBox4
+            // txtDireccion
             // 
-            this.textBox4.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox4.Location = new System.Drawing.Point(153, 180);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(150, 20);
-            this.textBox4.TabIndex = 112;
+            this.txtDireccion.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtDireccion.Location = new System.Drawing.Point(153, 180);
+            this.txtDireccion.Name = "txtDireccion";
+            this.txtDireccion.Size = new System.Drawing.Size(150, 20);
+            this.txtDireccion.TabIndex = 112;
             // 
             // label2
             // 
@@ -117,33 +117,34 @@
             this.label3.TabIndex = 110;
             this.label3.Text = "DIRECCION:";
             // 
-            // button3
+            // btnRegistrar
             // 
-            this.button3.BackColor = System.Drawing.Color.Aquamarine;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(493, 309);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 32);
-            this.button3.TabIndex = 109;
-            this.button3.Text = "Registrar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnRegistrar.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.Location = new System.Drawing.Point(493, 309);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            this.btnRegistrar.Size = new System.Drawing.Size(100, 32);
+            this.btnRegistrar.TabIndex = 109;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // txtCuil
             // 
-            this.textBox2.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox2.Location = new System.Drawing.Point(146, 141);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 108;
+            this.txtCuil.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtCuil.Location = new System.Drawing.Point(146, 141);
+            this.txtCuil.Name = "txtCuil";
+            this.txtCuil.Size = new System.Drawing.Size(100, 20);
+            this.txtCuil.TabIndex = 108;
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox1.Location = new System.Drawing.Point(146, 105);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 107;
+            this.txtNombre.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtNombre.Location = new System.Drawing.Point(146, 105);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 20);
+            this.txtNombre.TabIndex = 107;
             // 
             // label8
             // 
@@ -209,17 +210,18 @@
             this.btnSalir.ForeColor = System.Drawing.Color.FloralWhite;
             this.btnSalir.Location = new System.Drawing.Point(711, 12);
             this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             this.btnSalir.Size = new System.Drawing.Size(33, 32);
             this.btnSalir.TabIndex = 102;
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // txtLocalidad
             // 
-            this.textBox6.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox6.Location = new System.Drawing.Point(153, 218);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(150, 20);
-            this.textBox6.TabIndex = 121;
+            this.txtLocalidad.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtLocalidad.Location = new System.Drawing.Point(153, 218);
+            this.txtLocalidad.Name = "txtLocalidad";
+            this.txtLocalidad.Size = new System.Drawing.Size(150, 20);
+            this.txtLocalidad.TabIndex = 121;
             // 
             // label6
             // 
@@ -231,29 +233,29 @@
             this.label6.TabIndex = 122;
             this.label6.Text = "ESTADO";
             // 
-            // radioButton1
+            // rbActivo
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(470, 141);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(79, 22);
-            this.radioButton1.TabIndex = 123;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "ACTIVO";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbActivo.AutoSize = true;
+            this.rbActivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbActivo.Location = new System.Drawing.Point(470, 141);
+            this.rbActivo.Name = "rbActivo";
+            this.rbActivo.Size = new System.Drawing.Size(79, 22);
+            this.rbActivo.TabIndex = 123;
+            this.rbActivo.TabStop = true;
+            this.rbActivo.Text = "ACTIVO";
+            this.rbActivo.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbInactivo
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(599, 141);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(93, 22);
-            this.radioButton2.TabIndex = 124;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "INACTIVO";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbInactivo.AutoSize = true;
+            this.rbInactivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbInactivo.Location = new System.Drawing.Point(599, 141);
+            this.rbInactivo.Name = "rbInactivo";
+            this.rbInactivo.Size = new System.Drawing.Size(93, 22);
+            this.rbInactivo.TabIndex = 124;
+            this.rbInactivo.TabStop = true;
+            this.rbInactivo.Text = "INACTIVO";
+            this.rbInactivo.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -265,14 +267,14 @@
             this.label10.TabIndex = 125;
             this.label10.Text = "SERVICIO/PRODUCTO";
             // 
-            // textBox7
+            // txtServicio
             // 
-            this.textBox7.BackColor = System.Drawing.Color.PeachPuff;
-            this.textBox7.Location = new System.Drawing.Point(459, 217);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(242, 31);
-            this.textBox7.TabIndex = 126;
+            this.txtServicio.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtServicio.Location = new System.Drawing.Point(459, 217);
+            this.txtServicio.Multiline = true;
+            this.txtServicio.Name = "txtServicio";
+            this.txtServicio.Size = new System.Drawing.Size(242, 31);
+            this.txtServicio.TabIndex = 126;
             // 
             // CargarProveedor
             // 
@@ -280,22 +282,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 375);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtServicio);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rbInactivo);
+            this.Controls.Add(this.rbActivo);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtLocalidad);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtTelefono);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtDireccion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnRegistrar);
+            this.Controls.Add(this.txtCuil);
+            this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.pictureBox3);
@@ -303,6 +305,7 @@
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
             this.Name = "CargarProveedor";
+            this.Load += new System.EventHandler(this.CargarProveedor_Load);
             this.Text = "CargarProveedor";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
@@ -312,27 +315,27 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.TextBox txtCuil;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rbActivo;
+        private System.Windows.Forms.RadioButton rbInactivo;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtServicio;
     }
 }

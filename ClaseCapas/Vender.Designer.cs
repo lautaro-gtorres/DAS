@@ -244,6 +244,7 @@
             this.btnNuevoCliente.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.btnNuevoCliente.Location = new System.Drawing.Point(289, 100);
             this.btnNuevoCliente.Name = "btnNuevoCliente";
+            this.btnNuevoCliente.Click += new System.EventHandler(this.btnNuevoCliente_Click);
             this.btnNuevoCliente.Size = new System.Drawing.Size(59, 23);
             this.btnNuevoCliente.TabIndex = 72;
             this.btnNuevoCliente.Text = "Nuevo";

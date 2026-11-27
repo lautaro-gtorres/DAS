@@ -31,6 +31,69 @@ namespace BLL
             }
         }
 
+        // Carga por mayor: da de alta "cantidad" gallinas iguales (tipo, raza, sexo, corral, fecha y detalle).
+        // Los códigos se arman con el código del modelo como prefijo: GAL-001, GAL-002, ...
+        // Se guardan todas o ninguna.
+        public int AltaPorMayor(BE.Gallina modelo, int cantidad)
+        {
+            if (cantidad < 2)
+                throw new ArgumentException("Para la carga por mayor la cantidad tiene que ser 2 o más.");
+            if (cantidad > 500)
+                throw new ArgumentException("No se pueden cargar más de 500 gallinas juntas.");
+
+            Validar(modelo);
+            if (modelo.CodGallina.Length > 16)
+                throw new ArgumentException("En la carga por mayor el código puede tener hasta 16 caracteres (se le agrega -001, -002...).");
+            ValidarLugarEnCorral(modelo.IdCorral, cantidad);
+
+            List<BE.Gallina> gallinas = new List<BE.Gallina>();
+            for (int i = 1; i <= cantidad; i++)
+            {
+                BE.Gallina gallina = new BE.Gallina();
+                gallina.CodGallina = modelo.CodGallina + "-" + i.ToString("000");
+                gallina.IdRaza = modelo.IdRaza;
+                gallina.IdTipoGallina = modelo.IdTipoGallina;
+                gallina.Sexo = modelo.Sexo;
+                gallina.FechaNacimiento = modelo.FechaNacimiento;
+                gallina.IdCorral = modelo.IdCorral;
+                gallina.Detalle = modelo.Detalle;
+                gallinas.Add(gallina);
+            }
+
+            try
+            {
+                return mapper.AltaVarias(gallinas);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                    throw new ArgumentException("Alguno de los códigos " + modelo.CodGallina + "-001 a " + modelo.CodGallina + "-" + cantidad.ToString("000") + " ya existe. No se cargó ninguna gallina.");
+                throw;
+            }
+        }
+
+        // Para la carga por mayor: tienen que entrar todas en el corral.
+        void ValidarLugarEnCorral(int idCorral, int cantidad)
+        {
+            BE.Corral corral = null;
+            foreach (BE.Corral c in mapperCorral.Listar())
+            {
+                if (c.IdCorral == idCorral)
+                    corral = c;
+            }
+            if (corral == null || corral.Capacidad == null)
+                return;
+
+            int ocupadas = 0;
+            foreach (BE.Gallina g in mapper.Listar())
+            {
+                if (g.IdCorral == idCorral)
+                    ocupadas++;
+            }
+            if (ocupadas + cantidad > corral.Capacidad.Value)
+                throw new ArgumentException("No entran " + cantidad + " gallinas en el corral " + corral.NroCorral + ": hay lugar para " + (corral.Capacidad.Value - ocupadas) + ".");
+        }
+
         // Baja lógica: deja de aparecer en los listados pero queda en la base.
         public int Baja(int id)
         {

@@ -20,9 +20,9 @@ namespace MAPPERS
             parametros[1] = new SqlParameter("@idTipoProducto", venta.IdTipoProducto);
             parametros[2] = new SqlParameter("@cantidad", venta.Cantidad);
             parametros[3] = new SqlParameter("@precioUnitario", venta.PrecioUnitario);
-            parametros[4] = NumeroONulo("@idCliente", venta.IdCliente);
-            parametros[5] = NumeroONulo("@idTipoGallina", venta.IdTipoGallina);
-            parametros[6] = NumeroONulo("@idRaza", venta.IdRaza);
+            parametros[4] = new SqlParameter("@idCliente", Conversion.NumeroONulo(venta.IdCliente));
+            parametros[5] = new SqlParameter("@idTipoGallina", Conversion.NumeroONulo(venta.IdTipoGallina));
+            parametros[6] = new SqlParameter("@idRaza", Conversion.NumeroONulo(venta.IdRaza));
             if (venta.Sexo == null)
                 parametros[7] = new SqlParameter("@sexo", DBNull.Value);
             else
@@ -81,7 +81,7 @@ namespace MAPPERS
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("@idVenta", venta.IdVenta);
             parametros[1] = new SqlParameter("@fecha", venta.Fecha.Date);
-            parametros[2] = NumeroONulo("@idCliente", venta.IdCliente);
+            parametros[2] = new SqlParameter("@idCliente", Conversion.NumeroONulo(venta.IdCliente));
             parametros[3] = new SqlParameter("@precioUnitario", venta.PrecioUnitario);
             return Acceso.Instancia.Escribir("ModificarVenta", parametros);
         }
@@ -104,7 +104,7 @@ namespace MAPPERS
                 parametros[1] = new SqlParameter("@idTipoProducto", DBNull.Value);
             else
                 parametros[1] = new SqlParameter("@idTipoProducto", filtro.IdTipoProducto);
-            parametros[2] = NumeroONulo("@idCliente", filtro.IdCliente);
+            parametros[2] = new SqlParameter("@idCliente", Conversion.NumeroONulo(filtro.IdCliente));
             return Mapear(Acceso.Instancia.Leer("BuscarVenta", parametros));
         }
 
@@ -134,26 +134,11 @@ namespace MAPPERS
             return Convert.ToInt32(dt.Rows[0]["Disponibles"]);
         }
 
-        // Los valores opcionales que vienen en null se mandan como NULL a la base.
-        SqlParameter NumeroONulo(string nombre, int? valor)
+        // Huevos disponibles = producidos - vendidos.
+        public int StockHuevos()
         {
-            if (valor == null)
-                return new SqlParameter(nombre, DBNull.Value);
-            return new SqlParameter(nombre, valor.Value);
-        }
-
-        int? NumeroDeFila(DataRow row, string columna)
-        {
-            if (row[columna] == DBNull.Value)
-                return null;
-            return Convert.ToInt32(row[columna]);
-        }
-
-        string TextoDeFila(DataRow row, string columna)
-        {
-            if (row[columna] == DBNull.Value)
-                return null;
-            return row[columna].ToString();
+            DataTable dt = Acceso.Instancia.Leer("StockHuevos");
+            return Convert.ToInt32(dt.Rows[0]["Disponibles"]);
         }
 
         List<BE.Venta> Mapear(DataTable dt)
@@ -169,12 +154,12 @@ namespace MAPPERS
                 venta.Cantidad = Convert.ToInt32(row["Cantidad"]);
                 venta.PrecioUnitario = Convert.ToDecimal(row["PrecioUnitario"]);
                 venta.Total = Convert.ToDecimal(row["Total"]);
-                venta.IdCliente = NumeroDeFila(row, "IdCliente");
-                venta.Cliente = TextoDeFila(row, "Cliente");
-                venta.IdTipoGallina = NumeroDeFila(row, "IdTipoGallina");
-                venta.TipoGallina = TextoDeFila(row, "TipoGallina");
-                venta.IdRaza = NumeroDeFila(row, "IdRaza");
-                venta.Raza = TextoDeFila(row, "Raza");
+                venta.IdCliente = Conversion.NumeroDeFila(row, "IdCliente");
+                venta.Cliente = Conversion.TextoDeFila(row, "Cliente");
+                venta.IdTipoGallina = Conversion.NumeroDeFila(row, "IdTipoGallina");
+                venta.TipoGallina = Conversion.TextoDeFila(row, "TipoGallina");
+                venta.IdRaza = Conversion.NumeroDeFila(row, "IdRaza");
+                venta.Raza = Conversion.TextoDeFila(row, "Raza");
                 if (row["Sexo"] == DBNull.Value)
                     venta.Sexo = null;
                 else

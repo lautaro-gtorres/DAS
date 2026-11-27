@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Usuario
+    /// <summary>
+    /// Tabla Usuario. Hereda de Persona nombre, apellido, teléfono y e-mail.
+    /// </summary>
+    public class Usuario : Persona
     {
+        public Usuario()
+        {
+        }
+
+        public Usuario(string nombreUsuario, string contrasena)
+        {
+            this.nombreUsuario = nombreUsuario;
+            this.contrasena = contrasena;
+        }
+
         private int idUsuario;
         public int IdUsuario
         {
@@ -52,22 +65,6 @@ namespace BE
             set { activo = value; }
         }
 
-        // ---- Datos personales (formulario UsuarioNuevo) ----
-
-        private string nombre;
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
-        }
-
-        private string apellido;
-        public string Apellido
-        {
-            get { return apellido; }
-            set { apellido = value; }
-        }
-
         private string dni;
         public string Dni
         {
@@ -83,18 +80,17 @@ namespace BE
             set { fechaNacimiento = value; }
         }
 
-        private string telefono;
-        public string Telefono
+        public override string TipoPersona()
         {
-            get { return telefono; }
-            set { telefono = value; }
+            return "Usuario";
         }
 
-        private string email;
-        public string Email
+        // Un usuario puede no tener nombre y apellido cargados: entonces se muestra su nombre de usuario.
+        public override string NombreCompleto()
         {
-            get { return email; }
-            set { email = value; }
+            if (string.IsNullOrEmpty(Apellido))
+                return NombreUsuario;
+            return base.NombreCompleto() + " (" + NombreUsuario + ")";
         }
     }
 }

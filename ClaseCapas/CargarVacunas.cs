@@ -18,9 +18,19 @@ namespace ClaseCapas
     {
         BLL.BLLVacunacion bll = new BLL.BLLVacunacion();
 
+        // null = alta.
+        BE.Vacunacion editando = null;
+
         public CargarVacunas()
         {
             InitializeComponent();
+        }
+
+        // Modificación de una vacunación (desde la Agenda).
+        public CargarVacunas(BE.Vacunacion vacunacion)
+        {
+            InitializeComponent();
+            editando = vacunacion;
         }
 
         private void CargarVacunas_Load(object sender, EventArgs e)
@@ -35,7 +45,22 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Vacunas");
+            }
+
+            if (editando != null)
+            {
+                label1.Text = "MODIFICAR VACUNACIÓN";
+                btnRegistrar.Text = "Guardar";
+                txtNombre.Text = editando.Nombre;
+                txtCantidad.Text = editando.Cantidad.ToString();
+                cmbCorral.SelectedValue = editando.IdCorral;
+                dtpAplicacion.Value = editando.FechaAplicacion;
+                if (editando.ProximaAplicacion != null)
+                {
+                    dtpProxima.Value = editando.ProximaAplicacion.Value;
+                    dtpProxima.Checked = true;
+                }
             }
         }
 
@@ -44,23 +69,42 @@ namespace ClaseCapas
             try
             {
                 BE.Vacunacion vacunacion = LeerCampos();
+                if (editando != null)
+                {
+                    vacunacion.IdVacunacion = editando.IdVacunacion;
+                    bll.Modificar(vacunacion);
+                    Pantalla.Avisar("Vacunación modificada.", "Vacunas");
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                    return;
+                }
                 bll.Alta(vacunacion);
-                MessageBox.Show("Vacunación registrada.", "Vacunas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Pantalla.Avisar("Vacunación registrada.", "Vacunas");
                 LimpiarCampos();
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Vacunas");
             }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            if (editando != null)
+            {
+                this.Close();
+                return;
+            }
             LimpiarCampos();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            if (this.Modal)
+            {
+                this.Close();
+                return;
+            }
             Gallinas gallinas = new Gallinas();
             gallinas.Show();
             this.Close();
@@ -93,17 +137,6 @@ namespace ClaseCapas
             dtpProxima.Value = DateTime.Today;
             dtpProxima.Checked = false;
             txtNombre.Focus();
-        }
-
-        // Los errores de validación (ArgumentException) se muestran como aviso;
-        // cualquier otro, como error de conexión o de la base.
-        private void MostrarError(Exception ex)
-        {
-            if (ex is ArgumentException)
-                MessageBox.Show(ex.Message, "Vacunas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else
-                MessageBox.Show("Ocurrió un error al acceder a la base de datos.\n\n" + ex.Message, "Vacunas",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

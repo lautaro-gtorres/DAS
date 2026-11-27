@@ -43,7 +43,7 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Corrales");
             }
         }
 
@@ -69,7 +69,7 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Corrales");
             }
         }
 
@@ -91,7 +91,7 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Corrales");
             }
         }
 
@@ -117,7 +117,7 @@ namespace ClaseCapas
             }
             catch (Exception ex)
             {
-                MostrarError(ex);
+                Pantalla.MostrarError(ex, "Corrales");
             }
         }
 
@@ -202,17 +202,6 @@ namespace ClaseCapas
             btnEliminar.Enabled = false;
             dgvCorrales.ClearSelection();
             txtNroCorral.Focus();
-        }
-
-        // Los errores de validación (ArgumentException) se muestran como aviso;
-        // cualquier otro, como error de conexión o de la base.
-        private void MostrarError(Exception ex)
-        {
-            if (ex is ArgumentException)
-                MessageBox.Show(ex.Message, "Corrales", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else
-                MessageBox.Show("Ocurrió un error al acceder a la base de datos.\n\n" + ex.Message, "Corrales",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
