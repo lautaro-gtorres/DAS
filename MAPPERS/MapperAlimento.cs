@@ -45,8 +45,12 @@ namespace MAPPERS
         // Busca por nombre (contiene el texto de filtro.NombreAlimento).
         public List<BE.Alimento> Buscar(BE.Alimento filtro)
         {
+            string nombre = filtro.NombreAlimento;
+            if (nombre == null)
+                nombre = "";
+
             SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@nombreAlimento", filtro.NombreAlimento ?? "");
+            parametros[0] = new SqlParameter("@nombreAlimento", nombre);
             return Mapear(Acceso.Instancia.Leer("BuscarAlimento", parametros));
         }
 

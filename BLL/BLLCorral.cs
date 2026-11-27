@@ -1,16 +1,15 @@
 ﻿using MAPPERS;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL
 {
-    /// <summary>
-    /// Reglas de negocio del ABM de corrales.
-    /// Si un dato no es válido lanza ArgumentException con un mensaje para mostrar al usuario.
-    /// </summary>
+    // Reglas de negocio del ABM de corrales.
+    // Si un dato no es válido lanza ArgumentException con un mensaje para mostrar al usuario.
     public class BLLCorral : IABMeable<BE.Corral>
     {
         MapperCorral mapper = new MapperCorral();
@@ -23,8 +22,17 @@ namespace BLL
 
         public int Baja(int id)
         {
-            return ErrorBD.Ejecutar(() => mapper.Baja(id),
-                mensajeEnUso: "No se puede eliminar el corral porque tiene gallinas o producción cargada.");
+            try
+            {
+                return mapper.Baja(id);
+            }
+            catch (SqlException ex)
+            {
+                // 547 = el corral está siendo usado por otra tabla (FK).
+                if (ex.Number == 547)
+                    throw new ArgumentException("No se puede eliminar el corral porque tiene gallinas o producción cargada.");
+                throw;
+            }
         }
 
         public int Modificar(BE.Corral corral)
@@ -53,7 +61,9 @@ namespace BLL
             if (corral == null)
                 throw new ArgumentException("No hay datos del corral.");
 
-            corral.NroCorral = (corral.NroCorral ?? "").Trim();
+            if (corral.NroCorral == null)
+                corral.NroCorral = "";
+            corral.NroCorral = corral.NroCorral.Trim();
             if (corral.NroCorral == "")
                 throw new ArgumentException("Ingrese el número de corral.");
             if (corral.NroCorral.Length > 10)
@@ -64,11 +74,11 @@ namespace BLL
                 throw new ArgumentException("La capacidad no puede ser negativa.");
 
             // El número es único: se avisa antes de que lo rechace la base.
-            bool repetido = mapper.Listar().Any(c =>
-                c.IdCorral != corral.IdCorral &&
-                string.Equals(c.NroCorral, corral.NroCorral, StringComparison.OrdinalIgnoreCase));
-            if (repetido)
-                throw new ArgumentException("Ya existe un corral con el número " + corral.NroCorral + ".");
+            foreach (BE.Corral otro in mapper.Listar())
+            {
+                if (otro.IdCorral != corral.IdCorral && otro.NroCorral.ToUpper() == corral.NroCorral.ToUpper())
+                    throw new ArgumentException("Ya existe un corral con el número " + corral.NroCorral + ".");
+            }
         }
     }
 }

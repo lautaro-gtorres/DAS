@@ -52,7 +52,14 @@ namespace ClaseCapas
         {
             // Cierra la sesión y vuelve al login que quedó oculto (si no existe, crea uno).
             new BLL.BLLUsuario().Logout();
-            Form1 login = Application.OpenForms.OfType<Form1>().FirstOrDefault() ?? new Form1();
+            Form1 login = null;
+            foreach (Form abierto in Application.OpenForms)
+            {
+                if (abierto is Form1)
+                    login = (Form1)abierto;
+            }
+            if (login == null)
+                login = new Form1();
             login.Show();
             this.Close();
         }

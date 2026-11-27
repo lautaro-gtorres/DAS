@@ -1,50 +1,50 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DAL
 {
-    /// <summary>
-    /// Punto único de acceso a la base de datos (patrón Singleton).
-    /// Toda la aplicación comparte esta instancia y su conexión:
-    /// se obtiene con Acceso.Instancia y no se puede crear con "new".
-    /// </summary>
-    public sealed class Acceso
+    // Patrón Singleton: hay un solo objeto Acceso en toda la aplicación.
+    // Se usa con Acceso.Instancia (el constructor es privado, no se puede hacer "new Acceso()").
+    public class Acceso
     {
-        // Lazy crea la instancia la primera vez que se usa y es seguro entre hilos.
-        private static readonly Lazy<Acceso> instancia = new Lazy<Acceso>(() => new Acceso());
+        static Acceso instancia;
 
         public static Acceso Instancia
         {
-            get { return instancia.Value; }
+            get
+            {
+                if (instancia == null)
+                    instancia = new Acceso();
+                return instancia;
+            }
         }
 
-        private readonly SqlConnection cn;
-        SqlCommand cmd = new SqlCommand();
-        private SqlTransaction tr;
-
-        // Constructor privado: nadie fuera de esta clase puede crear otra instancia.
         private Acceso()
         {
+        }
+
+        SqlConnection cn = new SqlConnection();
+        SqlCommand cmd;
+        SqlTransaction tr;
+
+        public void Conectar()
+        {
+            // La cadena de conexión está en ConnectionStrings.config (no se sube al repo).
             ConnectionStringSettings config = ConfigurationManager.ConnectionStrings["DBPollos"];
-            if (config == null || string.IsNullOrWhiteSpace(config.ConnectionString))
-                throw new InvalidOperationException(
-                    "Falta la cadena de conexión 'DBPollos'. Copiá ConnectionStrings.example.config " +
-                    "como ConnectionStrings.config y completalo.");
+            if (config == null)
+                throw new Exception("Falta la cadena de conexión 'DBPollos'. Copiá ConnectionStrings.example.config como ConnectionStrings.config y completalo.");
 
             // Se da más tiempo para conectar que los 15 segundos por defecto.
             SqlConnectionStringBuilder datos = new SqlConnectionStringBuilder(config.ConnectionString);
             if (datos.ConnectTimeout < 30)
                 datos.ConnectTimeout = 30;
-
-            cn = new SqlConnection(datos.ConnectionString);
-        }
-
-        private void Conectar()
-        {
-            if (cn.State == ConnectionState.Open)
-                return;
+            cn.ConnectionString = datos.ConnectionString;
 
             // Si la base de Azure estuvo sin uso se pausa sola y, mientras vuelve a arrancar,
             // las conexiones fallan. Se reintenta hasta 4 veces, esperando 5 segundos entre intentos.
@@ -67,40 +67,34 @@ namespace DAL
 
         // Errores que NO se arreglan reintentando: usuario o contraseña de la base
         // incorrectos (18456) o IP bloqueada por el firewall de Azure (40615).
-        private bool EsErrorTransitorio(SqlException ex)
+        bool EsErrorTransitorio(SqlException ex)
         {
             return ex.Number != 18456 && ex.Number != 40615;
         }
 
-        private void Desconectar()
+        public void Desconectar()
         {
-            // Solo se cierra (no se hace Dispose): la conexión es única y se reutiliza.
-            if (tr == null && cn.State != ConnectionState.Closed)
-                cn.Close();
+            cn.Close();
+            cn.Dispose();
         }
 
-        private SqlCommand CrearComando(string storedProcedure, SqlParameter[] parametros)
-        {
-            SqlCommand cmd = cn.CreateCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = storedProcedure;
-            cmd.Transaction = tr;
-            if (parametros != null)
-                cmd.Parameters.AddRange(parametros);
-            return cmd;
-        }
-
-        public DataTable Leer(string storedProcedure, SqlParameter[] parametros = null)
+        public DataTable Leer(string storedProcedure, SqlParameter[] parameters = null)
         {
             DataTable dt = new DataTable();
             try
             {
                 Conectar();
-                using (SqlCommand cmd = CrearComando(storedProcedure, parametros))
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                cmd = cn.CreateCommand();
+                cmd.Connection = cn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = storedProcedure;
+                if (parameters != null)
                 {
-                    dt.Load(dr);
+                    cmd.Parameters.AddRange(parameters);
                 }
+                SqlDataReader dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                dr.Close();
             }
             finally
             {
@@ -112,13 +106,13 @@ namespace DAL
 
         // Una sola escritura dentro de su propia transacción.
         // Si falla se hace ROLLBACK y se relanza el error para que la capa de arriba lo muestre.
-        public int Escribir(string storedProcedure, SqlParameter[] parametros = null)
+        public int Escribir(string storedProcedure, SqlParameter[] parameters)
         {
-            int fa;
+            int fa = 0;
             IniciarTransaccion();
             try
             {
-                fa = EscribirEnTransaccion(storedProcedure, parametros);
+                fa = EscribirEnTransaccion(storedProcedure, parameters);
                 ConfirmarTransaccion();
             }
             catch (Exception)
@@ -135,20 +129,22 @@ namespace DAL
 
         public void IniciarTransaccion()
         {
-            if (tr != null)
-                throw new InvalidOperationException("Ya hay una transacción en curso.");
             Conectar();
             tr = cn.BeginTransaction();
         }
 
-        public int EscribirEnTransaccion(string storedProcedure, SqlParameter[] parametros = null)
+        public int EscribirEnTransaccion(string storedProcedure, SqlParameter[] parameters)
         {
-            if (tr == null)
-                throw new InvalidOperationException("No hay una transacción iniciada.");
-            using (SqlCommand cmd = CrearComando(storedProcedure, parametros))
+            cmd = cn.CreateCommand();
+            cmd.Connection = cn;
+            cmd.Transaction = tr;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = storedProcedure;
+            if (parameters != null)
             {
-                return cmd.ExecuteNonQuery();
+                cmd.Parameters.AddRange(parameters);
             }
+            return cmd.ExecuteNonQuery();
         }
 
         public void ConfirmarTransaccion()
@@ -182,25 +178,32 @@ namespace DAL
                 Desconectar();
             }
         }
-        public void ExportarXML(string query, string tabla, string ruta)
+
+        // ---- XML ----
+
+        // Llena un DataSet con el SP y lo guarda en el archivo XML.
+        public void ExportarXML(string storedProcedure, string tabla, string ruta)
         {
             DataSet ds = new DataSet();
-            Conectar();
-            
-            cmd.CommandText = query;
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = cn;
-
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.Fill(ds, tabla);
-            Desconectar();
+            try
+            {
+                Conectar();
+                SqlDataAdapter da = new SqlDataAdapter(storedProcedure, cn);
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.Fill(ds, tabla);
+            }
+            finally
+            {
+                Desconectar();
+            }
             ds.WriteXml(ruta);
         }
 
+        // Lee el archivo XML y lo devuelve en un DataSet.
         public DataSet LeerXML(string ruta)
         {
             DataSet ds = new DataSet();
-            ds.WriteXml(ruta);
+            ds.ReadXml(ruta);
             return ds;
         }
     }

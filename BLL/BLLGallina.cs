@@ -1,16 +1,15 @@
 ﻿using MAPPERS;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL
 {
-    /// <summary>
-    /// Reglas de negocio del ABM de gallinas (baja lógica).
-    /// Si un dato no es válido lanza ArgumentException con un mensaje para mostrar al usuario.
-    /// </summary>
+    // Reglas de negocio del ABM de gallinas (baja lógica).
+    // Si un dato no es válido lanza ArgumentException con un mensaje para mostrar al usuario.
     public class BLLGallina : IABMeable<BE.Gallina>
     {
         MapperGallina mapper = new MapperGallina();
@@ -19,7 +18,17 @@ namespace BLL
         public int Alta(BE.Gallina gallina)
         {
             Validar(gallina);
-            return ErrorBD.Ejecutar(() => mapper.Alta(gallina), MensajeRepetido(gallina));
+            try
+            {
+                return mapper.Alta(gallina);
+            }
+            catch (SqlException ex)
+            {
+                // 2627 = dato repetido. El código es único también entre las gallinas dadas de baja.
+                if (ex.Number == 2627)
+                    throw new ArgumentException("Ya existe una gallina con el código " + gallina.CodGallina + " (puede estar dada de baja).");
+                throw;
+            }
         }
 
         // Baja lógica: deja de aparecer en los listados pero queda en la base.
@@ -31,7 +40,16 @@ namespace BLL
         public int Modificar(BE.Gallina gallina)
         {
             Validar(gallina);
-            return ErrorBD.Ejecutar(() => mapper.Modificar(gallina), MensajeRepetido(gallina));
+            try
+            {
+                return mapper.Modificar(gallina);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2627)
+                    throw new ArgumentException("Ya existe una gallina con el código " + gallina.CodGallina + " (puede estar dada de baja).");
+                throw;
+            }
         }
 
         public List<BE.Gallina> Listar()
@@ -49,18 +67,14 @@ namespace BLL
             return mapper.ListarTipos();
         }
 
-        static string MensajeRepetido(BE.Gallina gallina)
-        {
-            // El código es único también entre las gallinas dadas de baja.
-            return "Ya existe una gallina con el código " + gallina.CodGallina + " (puede estar dada de baja).";
-        }
-
         void Validar(BE.Gallina gallina)
         {
             if (gallina == null)
                 throw new ArgumentException("No hay datos de la gallina.");
 
-            gallina.CodGallina = (gallina.CodGallina ?? "").Trim();
+            if (gallina.CodGallina == null)
+                gallina.CodGallina = "";
+            gallina.CodGallina = gallina.CodGallina.Trim();
             if (gallina.CodGallina == "")
                 throw new ArgumentException("Ingrese el código de la gallina.");
             if (gallina.CodGallina.Length > 20)
@@ -74,10 +88,14 @@ namespace BLL
             if (gallina.Sexo != 'M' && gallina.Sexo != 'H')
                 throw new ArgumentException("Seleccione el sexo (M = macho, H = hembra).");
 
-            if (gallina.FechaNacimiento.HasValue && gallina.FechaNacimiento.Value.Date > DateTime.Today)
+            if (gallina.FechaNacimiento != null && gallina.FechaNacimiento.Value.Date > DateTime.Today)
                 throw new ArgumentException("La fecha de nacimiento no puede ser futura.");
 
-            gallina.Detalle = string.IsNullOrWhiteSpace(gallina.Detalle) ? null : gallina.Detalle.Trim();
+            // El detalle es opcional: si viene vacío se guarda como NULL.
+            if (string.IsNullOrWhiteSpace(gallina.Detalle))
+                gallina.Detalle = null;
+            else
+                gallina.Detalle = gallina.Detalle.Trim();
             if (gallina.Detalle != null && gallina.Detalle.Length > 500)
                 throw new ArgumentException("El detalle no puede tener más de 500 caracteres.");
 
@@ -90,13 +108,24 @@ namespace BLL
             if (gallina.IdCorral <= 0)
                 throw new ArgumentException("Seleccione el corral.");
 
-            BE.Corral corral = mapperCorral.Listar().FirstOrDefault(c => c.IdCorral == gallina.IdCorral);
+            BE.Corral corral = null;
+            foreach (BE.Corral c in mapperCorral.Listar())
+            {
+                if (c.IdCorral == gallina.IdCorral)
+                    corral = c;
+            }
             if (corral == null)
                 throw new ArgumentException("El corral seleccionado no existe.");
-            if (!corral.Capacidad.HasValue)
+            if (corral.Capacidad == null)
                 return;
 
-            int ocupadas = mapper.Listar().Count(g => g.IdCorral == corral.IdCorral && g.IdGallina != gallina.IdGallina);
+            // Se cuentan las otras gallinas activas del corral (sin contar la que se está modificando).
+            int ocupadas = 0;
+            foreach (BE.Gallina g in mapper.Listar())
+            {
+                if (g.IdCorral == corral.IdCorral && g.IdGallina != gallina.IdGallina)
+                    ocupadas++;
+            }
             if (ocupadas >= corral.Capacidad.Value)
                 throw new ArgumentException("El corral " + corral.NroCorral + " está completo (capacidad " + corral.Capacidad + ").");
         }

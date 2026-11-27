@@ -17,7 +17,7 @@ namespace ClaseCapas
     /// </summary>
     public partial class CargarCorrales : Form
     {
-        private readonly BLL.BLLCorral bll = new BLL.BLLCorral();
+        BLL.BLLCorral bll = new BLL.BLLCorral();
 
         // Id del corral que se está editando; 0 = alta de uno nuevo.
         private int idEditando = 0;
@@ -127,7 +127,10 @@ namespace ClaseCapas
             idEditando = corral.IdCorral;
             txtNroCorral.Text = corral.NroCorral;
             cmbTipo.SelectedValue = corral.IdTipoCorral;
-            txtCapacidad.Text = corral.Capacidad.HasValue ? corral.Capacidad.Value.ToString() : "";
+            if (corral.Capacidad == null)
+                txtCapacidad.Text = "";
+            else
+                txtCapacidad.Text = corral.Capacidad.Value.ToString();
 
             btnRegistrar.Text = "Guardar";
             btnEliminar.Enabled = true;
@@ -137,7 +140,11 @@ namespace ClaseCapas
         {
             BE.Corral filtro = new BE.Corral();
             filtro.NroCorral = txtBuscar.Text.Trim();
-            List<BE.Corral> corrales = filtro.NroCorral == "" ? bll.Listar() : bll.Buscar(filtro);
+            List<BE.Corral> corrales;
+            if (filtro.NroCorral == "")
+                corrales = bll.Listar();
+            else
+                corrales = bll.Buscar(filtro);
 
             dgvCorrales.DataSource = null;
             dgvCorrales.DataSource = corrales;
@@ -156,7 +163,8 @@ namespace ClaseCapas
             BE.Corral corral = new BE.Corral();
             corral.IdCorral = idEditando;
             corral.NroCorral = txtNroCorral.Text;
-            corral.IdTipoCorral = cmbTipo.SelectedValue == null ? 0 : (int)cmbTipo.SelectedValue;
+            if (cmbTipo.SelectedValue != null)
+                corral.IdTipoCorral = (int)cmbTipo.SelectedValue;
 
             // La capacidad es opcional; si se carga tiene que ser un número entero.
             string capacidad = txtCapacidad.Text.Trim();

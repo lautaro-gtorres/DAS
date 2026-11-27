@@ -13,7 +13,15 @@ namespace MAPPERS
     {
         public int Alta(BE.Gallina gallina)
         {
-            return Acceso.Instancia.Escribir("AltaGallina", Parametros(gallina, false));
+            SqlParameter[] parametros = new SqlParameter[7];
+            parametros[0] = new SqlParameter("@codGallina", gallina.CodGallina);
+            parametros[1] = new SqlParameter("@idRaza", gallina.IdRaza);
+            parametros[2] = new SqlParameter("@idTipoGallina", gallina.IdTipoGallina);
+            parametros[3] = new SqlParameter("@sexo", gallina.Sexo.ToString());
+            parametros[4] = ParametroFechaNacimiento(gallina);
+            parametros[5] = new SqlParameter("@idCorral", gallina.IdCorral);
+            parametros[6] = ParametroDetalle(gallina);
+            return Acceso.Instancia.Escribir("AltaGallina", parametros);
         }
 
         // Baja lógica: la gallina queda con Activo = 0.
@@ -26,7 +34,16 @@ namespace MAPPERS
 
         public int Modificar(BE.Gallina gallina)
         {
-            return Acceso.Instancia.Escribir("ModificarGallina", Parametros(gallina, true));
+            SqlParameter[] parametros = new SqlParameter[8];
+            parametros[0] = new SqlParameter("@idGallina", gallina.IdGallina);
+            parametros[1] = new SqlParameter("@codGallina", gallina.CodGallina);
+            parametros[2] = new SqlParameter("@idRaza", gallina.IdRaza);
+            parametros[3] = new SqlParameter("@idTipoGallina", gallina.IdTipoGallina);
+            parametros[4] = new SqlParameter("@sexo", gallina.Sexo.ToString());
+            parametros[5] = ParametroFechaNacimiento(gallina);
+            parametros[6] = new SqlParameter("@idCorral", gallina.IdCorral);
+            parametros[7] = ParametroDetalle(gallina);
+            return Acceso.Instancia.Escribir("ModificarGallina", parametros);
         }
 
         // Solo gallinas activas.
@@ -38,8 +55,12 @@ namespace MAPPERS
         // Busca por código (contiene el texto de filtro.CodGallina).
         public List<BE.Gallina> Buscar(BE.Gallina filtro)
         {
+            string codigo = filtro.CodGallina;
+            if (codigo == null)
+                codigo = "";
+
             SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@codGallina", filtro.CodGallina ?? "");
+            parametros[0] = new SqlParameter("@codGallina", codigo);
             return Mapear(Acceso.Instancia.Leer("BuscarGallina", parametros));
         }
 
@@ -47,7 +68,8 @@ namespace MAPPERS
         public List<BE.TipoGallina> ListarTipos()
         {
             List<BE.TipoGallina> lista = new List<BE.TipoGallina>();
-            foreach (DataRow row in Acceso.Instancia.Leer("ListarTiposGallina").Rows)
+            DataTable dt = Acceso.Instancia.Leer("ListarTiposGallina");
+            foreach (DataRow row in dt.Rows)
             {
                 BE.TipoGallina tipo = new BE.TipoGallina();
                 tipo.IdTipoGallina = Convert.ToInt32(row["IdTipoGallina"]);
@@ -57,20 +79,23 @@ namespace MAPPERS
             return lista;
         }
 
-        // Alta y Modificar usan los mismos parámetros; Modificar agrega el Id.
-        SqlParameter[] Parametros(BE.Gallina gallina, bool conId)
+        // La fecha de nacimiento es opcional: si no tiene valor se manda NULL.
+        SqlParameter ParametroFechaNacimiento(BE.Gallina gallina)
         {
-            List<SqlParameter> parametros = new List<SqlParameter>();
-            if (conId)
-                parametros.Add(new SqlParameter("@idGallina", gallina.IdGallina));
-            parametros.Add(new SqlParameter("@codGallina", gallina.CodGallina));
-            parametros.Add(new SqlParameter("@idRaza", gallina.IdRaza));
-            parametros.Add(new SqlParameter("@idTipoGallina", gallina.IdTipoGallina));
-            parametros.Add(new SqlParameter("@sexo", gallina.Sexo.ToString()));
-            parametros.Add(new SqlParameter("@fechaNacimiento", SqlDbType.Date) { Value = (object)gallina.FechaNacimiento ?? DBNull.Value });
-            parametros.Add(new SqlParameter("@idCorral", gallina.IdCorral));
-            parametros.Add(new SqlParameter("@detalle", (object)gallina.Detalle ?? DBNull.Value));
-            return parametros.ToArray();
+            SqlParameter parametro = new SqlParameter("@fechaNacimiento", SqlDbType.Date);
+            if (gallina.FechaNacimiento == null)
+                parametro.Value = DBNull.Value;
+            else
+                parametro.Value = gallina.FechaNacimiento.Value;
+            return parametro;
+        }
+
+        // El detalle es opcional: si no tiene valor se manda NULL.
+        SqlParameter ParametroDetalle(BE.Gallina gallina)
+        {
+            if (gallina.Detalle == null)
+                return new SqlParameter("@detalle", DBNull.Value);
+            return new SqlParameter("@detalle", gallina.Detalle);
         }
 
         List<BE.Gallina> Mapear(DataTable dt)
@@ -80,16 +105,19 @@ namespace MAPPERS
             {
                 BE.Gallina gallina = new BE.Gallina();
                 gallina.IdGallina = Convert.ToInt32(row["IdGallina"]);
-                gallina.CodGallina = row["CodGallina"] == DBNull.Value ? null : row["CodGallina"].ToString();
+                if (row["CodGallina"] != DBNull.Value)
+                    gallina.CodGallina = row["CodGallina"].ToString();
                 gallina.IdRaza = Convert.ToInt32(row["IdRaza"]);
                 gallina.Raza = row["Raza"].ToString();
                 gallina.IdTipoGallina = Convert.ToInt32(row["IdTipoGallina"]);
                 gallina.TipoGallina = row["TipoGallina"].ToString();
                 gallina.Sexo = Convert.ToChar(row["Sexo"]);
-                gallina.FechaNacimiento = row["FechaNacimiento"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(row["FechaNacimiento"]);
+                if (row["FechaNacimiento"] != DBNull.Value)
+                    gallina.FechaNacimiento = Convert.ToDateTime(row["FechaNacimiento"]);
                 gallina.IdCorral = Convert.ToInt32(row["IdCorral"]);
                 gallina.NroCorral = row["NroCorral"].ToString();
-                gallina.Detalle = row["Detalle"] == DBNull.Value ? null : row["Detalle"].ToString();
+                if (row["Detalle"] != DBNull.Value)
+                    gallina.Detalle = row["Detalle"].ToString();
                 gallina.Activo = Convert.ToBoolean(row["Activo"]);
                 lista.Add(gallina);
             }

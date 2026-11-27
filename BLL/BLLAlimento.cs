@@ -1,16 +1,15 @@
 ﻿using MAPPERS;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL
 {
-    /// <summary>
-    /// Reglas de negocio del ABM de alimentos.
-    /// Si un dato no es válido lanza ArgumentException con un mensaje para mostrar al usuario.
-    /// </summary>
+    // Reglas de negocio del ABM de alimentos.
+    // Si un dato no es válido lanza ArgumentException con un mensaje para mostrar al usuario.
     public class BLLAlimento : IABMeable<BE.Alimento>
     {
         MapperAlimento mapper = new MapperAlimento();
@@ -18,7 +17,17 @@ namespace BLL
         public int Alta(BE.Alimento alimento)
         {
             Validar(alimento);
-            return ErrorBD.Ejecutar(() => mapper.Alta(alimento), mensajeEnUso: "El proveedor seleccionado no existe.");
+            try
+            {
+                return mapper.Alta(alimento);
+            }
+            catch (SqlException ex)
+            {
+                // 547 = el proveedor no existe (FK).
+                if (ex.Number == 547)
+                    throw new ArgumentException("El proveedor seleccionado no existe.");
+                throw;
+            }
         }
 
         public int Baja(int id)
@@ -29,7 +38,16 @@ namespace BLL
         public int Modificar(BE.Alimento alimento)
         {
             Validar(alimento);
-            return ErrorBD.Ejecutar(() => mapper.Modificar(alimento), mensajeEnUso: "El proveedor seleccionado no existe.");
+            try
+            {
+                return mapper.Modificar(alimento);
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                    throw new ArgumentException("El proveedor seleccionado no existe.");
+                throw;
+            }
         }
 
         public List<BE.Alimento> Listar()
@@ -47,7 +65,9 @@ namespace BLL
             if (alimento == null)
                 throw new ArgumentException("No hay datos del alimento.");
 
-            alimento.NombreAlimento = (alimento.NombreAlimento ?? "").Trim();
+            if (alimento.NombreAlimento == null)
+                alimento.NombreAlimento = "";
+            alimento.NombreAlimento = alimento.NombreAlimento.Trim();
             if (alimento.NombreAlimento == "")
                 throw new ArgumentException("Ingrese el nombre del alimento.");
             if (alimento.NombreAlimento.Length > 100)

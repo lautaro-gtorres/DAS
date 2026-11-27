@@ -15,7 +15,8 @@ namespace MAPPERS
         {
             SqlParameter[] parametros = new SqlParameter[3];
             parametros[0] = new SqlParameter("@idCorral", produccion.IdCorral);
-            parametros[1] = new SqlParameter("@fecha", SqlDbType.Date) { Value = produccion.Fecha };
+            parametros[1] = new SqlParameter("@fecha", SqlDbType.Date);
+            parametros[1].Value = produccion.Fecha;
             parametros[2] = new SqlParameter("@cantidadHuevos", produccion.CantidadHuevos);
             return Acceso.Instancia.Escribir("AltaProduccion", parametros);
         }
@@ -32,7 +33,8 @@ namespace MAPPERS
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("@idProduccion", produccion.IdProduccion);
             parametros[1] = new SqlParameter("@idCorral", produccion.IdCorral);
-            parametros[2] = new SqlParameter("@fecha", SqlDbType.Date) { Value = produccion.Fecha };
+            parametros[2] = new SqlParameter("@fecha", SqlDbType.Date);
+            parametros[2].Value = produccion.Fecha;
             parametros[3] = new SqlParameter("@cantidadHuevos", produccion.CantidadHuevos);
             return Acceso.Instancia.Escribir("ModificarProduccion", parametros);
         }
@@ -45,18 +47,40 @@ namespace MAPPERS
         // Filtra por el corral (si IdCorral > 0) y por el día (si Fecha tiene valor).
         public List<BE.Produccion> Buscar(BE.Produccion filtro)
         {
-            int? idCorral = filtro.IdCorral > 0 ? filtro.IdCorral : (int?)null;
-            DateTime? dia = filtro.Fecha == default(DateTime) ? (DateTime?)null : filtro.Fecha.Date;
+            int? idCorral = null;
+            if (filtro.IdCorral > 0)
+                idCorral = filtro.IdCorral;
+
+            DateTime? dia = null;
+            if (filtro.Fecha != DateTime.MinValue)
+                dia = filtro.Fecha.Date;
+
             return Buscar(idCorral, dia, dia);
         }
 
-        // Filtros opcionales: los que vienen en null no filtran.
+        // Filtros opcionales: los que vienen en null no filtran (el SP los ignora).
         public List<BE.Produccion> Buscar(int? idCorral, DateTime? desde, DateTime? hasta)
         {
             SqlParameter[] parametros = new SqlParameter[3];
-            parametros[0] = new SqlParameter("@idCorral", SqlDbType.Int) { Value = (object)idCorral ?? DBNull.Value };
-            parametros[1] = new SqlParameter("@fechaDesde", SqlDbType.Date) { Value = (object)desde ?? DBNull.Value };
-            parametros[2] = new SqlParameter("@fechaHasta", SqlDbType.Date) { Value = (object)hasta ?? DBNull.Value };
+
+            parametros[0] = new SqlParameter("@idCorral", SqlDbType.Int);
+            if (idCorral == null)
+                parametros[0].Value = DBNull.Value;
+            else
+                parametros[0].Value = idCorral.Value;
+
+            parametros[1] = new SqlParameter("@fechaDesde", SqlDbType.Date);
+            if (desde == null)
+                parametros[1].Value = DBNull.Value;
+            else
+                parametros[1].Value = desde.Value;
+
+            parametros[2] = new SqlParameter("@fechaHasta", SqlDbType.Date);
+            if (hasta == null)
+                parametros[2].Value = DBNull.Value;
+            else
+                parametros[2].Value = hasta.Value;
+
             return Mapear(Acceso.Instancia.Leer("BuscarProduccion", parametros));
         }
 

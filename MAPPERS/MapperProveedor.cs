@@ -15,8 +15,8 @@ namespace MAPPERS
         {
             SqlParameter[] parametros = new SqlParameter[3];
             parametros[0] = new SqlParameter("@nombre", proveedor.Nombre);
-            parametros[1] = new SqlParameter("@telefono", (object)proveedor.Telefono ?? DBNull.Value);
-            parametros[2] = new SqlParameter("@direccion", (object)proveedor.Direccion ?? DBNull.Value);
+            parametros[1] = new SqlParameter("@telefono", TextoONulo(proveedor.Telefono));
+            parametros[2] = new SqlParameter("@direccion", TextoONulo(proveedor.Direccion));
             return Acceso.Instancia.Escribir("AltaProveedor", parametros);
         }
 
@@ -32,8 +32,8 @@ namespace MAPPERS
             SqlParameter[] parametros = new SqlParameter[4];
             parametros[0] = new SqlParameter("@idProveedor", proveedor.IdProveedor);
             parametros[1] = new SqlParameter("@nombre", proveedor.Nombre);
-            parametros[2] = new SqlParameter("@telefono", (object)proveedor.Telefono ?? DBNull.Value);
-            parametros[3] = new SqlParameter("@direccion", (object)proveedor.Direccion ?? DBNull.Value);
+            parametros[2] = new SqlParameter("@telefono", TextoONulo(proveedor.Telefono));
+            parametros[3] = new SqlParameter("@direccion", TextoONulo(proveedor.Direccion));
             return Acceso.Instancia.Escribir("ModificarProveedor", parametros);
         }
 
@@ -45,9 +45,21 @@ namespace MAPPERS
         // Busca por nombre (contiene el texto de filtro.Nombre).
         public List<BE.Proveedor> Buscar(BE.Proveedor filtro)
         {
+            string nombre = filtro.Nombre;
+            if (nombre == null)
+                nombre = "";
+
             SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@nombre", filtro.Nombre ?? "");
+            parametros[0] = new SqlParameter("@nombre", nombre);
             return Mapear(Acceso.Instancia.Leer("BuscarProveedor", parametros));
+        }
+
+        // Los campos opcionales que vienen en null se mandan como NULL a la base.
+        object TextoONulo(string texto)
+        {
+            if (texto == null)
+                return DBNull.Value;
+            return texto;
         }
 
         List<BE.Proveedor> Mapear(DataTable dt)
@@ -58,8 +70,10 @@ namespace MAPPERS
                 BE.Proveedor proveedor = new BE.Proveedor();
                 proveedor.IdProveedor = Convert.ToInt32(row["IdProveedor"]);
                 proveedor.Nombre = row["Nombre"].ToString();
-                proveedor.Telefono = row["Telefono"] == DBNull.Value ? null : row["Telefono"].ToString();
-                proveedor.Direccion = row["Direccion"] == DBNull.Value ? null : row["Direccion"].ToString();
+                if (row["Telefono"] != DBNull.Value)
+                    proveedor.Telefono = row["Telefono"].ToString();
+                if (row["Direccion"] != DBNull.Value)
+                    proveedor.Direccion = row["Direccion"].ToString();
                 lista.Add(proveedor);
             }
             return lista;

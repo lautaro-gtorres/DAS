@@ -16,7 +16,7 @@ namespace MAPPERS
             SqlParameter[] parametros = new SqlParameter[3];
             parametros[0] = new SqlParameter("@nroCorral", corral.NroCorral);
             parametros[1] = new SqlParameter("@idTipoCorral", corral.IdTipoCorral);
-            parametros[2] = new SqlParameter("@capacidad", (object)corral.Capacidad ?? DBNull.Value);
+            parametros[2] = ParametroCapacidad(corral);
             return Acceso.Instancia.Escribir("AltaCorral", parametros);
         }
 
@@ -33,7 +33,7 @@ namespace MAPPERS
             parametros[0] = new SqlParameter("@idCorral", corral.IdCorral);
             parametros[1] = new SqlParameter("@nroCorral", corral.NroCorral);
             parametros[2] = new SqlParameter("@idTipoCorral", corral.IdTipoCorral);
-            parametros[3] = new SqlParameter("@capacidad", (object)corral.Capacidad ?? DBNull.Value);
+            parametros[3] = ParametroCapacidad(corral);
             return Acceso.Instancia.Escribir("ModificarCorral", parametros);
         }
 
@@ -45,8 +45,12 @@ namespace MAPPERS
         // Busca por número de corral (contiene el texto de filtro.NroCorral).
         public List<BE.Corral> Buscar(BE.Corral filtro)
         {
+            string nro = filtro.NroCorral;
+            if (nro == null)
+                nro = "";
+
             SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@nroCorral", filtro.NroCorral ?? "");
+            parametros[0] = new SqlParameter("@nroCorral", nro);
             return Mapear(Acceso.Instancia.Leer("BuscarCorral", parametros));
         }
 
@@ -54,7 +58,8 @@ namespace MAPPERS
         public List<BE.TipoCorral> ListarTipos()
         {
             List<BE.TipoCorral> lista = new List<BE.TipoCorral>();
-            foreach (DataRow row in Acceso.Instancia.Leer("ListarTiposCorral").Rows)
+            DataTable dt = Acceso.Instancia.Leer("ListarTiposCorral");
+            foreach (DataRow row in dt.Rows)
             {
                 BE.TipoCorral tipo = new BE.TipoCorral();
                 tipo.IdTipoCorral = Convert.ToInt32(row["IdTipoCorral"]);
@@ -62,6 +67,14 @@ namespace MAPPERS
                 lista.Add(tipo);
             }
             return lista;
+        }
+
+        // La capacidad es opcional: si no tiene valor se manda NULL a la base.
+        SqlParameter ParametroCapacidad(BE.Corral corral)
+        {
+            if (corral.Capacidad == null)
+                return new SqlParameter("@capacidad", DBNull.Value);
+            return new SqlParameter("@capacidad", corral.Capacidad.Value);
         }
 
         // ---- Filas de la base -> entidades BE ----
@@ -76,7 +89,10 @@ namespace MAPPERS
                 corral.NroCorral = row["NroCorral"].ToString();
                 corral.IdTipoCorral = Convert.ToInt32(row["IdTipoCorral"]);
                 corral.TipoCorral = row["TipoCorral"].ToString();
-                corral.Capacidad = row["Capacidad"] == DBNull.Value ? (int?)null : Convert.ToInt32(row["Capacidad"]);
+                if (row["Capacidad"] == DBNull.Value)
+                    corral.Capacidad = null;
+                else
+                    corral.Capacidad = Convert.ToInt32(row["Capacidad"]);
                 lista.Add(corral);
             }
             return lista;

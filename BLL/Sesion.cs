@@ -1,18 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BLL
 {
-    /// <summary>
-    /// Usuario logueado en la aplicación (patrón Singleton).
-    /// Cualquier formulario lo consulta con Sesion.Instancia.UsuarioActual.
-    /// </summary>
-    public sealed class Sesion
+    // Usuario logueado en la aplicación (patrón Singleton).
+    // Cualquier formulario lo consulta con Sesion.Instancia.UsuarioActual.
+    public class Sesion
     {
-        private static readonly Lazy<Sesion> instancia = new Lazy<Sesion>(() => new Sesion());
+        static Sesion instancia;
 
         public static Sesion Instancia
         {
-            get { return instancia.Value; }
+            get
+            {
+                if (instancia == null)
+                    instancia = new Sesion();
+                return instancia;
+            }
         }
 
         private Sesion()
@@ -35,7 +42,7 @@ namespace BLL
             get { return HaySesion && usuarioActual.Rol == BLLUsuario.RolAdministrador; }
         }
 
-        // Solo BLLUsuario.ValidarUsuario puede iniciar la sesión.
+        // Solo BLLUsuario.ValidarUsuario inicia la sesión.
         internal void Iniciar(BE.Usuario usuario)
         {
             usuarioActual = usuario;

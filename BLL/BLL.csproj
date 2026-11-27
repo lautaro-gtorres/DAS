@@ -56,7 +56,6 @@
     <Compile Include="BLLVacuna.cs" />
     <Compile Include="BLLVacunacion.cs" />
     <Compile Include="BLLVenta.cs" />
-    <Compile Include="ErrorBD.cs" />
     <Compile Include="IABMeable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesion.cs" />

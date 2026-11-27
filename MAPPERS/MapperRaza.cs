@@ -1,4 +1,4 @@
-using DAL;
+﻿using DAL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,8 +41,12 @@ namespace MAPPERS
         // Busca por nombre (contiene el texto de filtro.NombreRaza).
         public List<BE.Raza> Buscar(BE.Raza filtro)
         {
+            string nombre = filtro.NombreRaza;
+            if (nombre == null)
+                nombre = "";
+
             SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@nombreRaza", filtro.NombreRaza ?? "");
+            parametros[0] = new SqlParameter("@nombreRaza", nombre);
             return Mapear(Acceso.Instancia.Leer("BuscarRaza", parametros));
         }
 

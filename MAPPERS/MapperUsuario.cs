@@ -59,8 +59,12 @@ namespace MAPPERS
         // Busca por nombre de usuario (contiene el texto de filtro.NombreUsuario).
         public List<BE.Usuario> Buscar(BE.Usuario filtro)
         {
+            string nombre = filtro.NombreUsuario;
+            if (nombre == null)
+                nombre = "";
+
             SqlParameter[] parametros = new SqlParameter[1];
-            parametros[0] = new SqlParameter("@nombreUsuario", filtro.NombreUsuario ?? "");
+            parametros[0] = new SqlParameter("@nombreUsuario", nombre);
             return Mapear(Acceso.Instancia.Leer("BuscarUsuario", parametros));
         }
 
