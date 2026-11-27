@@ -82,6 +82,10 @@ namespace ClaseCapas
                     lblDescripcion.Text = "Producción de huevos " + periodo;
                     lblResumen.Text = "Promedio de la granja: " + Ultima(lineas).Valor.ToString("N1") + " huevos por día";
                 }
+
+                // Si en el período no hubo movimientos, el SP no devuelve filas.
+                if (lineas.Count == 0)
+                    lblResumen.Text = "No hay datos en el período.";
             }
             catch (Exception ex)
             {
@@ -107,9 +111,11 @@ namespace ClaseCapas
             }
         }
 
-        // La última línea es siempre la de TOTAL.
+        // La última línea es la de TOTAL (si no hay filas, un total en cero).
         private BE.LineaReporte Ultima(List<BE.LineaReporte> lineas)
         {
+            if (lineas.Count == 0)
+                return new BE.LineaReporte(BLL.BLLReporte.Total);
             return lineas[lineas.Count - 1];
         }
 

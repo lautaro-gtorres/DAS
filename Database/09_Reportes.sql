@@ -4,12 +4,14 @@
 --
 -- Toda la lógica de los reportes está acá: período, agrupación, totales y promedios.
 -- @ultimoAnio = 0: último mes (desde hoy - 1 mes); 1: último año (desde hoy - 1 año).
--- Todos devuelven las mismas columnas: Concepto, Registros, Cantidad, Valor,
--- con una última fila 'TOTAL'.
+-- Todos devuelven las mismas columnas: Concepto, Registros, Cantidad, Valor.
+-- GROUP BY ROLLUP agrega sola la última fila con el TOTAL (sin UNION).
+-- Si en el período no hay datos, no devuelven filas.
 -- =============================================================
 
 
 -- Ventas por producto: cantidad de ventas, unidades vendidas y total en pesos.
+-- TipoProducto: 1 = Huevo, 2 = Gallina (igual que en AltaVenta), así no hace falta JOIN.
 CREATE OR ALTER PROCEDURE ReporteVentas
     @ultimoAnio bit
 AS
@@ -17,26 +19,14 @@ BEGIN
     DECLARE @hoy date = CAST(GETDATE() AS date);
     DECLARE @desde date = CASE WHEN @ultimoAnio = 1 THEN DATEADD(YEAR, -1, @hoy) ELSE DATEADD(MONTH, -1, @hoy) END;
 
-    SELECT Concepto, Registros, Cantidad, Valor
-    FROM
-    (
-        SELECT 0 AS Orden, tp.Descripcion AS Concepto, COUNT(*) AS Registros,
-               CAST(SUM(v.Cantidad) AS decimal(14,2)) AS Cantidad,
-               CAST(SUM(v.Total) AS decimal(14,2)) AS Valor
-        FROM Venta v
-        INNER JOIN TipoProducto tp ON tp.IdTipoProducto = v.IdTipoProducto
-        WHERE v.Fecha BETWEEN @desde AND @hoy
-        GROUP BY tp.Descripcion
-
-        UNION ALL
-
-        SELECT 1, 'TOTAL', COUNT(*),
-               CAST(ISNULL(SUM(v.Cantidad), 0) AS decimal(14,2)),
-               CAST(ISNULL(SUM(v.Total), 0) AS decimal(14,2))
-        FROM Venta v
-        WHERE v.Fecha BETWEEN @desde AND @hoy
-    ) r
-    ORDER BY Orden, Concepto;
+    SELECT ISNULL(CASE IdTipoProducto WHEN 1 THEN 'Huevo' WHEN 2 THEN 'Gallina' END, 'TOTAL') AS Concepto,
+           COUNT(*) AS Registros,
+           CAST(SUM(Cantidad) AS decimal(14,2)) AS Cantidad,
+           CAST(SUM(Total) AS decimal(14,2)) AS Valor
+    FROM Venta
+    WHERE Fecha BETWEEN @desde AND @hoy
+    GROUP BY ROLLUP(IdTipoProducto)
+    ORDER BY GROUPING(IdTipoProducto), Concepto;
 END
 GO
 
@@ -49,32 +39,22 @@ BEGIN
     DECLARE @hoy date = CAST(GETDATE() AS date);
     DECLARE @desde date = CASE WHEN @ultimoAnio = 1 THEN DATEADD(YEAR, -1, @hoy) ELSE DATEADD(MONTH, -1, @hoy) END;
 
-    SELECT Concepto, Registros, Cantidad, Valor
-    FROM
-    (
-        SELECT 0 AS Orden, a.NombreAlimento AS Concepto, COUNT(*) AS Registros,
-               CAST(SUM(c.Kilogramos) AS decimal(14,2)) AS Cantidad,
-               CAST(SUM(c.Total) AS decimal(14,2)) AS Valor
-        FROM Compra c
-        INNER JOIN Alimento a ON a.IdAlimento = c.IdAlimento
-        WHERE c.Fecha BETWEEN @desde AND @hoy
-        GROUP BY a.NombreAlimento
-
-        UNION ALL
-
-        SELECT 1, 'TOTAL', COUNT(*),
-               CAST(ISNULL(SUM(c.Kilogramos), 0) AS decimal(14,2)),
-               CAST(ISNULL(SUM(c.Total), 0) AS decimal(14,2))
-        FROM Compra c
-        WHERE c.Fecha BETWEEN @desde AND @hoy
-    ) r
-    ORDER BY Orden, Concepto;
+    SELECT ISNULL(a.NombreAlimento, 'TOTAL') AS Concepto,
+           COUNT(*) AS Registros,
+           CAST(SUM(c.Kilogramos) AS decimal(14,2)) AS Cantidad,
+           CAST(SUM(c.Total) AS decimal(14,2)) AS Valor
+    FROM Compra c
+    INNER JOIN Alimento a ON a.IdAlimento = c.IdAlimento
+    WHERE c.Fecha BETWEEN @desde AND @hoy
+    GROUP BY ROLLUP(a.NombreAlimento)
+    ORDER BY GROUPING(a.NombreAlimento), Concepto;
 END
 GO
 
 
 -- Producción de huevos por corral: días con registro, huevos y promedio por día.
--- La fila TOTAL es la granja entera: huevos de todos los corrales / días distintos con producción.
+-- En la fila TOTAL, COUNT(DISTINCT Fecha) cuenta los días distintos de toda la granja,
+-- así el promedio es el de la granja entera.
 CREATE OR ALTER PROCEDURE ReporteProduccion
     @ultimoAnio bit
 AS
@@ -82,26 +62,15 @@ BEGIN
     DECLARE @hoy date = CAST(GETDATE() AS date);
     DECLARE @desde date = CASE WHEN @ultimoAnio = 1 THEN DATEADD(YEAR, -1, @hoy) ELSE DATEADD(MONTH, -1, @hoy) END;
 
-    SELECT Concepto, Registros, Cantidad, Valor
-    FROM
-    (
-        SELECT 0 AS Orden, 'Corral ' + co.NroCorral AS Concepto, COUNT(*) AS Registros,
-               CAST(SUM(p.CantidadHuevos) AS decimal(14,2)) AS Cantidad,
-               CAST(SUM(p.CantidadHuevos) * 1.0 / COUNT(*) AS decimal(14,1)) AS Valor
-        FROM Produccion p
-        INNER JOIN Corral co ON co.IdCorral = p.IdCorral
-        WHERE p.Fecha BETWEEN @desde AND @hoy
-        GROUP BY co.NroCorral
-
-        UNION ALL
-
-        SELECT 1, 'TOTAL', COUNT(DISTINCT p.Fecha),
-               CAST(ISNULL(SUM(p.CantidadHuevos), 0) AS decimal(14,2)),
-               CAST(ISNULL(SUM(p.CantidadHuevos) * 1.0 / NULLIF(COUNT(DISTINCT p.Fecha), 0), 0) AS decimal(14,1))
-        FROM Produccion p
-        WHERE p.Fecha BETWEEN @desde AND @hoy
-    ) r
-    ORDER BY Orden, Concepto;
+    SELECT ISNULL('Corral ' + co.NroCorral, 'TOTAL') AS Concepto,
+           COUNT(DISTINCT p.Fecha) AS Registros,
+           CAST(SUM(p.CantidadHuevos) AS decimal(14,2)) AS Cantidad,
+           CAST(SUM(p.CantidadHuevos) * 1.0 / COUNT(DISTINCT p.Fecha) AS decimal(14,1)) AS Valor
+    FROM Produccion p
+    INNER JOIN Corral co ON co.IdCorral = p.IdCorral
+    WHERE p.Fecha BETWEEN @desde AND @hoy
+    GROUP BY ROLLUP(co.NroCorral)
+    ORDER BY GROUPING(co.NroCorral), Concepto;
 END
 GO
 

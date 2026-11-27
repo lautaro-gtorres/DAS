@@ -48,6 +48,7 @@
             this.dgvCorrales = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCorrales)).BeginInit();
+            this.btnEstructura = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // txtCapacidad
@@ -252,6 +253,19 @@
             this.dgvCorrales.Size = new System.Drawing.Size(644, 200);
             this.dgvCorrales.TabIndex = 7;
             this.dgvCorrales.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCorrales_CellClick);
+            // 
+            // btnEstructura
+            // 
+            this.btnEstructura.BackColor = System.Drawing.Color.Aquamarine;
+            this.btnEstructura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEstructura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEstructura.Location = new System.Drawing.Point(550, 270);
+            this.btnEstructura.Size = new System.Drawing.Size(150, 30);
+            this.btnEstructura.TabIndex = 9;
+            this.btnEstructura.Text = "Ver estructura";
+            this.btnEstructura.UseVisualStyleBackColor = false;
+            this.btnEstructura.Name = "btnEstructura";
+            this.btnEstructura.Click += new System.EventHandler(this.btnEstructura_Click);
             //
             // CargarCorrales
             //
@@ -259,6 +273,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(756, 530);
+            this.Controls.Add(this.btnEstructura);
             this.Controls.Add(this.dgvCorrales);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.lblBuscar);
@@ -288,6 +303,7 @@
         }
 
         #endregion
+        private System.Windows.Forms.Button btnEstructura;
 
         private System.Windows.Forms.TextBox txtCapacidad;
         private System.Windows.Forms.Label label2;

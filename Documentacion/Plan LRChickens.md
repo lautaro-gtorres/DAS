@@ -21,6 +21,7 @@ Sistema de gestión de una granja avícola (gallinas, huevos, alimento, vacunas,
    | `06_VentaVacunacion.sql` | Venta de huevos y gallinas (da de baja las vendidas), Vacunacion y comprobante |
    | `07_Compras_Stock.sql` | Compras a proveedores, stock de huevos, DNI y CUIL únicos |
    | `08_DatosDePrueba.sql` | Datos de ejemplo para que todos los combos tengan opciones |
+   | `09_Reportes.sql` | SP de los reportes (un SELECT con `GROUP BY ROLLUP` cada uno) |
 
 3. **Compilar:** abrir `ClaseCapas/ClaseCapas.slnx`. Si Visual Studio no toma los cambios, usar **Recompilar solución**.
 4. **Entrar:** con un usuario de la tabla Usuario (contraseña en texto plano, decisión del equipo).
@@ -51,11 +52,12 @@ Reglas de la base: los Id **no son IDENTITY** (los SP de alta usan `MAX(Id) + 1`
 | Inicio | REGISTROS | RegistrosVender (modo movimientos) | Ventas y compras juntas (`List<Movimiento>`) con el balance |
 | Inicio | AGENDA | Agenda | Próximas vacunaciones |
 | Inicio | USUARIO NUEVO / VER USUARIOS | UsuarioNuevo / VerUsuarios | Solo para el Administrador. "Olvidé mi contraseña" pone una nueva |
+| Inicio | REPORTES | Reportes | Último mes o último año: ventas totales, compras de alimento y producción promedio (todo calculado en SP) |
 | Gallinas | Cargar gallina | CargarGallina | De a una o **por mayor** (prefijo + cantidad: GAL-001, GAL-002…) |
 | Gallinas | Ver gallinas | VerGallinas | Modificar y dar de baja |
 | Gallinas | Vender | Vender | Huevos o gallinas (ver Ventas) |
 | Gallinas | Cargar alimento | CargarAlimento | Alimento con stock en kg |
-| Gallinas | Cargar corrales | CargarCorrales | ABM en una pantalla, con tipo y ubicación |
+| Gallinas | Cargar corrales | CargarCorrales | ABM en una pantalla, con tipo y ubicación. "Ver estructura" abre EstructuraGranja (árbol Granja → Ubicación → Corral) |
 | Gallinas | Cargar vacunas | CargarVacunas | Vacunación por corral, con próxima aplicación opcional |
 | Proveedores | Cargar / Ver proveedores | CargarProveedor / VerProveedor | Con CUIL, localidad, e-mail, servicio y estado |
 | Proveedores | Realizar pedido | Comprar | Compra de alimento por kilo: suma al stock |
@@ -82,12 +84,12 @@ Reglas de la base: los Id **no son IDENTITY** (los SP de alta usan `MAX(Id) + 1`
 | 1 | Estructura clara, sin código redundante | Capas separadas; helpers comunes en `Pantalla`, `Validaciones` y `Conversion` |
 | 2 | Encapsulamiento | Todos los BE: atributos privados + propiedades get/set |
 | 3 | Constructores | Constructores con parámetros en BE (`Cliente`, `Usuario`, `Venta`, `Compra`), `protected` en las clases abstractas; formularios con constructor de alta y de edición |
-| 4 | Herencia y polimorfismo | `Persona` y `Movimiento` abstractas, con métodos `abstract`/`virtual` redefinidos (`TipoPersona`, `NombreCompleto`, `Detalle`, `Importe`); interfaces `IMapper<T>` e `IABMeable<T>` |
-| 5 | Listas polimórficas | `List<Movimiento>` con ventas y compras (REGISTROS y balance) |
+| 4 | Herencia y polimorfismo | `Persona` y `Movimiento` abstractas, con métodos `abstract`/`virtual` redefinidos (`TipoPersona`, `NombreCompleto`, `Detalle`, `Importe`); interfaces `IMapper<T>` e `IABMeable<T>`; patrón **Composite** en `ComponenteGranja` (hoja `CorralGranja`, compuesto `GrupoGranja`) |
+| 5 | Listas polimórficas | `List<Movimiento>` con ventas y compras (REGISTROS y balance); `List<ComponenteGranja>` con corrales y grupos (EstructuraGranja) |
 | 6 | Manejo de excepciones | try/catch en Acceso (rollback), en la BLL (traduce errores de SQL) y en cada evento de la GUI |
 | 7 | Interfaz clara | Diseño de Rocío; grillas de solo lectura, combos de lista, confirmación antes de borrar |
 | 8 | Eventos separados de la lógica | Los formularios solo llaman a la BLL |
-| 9 | Validaciones con MessageBox | Validaciones en la BLL; la GUI las muestra como aviso |
+| 9 | Validaciones con MessageBox | Validaciones en la BLL; la GUI las muestra como aviso. User Control `CampoValidado` (entero, decimal, e-mail, DNI, teléfono) en CargarProduccion y CargarCliente |
 | 10 | Persistencia separada | DAL + stored procedures; XML del comprobante |
 | 11 | Singleton para la conexión | `DAL.Acceso.Instancia` (y `BLL.Sesion.Instancia`) |
 | 12 | Separación por capas | GUI / BLL / MAPPERS / DAL / BE |

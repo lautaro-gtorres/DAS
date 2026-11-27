@@ -44,9 +44,12 @@
     <Compile Include="Alimento.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Compra.cs" />
+    <Compile Include="ComponenteGranja.cs" />
+    <Compile Include="CorralGranja.cs" />
     <Compile Include="Comprobante.cs" />
     <Compile Include="Corral.cs" />
     <Compile Include="Gallina.cs" />
+    <Compile Include="GrupoGranja.cs" />
     <Compile Include="LineaReporte.cs" />
     <Compile Include="Movimiento.cs" />
     <Compile Include="Persona.cs" />

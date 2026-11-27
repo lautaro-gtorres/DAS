@@ -47,6 +47,7 @@
     <Compile Include="BLLComprobante.cs" />
     <Compile Include="BLLCorral.cs" />
     <Compile Include="BLLGallina.cs" />
+    <Compile Include="BLLGranja.cs" />
     <Compile Include="BLLMovimiento.cs" />
     <Compile Include="BLLProduccion.cs" />
     <Compile Include="BLLProveedor.cs" />

@@ -100,6 +100,13 @@ namespace ClaseCapas
             LimpiarCampos();
         }
 
+        // Muestra la granja como árbol (Granja → Ubicación → Corral) con sus totales.
+        private void btnEstructura_Click(object sender, EventArgs e)
+        {
+            EstructuraGranja estructura = new EstructuraGranja();
+            estructura.ShowDialog(this);
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Gallinas gallinas = new Gallinas();
