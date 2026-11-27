@@ -51,5 +51,47 @@ namespace ClaseCapas
             inicio.Show();
             this.Close();
         }
+
+        private void btnCargarCliente_Click(object sender, EventArgs e)
+        {
+            CargarCliente cliente = new CargarCliente();
+            cliente.Show();
+            this.Close();
+        }
+
+        private void btnVerClientes_Click(object sender, EventArgs e)
+        {
+            VerClientes clientes = new VerClientes();
+            clientes.Show();
+            this.Close();
+        }
+
+        private void btnAgenda_Click(object sender, EventArgs e)
+        {
+            Agenda agenda = new Agenda(false);
+            agenda.Show();
+            this.Close();
+        }
+
+        private void btnConsultarStock_Click(object sender, EventArgs e)
+        {
+            ConsultarStock stock = new ConsultarStock();
+            stock.Show();
+            this.Close();
+        }
+
+        private void btnRegistroVentas_Click(object sender, EventArgs e)
+        {
+            RegistrosVender registros = new RegistrosVender(false);
+            registros.Show();
+            this.Close();
+        }
+
+        private void btnVender_Click(object sender, EventArgs e)
+        {
+            Vender vender = new Vender();
+            vender.Show();
+            this.Close();
+        }
     }
 }

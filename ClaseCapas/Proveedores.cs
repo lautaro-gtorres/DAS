@@ -51,5 +51,35 @@ namespace ClaseCapas
             inicio.Show();
             this.Close();
         }
+
+        private void btnCargarProveedor_Click(object sender, EventArgs e)
+        {
+            CargarProveedor cargar = new CargarProveedor();
+            cargar.Show();
+            this.Close();
+        }
+
+        private void btnVerProveedores_Click(object sender, EventArgs e)
+        {
+            VerProveedor ver = new VerProveedor();
+            ver.Show();
+            this.Close();
+        }
+
+        // Realizar pedido = comprar alimento a un proveedor.
+        private void btnRealizarPedido_Click(object sender, EventArgs e)
+        {
+            Comprar comprar = new Comprar();
+            comprar.Show();
+            this.Close();
+        }
+
+        // Consultar a proveedores = historial de compras.
+        private void btnConsultarProveedores_Click(object sender, EventArgs e)
+        {
+            VerCompras compras = new VerCompras();
+            compras.Show();
+            this.Close();
+        }
     }
 }

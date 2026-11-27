@@ -16,9 +16,9 @@ namespace MAPPERS
             SqlParameter[] parametros = new SqlParameter[5];
             parametros[0] = new SqlParameter("@nombre", cliente.Nombre);
             parametros[1] = new SqlParameter("@apellido", cliente.Apellido);
-            parametros[2] = new SqlParameter("@telefono", TextoONulo(cliente.Telefono));
-            parametros[3] = new SqlParameter("@email", TextoONulo(cliente.Email));
-            parametros[4] = new SqlParameter("@direccion", TextoONulo(cliente.Direccion));
+            parametros[2] = new SqlParameter("@telefono", Conversion.TextoONulo(cliente.Telefono));
+            parametros[3] = new SqlParameter("@email", Conversion.TextoONulo(cliente.Email));
+            parametros[4] = new SqlParameter("@direccion", Conversion.TextoONulo(cliente.Direccion));
             return Acceso.Instancia.Escribir("AltaCliente", parametros);
         }
 
@@ -36,9 +36,9 @@ namespace MAPPERS
             parametros[0] = new SqlParameter("@idCliente", cliente.IdCliente);
             parametros[1] = new SqlParameter("@nombre", cliente.Nombre);
             parametros[2] = new SqlParameter("@apellido", cliente.Apellido);
-            parametros[3] = new SqlParameter("@telefono", TextoONulo(cliente.Telefono));
-            parametros[4] = new SqlParameter("@email", TextoONulo(cliente.Email));
-            parametros[5] = new SqlParameter("@direccion", TextoONulo(cliente.Direccion));
+            parametros[3] = new SqlParameter("@telefono", Conversion.TextoONulo(cliente.Telefono));
+            parametros[4] = new SqlParameter("@email", Conversion.TextoONulo(cliente.Email));
+            parametros[5] = new SqlParameter("@direccion", Conversion.TextoONulo(cliente.Direccion));
             return Acceso.Instancia.Escribir("ModificarCliente", parametros);
         }
 
@@ -60,22 +60,6 @@ namespace MAPPERS
             return Mapear(Acceso.Instancia.Leer("BuscarCliente", parametros));
         }
 
-        // Los campos opcionales que vienen en null se mandan como NULL a la base.
-        object TextoONulo(string texto)
-        {
-            if (texto == null)
-                return DBNull.Value;
-            return texto;
-        }
-
-        // Los campos opcionales que vienen NULL de la base quedan en null.
-        string TextoDeFila(DataRow row, string columna)
-        {
-            if (row[columna] == DBNull.Value)
-                return null;
-            return row[columna].ToString();
-        }
-
         List<BE.Cliente> Mapear(DataTable dt)
         {
             List<BE.Cliente> lista = new List<BE.Cliente>();
@@ -85,9 +69,9 @@ namespace MAPPERS
                 cliente.IdCliente = Convert.ToInt32(row["IdCliente"]);
                 cliente.Nombre = row["Nombre"].ToString();
                 cliente.Apellido = row["Apellido"].ToString();
-                cliente.Telefono = TextoDeFila(row, "Telefono");
-                cliente.Email = TextoDeFila(row, "Email");
-                cliente.Direccion = TextoDeFila(row, "Direccion");
+                cliente.Telefono = Conversion.TextoDeFila(row, "Telefono");
+                cliente.Email = Conversion.TextoDeFila(row, "Email");
+                cliente.Direccion = Conversion.TextoDeFila(row, "Direccion");
                 cliente.Activo = Convert.ToBoolean(row["Activo"]);
                 lista.Add(cliente);
             }

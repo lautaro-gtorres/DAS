@@ -114,6 +114,25 @@
     <Compile Include="Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="CargarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarCliente.Designer.cs">
+      <DependentUpon>CargarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CargarProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarProduccion.Designer.cs">
+      <DependentUpon>CargarProduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerCompras.Designer.cs">
+      <DependentUpon>VerCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantalla.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs">
@@ -133,6 +152,12 @@
     </Compile>
     <Compile Include="UsuarioNuevo.Designer.cs">
       <DependentUpon>UsuarioNuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VerComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerComprobante.Designer.cs">
+      <DependentUpon>VerComprobante.cs</DependentUpon>
     </Compile>
     <Compile Include="Vender.cs">
       <SubType>Form</SubType>

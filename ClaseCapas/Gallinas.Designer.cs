@@ -57,6 +57,7 @@
             this.button6.ForeColor = System.Drawing.Color.DimGray;
             this.button6.Location = new System.Drawing.Point(324, 107);
             this.button6.Name = "button6";
+            this.button6.Click += new System.EventHandler(this.btnCargarGallina_Click);
             this.button6.Size = new System.Drawing.Size(152, 55);
             this.button6.TabIndex = 43;
             this.button6.Text = "Cargar gallina";
@@ -187,6 +188,7 @@
             this.button7.ForeColor = System.Drawing.Color.DimGray;
             this.button7.Location = new System.Drawing.Point(324, 179);
             this.button7.Name = "button7";
+            this.button7.Click += new System.EventHandler(this.btnVerGallinas_Click);
             this.button7.Size = new System.Drawing.Size(152, 55);
             this.button7.TabIndex = 45;
             this.button7.Text = "Ver gallinas";
@@ -207,6 +209,7 @@
             this.button8.Size = new System.Drawing.Size(152, 55);
             this.button8.TabIndex = 46;
             this.button8.Text = "Vender";
+            this.button8.Click += new System.EventHandler(this.btnVender_Click);
             this.button8.UseVisualStyleBackColor = false;
             // 
             // button9
@@ -221,6 +224,7 @@
             this.button9.ForeColor = System.Drawing.Color.DimGray;
             this.button9.Location = new System.Drawing.Point(551, 107);
             this.button9.Name = "button9";
+            this.button9.Click += new System.EventHandler(this.btnCargarAlimento_Click);
             this.button9.Size = new System.Drawing.Size(152, 55);
             this.button9.TabIndex = 47;
             this.button9.Text = "Cargar alimento";
@@ -259,6 +263,7 @@
             this.button11.Size = new System.Drawing.Size(152, 55);
             this.button11.TabIndex = 49;
             this.button11.Text = "Cargar vacunas";
+            this.button11.Click += new System.EventHandler(this.btnCargarVacunas_Click);
             this.button11.UseVisualStyleBackColor = false;
             // 
             // Gallinas

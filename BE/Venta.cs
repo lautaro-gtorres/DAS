@@ -7,10 +7,46 @@ using System.Threading.Tasks;
 namespace BE
 {
     /// <summary>
-    /// Tabla Venta: por ahora una venta es una sola línea (un tipo de producto).
+    /// Tabla Venta: una venta es una sola línea (huevos o gallinas).
     /// </summary>
-    public class Venta
+    public class Venta : Movimiento
     {
+        public Venta()
+        {
+        }
+
+        // Venta de huevos.
+        public Venta(int cantidadHuevos, decimal precioUnitario)
+        {
+            IdTipoProducto = 1;
+            Cantidad = cantidadHuevos;
+            PrecioUnitario = precioUnitario;
+        }
+
+        public override string TipoMovimiento()
+        {
+            return "Venta";
+        }
+
+        // Ej: "30 huevos" o "2 gallinas Ponedora Sussex (H)", con el cliente si lo hay.
+        public override string Detalle()
+        {
+            string detalle;
+            if (IdTipoGallina == null)
+                detalle = Cantidad + " huevos";
+            else
+                detalle = Cantidad + " gallinas " + TipoGallina + " " + Raza + " (" + Sexo + ")";
+            if (Cliente != null)
+                detalle = detalle + " a " + Cliente;
+            return detalle;
+        }
+
+        // Una venta entra plata.
+        public override decimal Importe()
+        {
+            return Total;
+        }
+
         private int idVenta;
         public int IdVenta
         {
@@ -18,13 +54,8 @@ namespace BE
             set { idVenta = value; }
         }
 
-        private DateTime fecha;
-        public DateTime Fecha
-        {
-            get { return fecha; }
-            set { fecha = value; }
-        }
 
+        // 1 = Huevo, 2 = Gallina (tabla TipoProducto).
         private int idTipoProducto;
         public int IdTipoProducto
         {
@@ -48,27 +79,60 @@ namespace BE
             set { cantidad = value; }
         }
 
-        private decimal precioUnitario;
-        public decimal PrecioUnitario
+
+
+        // El cliente es opcional.
+        private int? idCliente;
+        public int? IdCliente
         {
-            get { return precioUnitario; }
-            set { precioUnitario = value; }
+            get { return idCliente; }
+            set { idCliente = value; }
         }
 
-        // Columna calculada en la base (Cantidad * PrecioUnitario): no se envía al guardar.
-        private decimal total;
-        public decimal Total
-        {
-            get { return total; }
-            set { total = value; }
-        }
-
-        // Nombre del cliente como texto (todavía no hay tabla Cliente).
+        // "Apellido, Nombre" del cliente (lo completa el mapper con un JOIN).
         private string cliente;
         public string Cliente
         {
             get { return cliente; }
             set { cliente = value; }
+        }
+
+        // ---- Solo en ventas de gallinas (en ventas de huevos quedan en null) ----
+
+        private int? idTipoGallina;
+        public int? IdTipoGallina
+        {
+            get { return idTipoGallina; }
+            set { idTipoGallina = value; }
+        }
+
+        private string tipoGallina;
+        public string TipoGallina
+        {
+            get { return tipoGallina; }
+            set { tipoGallina = value; }
+        }
+
+        private int? idRaza;
+        public int? IdRaza
+        {
+            get { return idRaza; }
+            set { idRaza = value; }
+        }
+
+        private string raza;
+        public string Raza
+        {
+            get { return raza; }
+            set { raza = value; }
+        }
+
+        // 'M' = macho, 'H' = hembra.
+        private char? sexo;
+        public char? Sexo
+        {
+            get { return sexo; }
+            set { sexo = value; }
         }
     }
 }

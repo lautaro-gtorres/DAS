@@ -143,6 +143,7 @@
             this.button10.ForeColor = System.Drawing.Color.DimGray;
             this.button10.Location = new System.Drawing.Point(554, 176);
             this.button10.Name = "button10";
+            this.button10.Click += new System.EventHandler(this.btnConsultarProveedores_Click);
             this.button10.Size = new System.Drawing.Size(152, 55);
             this.button10.TabIndex = 63;
             this.button10.Text = "Consultar a proveedores";
@@ -160,6 +161,7 @@
             this.button9.ForeColor = System.Drawing.Color.DimGray;
             this.button9.Location = new System.Drawing.Point(554, 104);
             this.button9.Name = "button9";
+            this.button9.Click += new System.EventHandler(this.btnRealizarPedido_Click);
             this.button9.Size = new System.Drawing.Size(152, 55);
             this.button9.TabIndex = 62;
             this.button9.Text = "Realizar pedido";
@@ -177,6 +179,7 @@
             this.button7.ForeColor = System.Drawing.Color.DimGray;
             this.button7.Location = new System.Drawing.Point(327, 176);
             this.button7.Name = "button7";
+            this.button7.Click += new System.EventHandler(this.btnVerProveedores_Click);
             this.button7.Size = new System.Drawing.Size(152, 55);
             this.button7.TabIndex = 60;
             this.button7.Text = "Ver proveedores";
@@ -194,6 +197,7 @@
             this.button6.ForeColor = System.Drawing.Color.DimGray;
             this.button6.Location = new System.Drawing.Point(327, 104);
             this.button6.Name = "button6";
+            this.button6.Click += new System.EventHandler(this.btnCargarProveedor_Click);
             this.button6.Size = new System.Drawing.Size(152, 55);
             this.button6.TabIndex = 58;
             this.button6.Text = "Cargar proveedor";

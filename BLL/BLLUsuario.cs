@@ -38,7 +38,7 @@ namespace BLL
 
         public int Alta(Usuario usuario)
         {
-            Validar(usuario);
+            Validar(usuario, true);
             try
             {
                 return map.Alta(usuario);
@@ -58,10 +58,11 @@ namespace BLL
             return map.Baja(id);
         }
 
-        // La contraseña es obligatoria también al modificar (los listados no la traen).
+        // Al modificar, si la contraseña viene vacía se conserva la que tenía
+        // (los listados no la traen).
         public int Modificar(Usuario usuario)
         {
-            Validar(usuario);
+            Validar(usuario, false);
             try
             {
                 return map.Modificar(usuario);
@@ -88,16 +89,19 @@ namespace BLL
             return map.ListarRoles();
         }
 
-        // 2627 = nombre de usuario repetido (también entre los dados de baja); 547 = el rol no existe (FK).
+        // 2627 = nombre de usuario repetido (también entre los dados de baja);
+        // 2601 = DNI repetido (índice único); 547 = el rol no existe (FK).
         void TraducirError(SqlException ex, Usuario usuario)
         {
             if (ex.Number == 2627)
                 throw new ArgumentException("Ya existe el usuario " + usuario.NombreUsuario + " (puede estar dado de baja).");
+            if (ex.Number == 2601)
+                throw new ArgumentException("Ya hay un usuario con el DNI " + usuario.Dni + ".");
             if (ex.Number == 547)
                 throw new ArgumentException("El rol seleccionado no existe.");
         }
 
-        void Validar(Usuario usuario)
+        void Validar(Usuario usuario, bool esAlta)
         {
             if (usuario == null)
                 throw new ArgumentException("No hay datos del usuario.");
@@ -110,27 +114,31 @@ namespace BLL
             if (usuario.NombreUsuario.Length > 50)
                 throw new ArgumentException("El nombre de usuario no puede tener más de 50 caracteres.");
             if (string.IsNullOrEmpty(usuario.Contrasena))
-                throw new ArgumentException("Ingrese la contraseña.");
-            if (usuario.Contrasena.Length > 256)
+            {
+                if (esAlta)
+                    throw new ArgumentException("Ingrese la contraseña.");
+                usuario.Contrasena = null;   // al modificar: se conserva la anterior
+            }
+            if (usuario.Contrasena != null && usuario.Contrasena.Length > 256)
                 throw new ArgumentException("La contraseña no puede tener más de 256 caracteres.");
             if (usuario.IdRol <= 0)
                 throw new ArgumentException("Seleccione el rol.");
 
             // ---- Datos personales ----
-            usuario.Nombre = SacarEspacios(usuario.Nombre);
+            usuario.Nombre = Validaciones.SacarEspacios(usuario.Nombre);
             if (usuario.Nombre == null)
                 throw new ArgumentException("Ingrese el nombre.");
             if (usuario.Nombre.Length > 50)
                 throw new ArgumentException("El nombre no puede tener más de 50 caracteres.");
 
-            usuario.Apellido = SacarEspacios(usuario.Apellido);
+            usuario.Apellido = Validaciones.SacarEspacios(usuario.Apellido);
             if (usuario.Apellido == null)
                 throw new ArgumentException("Ingrese el apellido.");
             if (usuario.Apellido.Length > 50)
                 throw new ArgumentException("El apellido no puede tener más de 50 caracteres.");
 
             // DNI, fecha de nacimiento, teléfono y e-mail son opcionales.
-            usuario.Dni = SacarEspacios(usuario.Dni);
+            usuario.Dni = Validaciones.SacarEspacios(usuario.Dni);
             if (usuario.Dni != null)
             {
                 // Se acepta con puntos (12.345.678) y se guarda solo con los números.
@@ -152,39 +160,18 @@ namespace BLL
                     throw new ArgumentException("La fecha de nacimiento no es válida.");
             }
 
-            usuario.Telefono = SacarEspacios(usuario.Telefono);
+            usuario.Telefono = Validaciones.SacarEspacios(usuario.Telefono);
             if (usuario.Telefono != null && usuario.Telefono.Length > 20)
                 throw new ArgumentException("El teléfono no puede tener más de 20 caracteres.");
 
-            usuario.Email = SacarEspacios(usuario.Email);
+            usuario.Email = Validaciones.SacarEspacios(usuario.Email);
             if (usuario.Email != null)
             {
                 if (usuario.Email.Length > 100)
                     throw new ArgumentException("El e-mail no puede tener más de 100 caracteres.");
-                if (!EsEmailValido(usuario.Email))
+                if (!Validaciones.EsEmailValido(usuario.Email))
                     throw new ArgumentException("El e-mail no es válido.");
             }
-        }
-
-        // Control simple: algo antes de la @ y un punto después.
-        bool EsEmailValido(string email)
-        {
-            int arroba = email.IndexOf('@');
-            if (arroba < 1)
-                return false;
-            if (email.LastIndexOf('.') < arroba + 2)
-                return false;
-            if (email.EndsWith("."))
-                return false;
-            return true;
-        }
-
-        // Devuelve el texto sin espacios de los costados, o null si está vacío.
-        string SacarEspacios(string texto)
-        {
-            if (string.IsNullOrWhiteSpace(texto))
-                return null;
-            return texto.Trim();
         }
     }
 }
